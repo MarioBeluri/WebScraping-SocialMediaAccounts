@@ -11,7 +11,7 @@ from time import sleep
 driver = Driver(uc=True)
 #login = "https://fameswap.com/auth/login?v=1705842671"
 social_media = []
-website = "https://fameswap.com/browse?v=1705865088&social=3%2C4%2C5"
+website = "https://fameswap.com/browse"
 
 i = 0
 names = []
@@ -24,7 +24,7 @@ category = []
 #driver.get(login)
 #sleep(450)
 driver.get(website)
-number_of_pages = driver.find_element("xpath", "/html/body/div/div/div[3]/div[2]/div/div[3]/nav/ul/li[14]/a").accessible_name
+number_of_pages = driver.find_element("xpath", "/html/body/div/div/div[3]/div[2]/div/div[3]/nav/ul/li[12]/a")
 while (i < int(number_of_pages.accessible_name)):
 
     elements = driver.find_elements("xpath", "/html/body/div/div/div[3]/div[2]/div/div[2]/table/tbody/tr/td[1]/a")
@@ -63,7 +63,7 @@ while (i < int(number_of_pages.accessible_name)):
     driver.close()
     driver.switch_to.window(driver.window_handles[0])
     sleep(5)
-    driver.find_element("xpath", "/html/body/div/div/div[3]/div[2]/div/div[3]/nav/ul/li[15]/a").get_attribute("href").click()
+    driver.find_element("xpath", "//ul[@class='pagination']/li/a[@rel='next']").click()
 
 print(names)
 print(social_media)
