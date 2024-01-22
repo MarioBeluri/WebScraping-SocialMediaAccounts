@@ -3,6 +3,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
+from pymongo import MongoClient
 from time import sleep
 
 #options = Options()
@@ -10,10 +11,10 @@ from time import sleep
 #driver = uc.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 driver = Driver(uc=True)
 #login = "https://fameswap.com/auth/login?v=1705842671"
-social_media = []
 website = "https://fameswap.com/browse"
 
 i = 0
+social_media = []
 names = []
 subscribed = []
 prices = []
@@ -25,7 +26,7 @@ category = []
 #sleep(450)
 driver.get(website)
 number_of_pages = driver.find_element("xpath", "/html/body/div/div/div[3]/div[2]/div/div[3]/nav/ul/li[12]/a")
-while (i < int(number_of_pages.accessible_name)):
+while (i < 1):
 
     elements = driver.find_elements("xpath", "/html/body/div/div/div[3]/div[2]/div/div[2]/table/tbody/tr/td[1]/a")
 
@@ -64,11 +65,33 @@ while (i < int(number_of_pages.accessible_name)):
     driver.switch_to.window(driver.window_handles[0])
     sleep(5)
     driver.find_element("xpath", "//ul[@class='pagination']/li/a[@rel='next']").click()
+    i = i + 1
 
-print(names)
-print(social_media)
-print(subscribed)
-print(prices)
-print(listed_dates)
-print(descriptions)
-print(category)
+    client = MongoClient()
+
+try:
+    db = client.WebScraping
+    collection = db.WebScraping
+    scraped_data_list = []
+    for j in range(len(names)):
+        entry = {
+            "Name": names[j],
+            "Social Media": social_media[j],
+            "Subscribers": subscribed[j],
+            "Price": prices[j],
+            "Date Listed": listed_dates[j],
+            "Description": descriptions[j],
+            "Category": category[j]
+        }
+        scraped_data_list.append(entry)
+
+    # Insert multiple documents at once
+    collection.insert_many(scraped_data_list)
+
+except Exception as e:
+    print(f"Error Occurred: {e}")
+
+finally:
+    # Close the MongoDB connection
+    client.close()
+    print("Connection Closed")
