@@ -10,8 +10,8 @@ from time import sleep
 #options.add_experimental_option("detach", True)
 #driver = uc.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 driver = Driver(uc=True)
-login = "https://fameswap.com/auth/login?v=1705842671"
-website = "https://fameswap.com/browse"
+login = "https://fameswap.com/auth/login"
+website = "https://fameswap.com/browse?v=1706219067&social=3%2C4%2C5"
 
 i = 0
 social_media = []
@@ -23,7 +23,7 @@ descriptions = []
 category = []
 
 driver.get(login)
-sleep(60)
+sleep(30)
 driver.get(website)
 sleep(5)
 number_of_pages = driver.find_element("xpath", "/html/body/div/div/div[3]/div[2]/div/div[3]/nav/ul/li[12]/a")
