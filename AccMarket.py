@@ -10,6 +10,9 @@ from selenium.webdriver.common.by import By
 from pymongo import MongoClient
 from time import sleep
 
+#options = Options()
+#options.add_experimental_option("detach", True)
+#driver = uc.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 driver = Driver(uc=True)
 website = "https://accs-market.com/twitter" #Twitter
 
