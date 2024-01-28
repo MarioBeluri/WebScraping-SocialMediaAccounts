@@ -28,8 +28,7 @@ driver.get(website)
 sleep(5)
 number_of_pages = driver.find_element("xpath", "/html/body/div/div/div[3]/div[2]/div/div[3]/nav/ul/li[12]/a")
 
-while (i < int(number_of_pages.accessible_name)):
-
+while (i < int(number_of_pages.accessible_name) - 1):
     elements = driver.find_elements("xpath", "/html/body/div/div/div[3]/div[2]/div/div[2]/table/tbody/tr/td[1]/a")
 
     for element in elements:
@@ -68,7 +67,8 @@ while (i < int(number_of_pages.accessible_name)):
         driver.close()
         driver.switch_to.window(driver.window_handles[0])
         sleep(2)
-driver.find_element("xpath", "//ul[@class='pagination']/li/a[@rel='next']").click()
+    driver.find_element("xpath", "//ul[@class='pagination']/li/a[@rel='next']").click()
+    i += 1
 
 try:
     client = MongoClient()

@@ -68,6 +68,7 @@ for categories in number_of_categories:
             category.append(category_element.text)
             subscribed.append(subscribed_number)
             prices.append(price_element.text)
+            address.append(name)
             social_media.append("Instagram")
         i += 1
         next_page = driver.find_elements(By.XPATH,"/html/body/div/div[1]/div/div[2]/div/div[2]/div/div/div/nav/ul/li")
