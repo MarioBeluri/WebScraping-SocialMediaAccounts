@@ -55,12 +55,7 @@ for categories in number_of_categories:
         names_elements = driver.find_elements(By.XPATH, "/html/body/div[1]/div[1]/div/div[2]/div/div[2]/div/div/div/ul/li/div/h3/a")
         category_element = driver.find_element(By.XPATH, "/html/body/div/div[1]/div/div[2]/div/div[1]/div/div/div/div/h1/span")
 
-        for xpath_expression in xpath_expressions:
-            try:
-                price_element = driver.find_element(By.XPATH, xpath_expression)
-                break  # Break the loop if an element is found
-            except NoSuchElementException:
-                pass
+        price_element = price_element = driver.find_element(By.CLASS_NAME, "woocommerce-Price-amount")
 
         for name_element in names_elements:
             # Extract the text content from the name element
