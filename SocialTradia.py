@@ -10,6 +10,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import NoSuchElementException
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.action_chains import ActionChains
 from pymongo import MongoClient
 from time import sleep
 
@@ -21,7 +22,6 @@ xpath_expressions = [
     "/html/body/div/div[1]/div/div[2]/div/div[2]/div/div/div/ul/li/div[2]/div/div[@class='nm-shop-loop-price']/span/span/span"
 ]
 
-i = 0
 social_media = []
 names = []
 subscribed = []
@@ -43,14 +43,14 @@ for categories in number_of_categories:
 
     original_window = driver.current_window_handle
 
-    driver.find_element("html").send_keys(Keys.CONTROL + 't')
-    driver.switch_to.window(driver.window_handles[-1])
+    driver.switch_to.new_window('tab')
     driver.get(categories_link)
+    driver.switch_to.window(driver.window_handles[0])
 
     number_of_pages_element = driver.wait_for_element(By.XPATH, "/html/body/div[1]/div[1]/div/div[2]/div/div[2]/div/div/div/nav/ul/li[8]/a")
     number_of_pages = int(number_of_pages_element.text)
-
-    while i < number_of_pages:
+    i = 0
+    while i < number_of_pages - 1:
 
         names_elements = driver.find_elements(By.XPATH, "/html/body/div[1]/div[1]/div/div[2]/div/div[2]/div/div/div/ul/li/div/h3/a")
         category_element = driver.find_element(By.XPATH, "/html/body/div/div[1]/div/div[2]/div/div[1]/div/div/div/div/h1/span")
@@ -78,6 +78,10 @@ for categories in number_of_categories:
         next_page = driver.find_elements(By.XPATH,"/html/body/div/div[1]/div/div[2]/div/div[2]/div/div/div/nav/ul/li")
         next_page_link = next_page[-1].find_element(By.TAG_NAME, "a")
         next_page_link.click()
-driver.close()
 
+    driver.close()
+    driver.switch_to.window(original_window)
+    sleep(2)
+
+driver.close()
 print(names, category, subscribed, prices, listed_dates, descriptions, monthly_expense, monthly_income, address, social_media)
