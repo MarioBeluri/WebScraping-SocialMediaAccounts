@@ -63,4 +63,5 @@ while (i < number_of_pages - 1):
     next_page_url.click()
     i += 1
 
+
 print(names, category, subscribed, prices, listed_dates, descriptions, monthly_expense, monthly_income, address, social_media)
