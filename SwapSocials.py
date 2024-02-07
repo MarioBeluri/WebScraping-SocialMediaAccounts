@@ -48,27 +48,34 @@ while (i < number_of_pages - 1):
 
         category_element = driver.find_element("xpath",
                                                "/html/body/div[1]/div[1]/div[2]/div[3]/div[1]/div[1]/div/div[1]/nav/a[3]")
-        subscribed_element = driver.find_element("xpath",
-                                                 "/html/body/div[1]/div[1]/div[2]/div[3]/div[1]/div[3]/div/div/div[2]/div[2]/div[1]/p[2]/strong[1]")
-        price_element = driver.find_element("xpath",
-                                            "/html/body/div[1]/div[1]/div[2]/div[3]/div[1]/div[3]/div/div/div[2]/div[1]/p/span/bdi")
+        subscribedAndAverageLikes_element = driver.find_element(By.XPATH,
+                                                 "//div[@class='woocommerce-product-details__short-description']//p[2]")
+        price_element = driver.find_elements("xpath",
+                                            "//p[@class='price']//span[@class='woocommerce-Price-amount amount']/bdi")
         description_element = driver.find_element("xpath", "/html/body/div[1]/div[1]/div[2]/div[3]/div[1]/div[3]/div/div/div[2]/div[2]/div[1]/p[3]")
-
-        average_likes_element = driver.find_element("xpath",
-                                                 "/html/body/div[1]/div[1]/div[2]/div[3]/div[1]/div[3]/div/div/div[2]/div[2]/div[1]/p[2]")
 
         names.append(names_element.text)
         category.append(category_element.text)
-        subscribed.append(subscribed_element.getText())
-        prices.append(price_element.text)
+
+        subAndLikes = subscribedAndAverageLikes_element.text
+        split_index = subAndLikes.index('\n')
+        followers_string = subAndLikes[:split_index]
+        likes_string = subAndLikes[split_index + 1:]
+        followers_split = followers_string.split(":")
+        subscribed.append(followers_split[1].strip())
+        prices.append(price_element[0].text)
+        likes_split = followers_string.split(":")
+        average_likes.append(likes_split[1].strip())
+
         descriptions.append(description_element.text)
-        average_likes.append(average_likes_element.getText())
         social_media.append("Instagram")
 
         driver.close()
         driver.switch_to.window(original_window)
         sleep(2)
-    next_page = driver.find_element(By.XPATH, "/html/body/div[1]/div[1]/div[2]/div[2]/div[2]/div[2]/div/div[2]/div/nav/ul/li[11]/a")
+
+    next_page = driver.find_element(By.XPATH,
+                                    "//nav[@class='woocommerce-pagination nm-pagination nm-infload']//a[@class='next page-numbers']")
     next_page_click = next_page.get_attribute("href")
     next_page_click.click()
     i += 1
