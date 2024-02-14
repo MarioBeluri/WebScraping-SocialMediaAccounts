@@ -17,20 +17,27 @@ driver = Driver(uc=True)
 website = "https://swapsocials.com/instagram-accounts-for-sale/"
 
 i = 0
-social_media = []
 names = []
-subscribed = []
-prices = []
-listed_dates = []
-descriptions = []
-category = []
-average_likes = []
+social_media = []
 address = []
+followers = []
+prices = []
+descriptions = []
+listed_dates = []
+categories = []
+monthly_incomes = []
+monthly_expenses = []
+average_likes = []
 
 driver.get(website)
-number_of_pages = 20
 
-while (i < number_of_pages - 1):
+ul_element = driver.find_element(By.CSS_SELECTOR,'.page-numbers')
+
+li_elements = ul_element.find_elements(By.TAG_NAME,'li')
+
+number_of_pages = li_elements[-2].text
+
+while (i < int(number_of_pages) - 1):
     elements = driver.find_elements("xpath", "/html/body/div[1]/div[1]/div[2]/div[2]/div[2]/div[2]/div/div[2]/div/ul/li/div[@class = 'nm-shop-loop-thumbnail nm-loader']/a")
 
     for element in elements:
@@ -55,14 +62,14 @@ while (i < number_of_pages - 1):
         description_element = driver.find_element("xpath", "/html/body/div[1]/div[1]/div[2]/div[3]/div[1]/div[3]/div/div/div[2]/div[2]/div[1]/p[3]")
 
         names.append(names_element.text)
-        category.append(category_element.text)
+        categories.append(category_element.text)
 
         subAndLikes = subscribedAndAverageLikes_element.text
         split_index = subAndLikes.index('\n')
         followers_string = subAndLikes[:split_index]
         likes_string = subAndLikes[split_index + 1:]
         followers_split = followers_string.split(":")
-        subscribed.append(followers_split[1].strip())
+        followers.append(followers_split[1].strip())
         prices.append(price_element[0].text)
         likes_split = followers_string.split(":")
         average_likes.append(likes_split[1].strip())
@@ -80,4 +87,4 @@ while (i < number_of_pages - 1):
     next_page_click.click()
     i += 1
 
-print(names, category, subscribed, prices, descriptions, average_likes, social_media)
+print(names, categories, followers, prices, listed_dates, descriptions, monthly_expenses, monthly_incomes, address, social_media)

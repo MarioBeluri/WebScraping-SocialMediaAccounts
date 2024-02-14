@@ -14,13 +14,17 @@ login = "https://fameswap.com/auth/login"
 website = "https://fameswap.com/browse?v=1706219067&social=3%2C4%2C5"
 
 i = 0
-social_media = []
 names = []
-subscribed = []
+social_media = []
+address = []
+followers = []
 prices = []
-listed_dates = []
 descriptions = []
-category = []
+listed_dates = []
+categories = []
+monthly_incomes = []
+monthly_expenses = []
+average_likes = []
 
 driver.get(login)
 sleep(30)
@@ -53,7 +57,7 @@ while (i < int(number_of_pages.accessible_name) - 1):
 
         names.append(name)
         category.append(category_element.accessible_name)
-        subscribed.append(subscribed_element.text)
+        followers.append(subscribed_element.text)
         prices.append(price_element.text)
         listed_dates.append(listed_date_element.text)
         descriptions.append(description_element.text)
@@ -77,7 +81,7 @@ try:
     scraped_data = {
         "Name" : names,
         "Social Media" : social_media,
-        "Subscribers" : subscribed,
+        "Followers" : followers,
         "Price" : prices,
         "Date Listed" : listed_dates,
         "Description" : descriptions,

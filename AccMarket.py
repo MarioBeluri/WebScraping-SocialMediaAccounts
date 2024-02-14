@@ -17,22 +17,22 @@ driver = Driver(uc=True)
 website = "https://accs-market.com/twitter" #Twitter
 
 i = 0
-social_media = []
 names = []
-subscribed = []
-prices = []
-listed_dates = []
-descriptions = []
-category = []
-monthly_income = []
-monthly_expense = []
+social_media = []
 address = []
+followers = []
+prices = []
+descriptions = []
+listed_dates = []
+categories = []
+monthly_incomes = []
+monthly_expenses = []
+average_likes = []
 
 driver.get(website)
 sleep(30)
-number_of_pages = 12
 
-while (i < number_of_pages - 1):
+while True:
     elements = driver.find_elements("xpath", "/html/body/main/div[1]/div/div[4]/div/div/div[@class = 'post__more']/a")
 
     for element in elements:
@@ -65,21 +65,23 @@ while (i < number_of_pages - 1):
 
         splitCandA = categoryAndAddress_element.text.split('|')
         names.append(names_element.text)
-        category.append(splitCandA[0].strip())
-        subscribed.append(subscribed_element.text)
+        categories.append(splitCandA[0].strip())
+        followers.append(subscribed_element.text)
         prices.append(price_element.text)
         listed_dates.append(listed_date_element.text)
         descriptions.append(description_element.text)
-        monthly_expense.append(monthly_expense_element.text)
-        monthly_income.append(monthly_income_element.text)
+        monthly_expenses.append(monthly_expense_element.text)
+        monthly_incomes.append(monthly_income_element.text)
         address.append(splitCandA[0].strip())
         social_media.append("Twitter")
 
         driver.close()
         driver.switch_to.window(original_window)
         sleep(2)
-    next_page = driver.find_element(By.XPATH, "//div[@class='pagination']/a[@class='next']")
-    next_page.click()
-    i += 1
+    try:
+        next_page = driver.find_element(By.XPATH, "//div[@class='pagination']/a[@class='next']")
+        next_page.click()
+    except:
+        break
 
-print(names, category, subscribed, prices, listed_dates, descriptions, monthly_expense, monthly_income, address, social_media)
+print(names, categories, followers, prices, listed_dates, descriptions, monthly_expenses, monthly_incomes, address, social_media)

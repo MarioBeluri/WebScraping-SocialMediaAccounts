@@ -22,16 +22,17 @@ xpath_expressions = [
     "/html/body/div/div[1]/div/div[2]/div/div[2]/div/div/div/ul/li/div[2]/div/div[@class='nm-shop-loop-price']/span/span/span"
 ]
 
-social_media = []
 names = []
-subscribed = []
-prices = []
-listed_dates = []
-descriptions = []
-category = []
-monthly_income = []
-monthly_expense = []
+social_media = []
 address = []
+followers = []
+prices = []
+descriptions = []
+listed_dates = []
+categories = []
+monthly_incomes = []
+monthly_expenses = []
+average_likes = []
 
 driver.get(website)
 
@@ -65,8 +66,8 @@ for categories in number_of_categories:
             subscribed_number = name_and_followers[1].split(")")[0].strip()
 
             names.append(name)
-            category.append(category_element.text)
-            subscribed.append(subscribed_number)
+            categories.append(category_element.text)
+            followers.append(subscribed_number)
             prices.append(price_element.text)
             address.append(name)
             social_media.append("Instagram")
@@ -80,4 +81,4 @@ for categories in number_of_categories:
     sleep(2)
 
 driver.close()
-print(names, category, subscribed, prices, listed_dates, descriptions, monthly_expense, monthly_income, address, social_media)
+print(names, categories, followers, prices, listed_dates, descriptions, monthly_expenses, monthly_incomes, address, social_media)

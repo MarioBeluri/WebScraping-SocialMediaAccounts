@@ -1,36 +1,43 @@
+import time
 from hashlib import new
 from telnetlib import EC
 
+from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.wait import WebDriverWait
 from seleniumbase import Driver
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.chrome.options import Options
-from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
-from pymongo import MongoClient
-from time import sleep
 
 #options = Options()
 #options.add_experimental_option("detach", True)
 #driver = uc.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 driver = Driver(uc=True)
+login = "https://www.z2u.com/"
 website = "https://www.z2u.com/twitter/accounts-5-15142" #Twitter
 
 i = 0
-social_media = []
 names = []
-subscribed = []
-prices = []
-listed_dates = []
-descriptions = []
-category = []
-average_likes = []
+social_media = []
 address = []
+followers = []
+prices = []
+descriptions = []
+listed_dates = []
+categories = []
+monthly_incomes = []
+monthly_expenses = []
+average_likes = []
 
+driver.get(login)
+time.sleep(90)
 driver.get(website)
+time.sleep(3)
 number_of_pages = 26
 
 while (i < number_of_pages - 1):
+
+    clickable = driver.find_element(By.CLASS_NAME, "next")
+    clickable.click()
+
 
     names_element = driver.find_elements("xpath", "///div[@class = 'row wrapper shop_list']/div//div[@class = 'seller']")
 
@@ -46,9 +53,9 @@ while (i < number_of_pages - 1):
         social_media.append("Twitter")
 
 
-    next_page.click()
+    #next_page.click()
     i += 1
 
 driver.close()
 
-print(names, category, subscribed, prices, descriptions, average_likes, social_media)
+print(names, categories, followers, prices, listed_dates, descriptions, monthly_expenses, monthly_incomes, address, social_media)

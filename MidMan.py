@@ -18,21 +18,30 @@ driver = Driver(uc=True)
 website = "https://mid-man.com/instagram/" #Instagram
 
 i = 0
-social_media = []
 names = []
-subscribed = []
-prices = []
-listed_dates = []
-descriptions = []
-category = []
-monthly_income = []
-monthly_expense = []
+social_media = []
 address = []
+followers = []
+prices = []
+descriptions = []
+listed_dates = []
+categories = []
+monthly_incomes = []
+monthly_expenses = []
+average_likes = []
 
 driver.get(website)
-number_of_pages = 11
 
-while (i < number_of_pages - 1):
+# Find the div element with class "nav-links"
+nav_links_div = driver.find_element(By.CLASS_NAME,"nav-links")
+
+# Find all the anchor elements within the div
+anchor_elements = nav_links_div.find_elements(By.TAG_NAME,"a")
+
+# Get the second-to-last anchor element's text
+number_of_pages = anchor_elements[-2].text
+
+while (i < int(number_of_pages) - 1):
 
     names_element = driver.find_elements("xpath", "//div[@class = 'product-shop-area']/div/div/div/div/div/a")
 
@@ -44,8 +53,8 @@ while (i < number_of_pages - 1):
 
     for j in range(len(names_element) - 1):
         names.append(names_element[j].text)
-        category.append(category_element[j].text)
-        subscribed.append(subscribed_element[j].text)
+        categories.append(category_element[j].text)
+        followers.append(subscribed_element[j].text)
         address.append(names_element[j].text)
         social_media.append("Twitter")
 
@@ -64,4 +73,4 @@ while (i < number_of_pages - 1):
     i += 1
 
 
-print(names, category, subscribed, prices, listed_dates, descriptions, monthly_expense, monthly_income, address, social_media)
+print(names, categories, followers, prices, listed_dates, descriptions, monthly_expenses, monthly_incomes, address, social_media)

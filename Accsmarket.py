@@ -17,15 +17,17 @@ driver = Driver(uc=True)
 website = "https://accsmarket.com/en/catalog/twitter" #Twitter
 
 i = 0
-social_media = []
 names = []
-subscribed = []
-prices = []
-listed_dates = []
-descriptions = []
-category = []
-average_likes = []
+social_media = []
 address = []
+followers = []
+prices = []
+descriptions = []
+listed_dates = []
+categories = []
+monthly_incomes = []
+monthly_expenses = []
+average_likes = []
 
 driver.get(website)
 
@@ -40,4 +42,4 @@ for i in range(len(prices)):
         prices[i] = prices[i][index_of_dollar:].strip()
 driver.close()
 
-print(prices, descriptions, social_media)
+print(names, categories, followers, prices, listed_dates, descriptions, monthly_expenses, monthly_incomes, address, social_media)
