@@ -17,6 +17,7 @@ driver = Driver(uc=True)
 website = "https://swapsocials.com/instagram-accounts-for-sale/"
 
 i = 0
+URLs = []
 names = []
 social_media = []
 address = []
@@ -43,12 +44,16 @@ while (i < int(number_of_pages) - 1):
     for element in elements:
         link = element.get_attribute("href")
 
+        URLs.append(link)
         original_window = driver.current_window_handle
 
         driver.switch_to.new_window('tab')
         driver.get(link)
-        driver.switch_to.window(driver.window_handles[1])
-
+        sleep(2)
+        for handle in driver.window_handles:
+            if handle != original_window:
+                driver.switch_to.window(handle)
+                break
         sleep(5)
 
         names_element = driver.find_element("xpath", "/html/body/div[1]/div[1]/div[2]/div[3]/div[1]/div[3]/div/div/div[2]/div[1]/h1")
@@ -71,7 +76,7 @@ while (i < int(number_of_pages) - 1):
         followers_split = followers_string.split(":")
         followers.append(followers_split[1].strip())
         prices.append(price_element[0].text)
-        likes_split = followers_string.split(":")
+        likes_split = likes_string.split(":")
         average_likes.append(likes_split[1].strip())
 
         descriptions.append(description_element.text)

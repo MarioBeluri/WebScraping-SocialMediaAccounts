@@ -18,11 +18,8 @@ website = "https://accsmarket.com/en/catalog/twitter" #Twitter
 
 i = 0
 names = []
-social_media = []
 address = []
 followers = []
-prices = []
-descriptions = []
 listed_dates = []
 categories = []
 monthly_incomes = []
@@ -32,6 +29,8 @@ average_likes = []
 driver.get(website)
 
 listings = driver.find_elements(By.XPATH, "//div[@class = 'soc-text']/p/a")
+quantity = [quantity.text for quantity in driver.find_elements(By.XPATH, "//div[@class = 'soc-qty']")]
+URls = [url.get_attribute("href") for url in driver.find_elements(By.XPATH, "//div[@class = 'soc-text']/p/a")]
 prices = [price.get_attribute("textContent") for price in driver.find_elements(By.XPATH, "//div[@class = 'soc-price']/div")]
 descriptions = [listing.get_attribute("text") for listing in listings]
 social_media = ["Twitter" for _ in range(len(listings))]

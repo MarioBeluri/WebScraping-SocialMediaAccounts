@@ -18,6 +18,7 @@ driver = Driver(uc=True)
 website = "https://mid-man.com/instagram/" #Instagram
 
 i = 0
+URLs = []
 names = []
 social_media = []
 address = []
@@ -52,6 +53,7 @@ while (i < int(number_of_pages) - 1):
 
 
     for j in range(len(names_element) - 1):
+        URLs.append(names_element[j].get_attribute("href"))
         names.append(names_element[j].text)
         categories.append(category_element[j].text)
         followers.append(subscribed_element[j].text)
