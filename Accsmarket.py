@@ -10,35 +10,47 @@ from selenium.webdriver.common.by import By
 from pymongo import MongoClient
 from time import sleep
 
-#options = Options()
-#options.add_experimental_option("detach", True)
-#driver = uc.Chrome(service=Service(ChromeDriverManager().install()), options=options)
-driver = Driver(uc=True)
-website = "https://accsmarket.com/en/catalog/twitter" #Twitter
+social_media_urls = {
+    "Twitter": "https://accsmarket.com/en/catalog/twitter",
+    "Instagram": "https://accsmarket.com/en/catalog/instagram",
+    "Facebook": "https://accsmarket.com/en/catalog/facebook"
+}
 
-i = 0
-names = []
-address = []
-followers = []
-listed_dates = []
-categories = []
-monthly_incomes = []
-monthly_expenses = []
-average_likes = []
+def scrape_data(driver, url, social_media):
+    driver.get(url)
 
-driver.get(website)
+    names = []
+    address = []
+    followers = []
+    listed_dates = []
+    categories = []
+    monthly_incomes = []
+    monthly_expenses = []
+    average_likes = []
 
-listings = driver.find_elements(By.XPATH, "//div[@class = 'soc-text']/p/a")
-quantity = [quantity.text for quantity in driver.find_elements(By.XPATH, "//div[@class = 'soc-qty']")]
-URls = [url.get_attribute("href") for url in driver.find_elements(By.XPATH, "//div[@class = 'soc-text']/p/a")]
-prices = [price.get_attribute("textContent") for price in driver.find_elements(By.XPATH, "//div[@class = 'soc-price']/div")]
-descriptions = [listing.get_attribute("text") for listing in listings]
-social_media = ["Twitter" for _ in range(len(listings))]
+    listings = driver.find_elements(By.XPATH, "//div[@class = 'soc-text']/p/a")
+    quantity = [quantity.text for quantity in driver.find_elements(By.XPATH, "//div[@class = 'soc-qty']")]
+    URls = [url.get_attribute("href") for url in driver.find_elements(By.XPATH, "//div[@class = 'soc-text']/p/a")]
+    prices = [price.get_attribute("textContent") for price in
+              driver.find_elements(By.XPATH, "//div[@class = 'soc-price']/div")]
+    descriptions = [listing.get_attribute("text") for listing in listings]
+    social_medias = [social_media for _ in range(len(listings))]
 
-for i in range(len(prices)):
-    index_of_dollar = prices[i].find('$')
-    if index_of_dollar != -1:
-        prices[i] = prices[i][index_of_dollar:].strip()
-driver.close()
+    for i in range(len(prices)):
+        index_of_dollar = prices[i].find('$')
+        if index_of_dollar != -1:
+            prices[i] = prices[i][index_of_dollar:].strip()
 
-print(names, categories, followers, prices, listed_dates, descriptions, monthly_expenses, monthly_incomes, address, social_media)
+    driver.close()
+    print(names, categories, followers, prices, listed_dates, descriptions, monthly_expenses, monthly_incomes, address, social_media)
+
+# User input for social media platform
+social_media_input = input("Enter social media platform (Twitter, Instagram, Facebook): ")
+
+# Validate user input and scrape data accordingly
+if social_media_input in social_media_urls:
+    driver = Driver(uc=True)
+    scrape_data(driver, social_media_urls[social_media_input], social_media_input)
+    driver.quit()
+else:
+    print("Invalid social media platform. Please enter a valid Social Media platform.")

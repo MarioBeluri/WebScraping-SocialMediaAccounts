@@ -118,28 +118,29 @@ while (i < int(number_of_pages.accessible_name) - 1):
             social_media.append("Twitter")
         else:
             social_media.append("Tiktok")
+
         driver.close()
         driver.switch_to.window(original_window)
         sleep(2)
     driver.find_element("xpath", "//ul[@class='pagination']/li/a[@rel='next']").click()
     i += 1
 
-try:
-    client = MongoClient()
-    db = client.WebScraping
-    collection = db.WebScraping
-    scraped_data = {
-        "Name" : names,
-        "Social Media" : social_media,
-        "Followers" : followers,
-        "Price" : prices,
-        "Date Listed" : listed_dates,
-        "Description" : descriptions,
-        "Category" : categories
-    }
-    collection.insert_one(scraped_data)
-except:
-    print("Error Occured")
-finally:
-    client.close()
-    print("Conenction Closed")
+# try:
+#     client = MongoClient()
+#     db = client.WebScraping
+#     collection = db.WebScraping
+#     scraped_data = {
+#         "Name" : names,
+#         "Social Media" : social_media,
+#         "Followers" : followers,
+#         "Price" : prices,
+#         "Date Listed" : listed_dates,
+#         "Description" : descriptions,
+#         "Category" : categories
+#     }
+#     collection.insert_one(scraped_data)
+# except:
+#     print("Error Occured")
+# finally:
+#     client.close()
+#     print("Conenction Closed")
