@@ -59,10 +59,22 @@ for categories in number_of_categories:
     i = 0
     while i < number_of_pages - 1:
 
-        names_elements = driver.find_elements(By.XPATH, "/html/body/div[1]/div[1]/div/div[2]/div/div[2]/div/div/div/ul/li/div/h3/a")
-        category_element = driver.find_element(By.XPATH, "/html/body/div/div[1]/div/div[2]/div/div[1]/div/div/div/div/h1/span")
+        try:
+            names_elements = driver.find_elements(By.XPATH,
+                                                  "/html/body/div[1]/div[1]/div/div[2]/div/div[2]/div/div/div/ul/li/div/h3/a")
+        except Exception as e:
+            print("Error occurred while extracting list information:", e)
 
-        price_element = price_element = driver.find_element(By.CLASS_NAME, "woocommerce-Price-amount")
+        try:
+            category_element = driver.find_element(By.XPATH,
+                                                   "/html/body/div/div[1]/div/div[2]/div/div[1]/div/div/div/div/h1/span")
+        except Exception as e:
+            print("Error occurred while extracting category information:", e)
+
+        try:
+            price_element = price_element = driver.find_element(By.CLASS_NAME, "woocommerce-Price-amount")
+        except Exception as e:
+            print("Error occurred while extracting price information:", e)
 
         for name_element in names_elements:
             # Extract the text content from the name element
@@ -77,6 +89,7 @@ for categories in number_of_categories:
             prices.append(price_element.text)
             address.append(name)
             social_media.append("Instagram")
+
         i += 1
         next_page = driver.find_elements(By.XPATH,"/html/body/div/div[1]/div/div[2]/div/div[2]/div/div/div/nav/ul/li")
         next_page_link = next_page[-1].find_element(By.TAG_NAME, "a")
@@ -86,5 +99,5 @@ for categories in number_of_categories:
     driver.switch_to.window(original_window)
     sleep(2)
 
-driver.close()
+driver.quit()
 print(names, categoriesList, followers, prices, listed_dates, descriptions, monthly_expenses, monthly_incomes, address, social_media)

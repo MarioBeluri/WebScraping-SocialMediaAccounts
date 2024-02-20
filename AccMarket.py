@@ -40,12 +40,13 @@ def scrape_data(driver, url, socialMedia):
     monthly_incomes = []
     monthly_expenses = []
     views = []
-    emails = []
+    email_included = []
     promotions = []
     supports = []
     contents = []
     source_expense = []
     source_income = []
+    monetization_enabled = []
 
     while True:
         elements = driver.find_elements(By.XPATH, "//div[@class='post__more']/a")
@@ -64,48 +65,113 @@ def scrape_data(driver, url, socialMedia):
                     break
             sleep(5)
 
-            group_data_div = driver.find_element(By.CLASS_NAME, "group-data")
-            paragraphs = group_data_div.find_elements(By.TAG_NAME, "p")
-            emails.append(paragraphs[0].text.split(":")[1].strip())
-            promotions.append(paragraphs[1].text.split(":")[1].strip())
-            source_expense.append(paragraphs[2].text.split(":")[1].strip())
-            source_income.append(paragraphs[3].text.split(":")[1].strip())
-            supports.append(paragraphs[4].text.split(":")[1].strip())
-            contents.append(paragraphs[5].text.split(":")[1].strip())
-            seller_name_div = driver.find_element(By.CLASS_NAME, "right-top__name")
-            seller_element = seller_name_div.find_element(By.CLASS_NAME, "bold")
-            names_element = driver.find_element("xpath",
-                                                "/html/body/main/div/div/div[@class = 'group-info group']/div[@class = 'group-info']/h1/span")
+            try:
+                group_data_div = driver.find_element(By.CLASS_NAME, "group-data")
+                paragraphs = group_data_div.find_elements(By.TAG_NAME, "p")
+                for paragraph in paragraphs:
+                    text = paragraph.text
+                    if 'Original' in text:
+                        email_included.append(text.split(":")[-1].strip())
+                    elif 'Ways' in text:
+                        promotions.append(text.split(":")[-1].strip())
+                    elif 'expense' in text:
+                        source_expense.append(text.split(":")[-1].strip())
+                    elif 'income' in text:
+                        source_income.append(text.split(":")[-1].strip())
+                    elif 'support' in text:
+                        supports.append(text.split(":")[-1].strip())
+                    elif 'Content' in text:
+                        contents.append(text.split(":")[-1].strip())
+                    elif 'Monetization ' in text:
+                        monetization_enabled.append(text.split(":")[-1].strip())
+            except Exception as e:
+                print("Error occurred while extracting group data:", e)
 
-            categoryAndAddress_element = driver.find_element("xpath",
-                                                             "/html/body/main/div/div/div[3]/div[2]/p")
-            subscribed_element = driver.find_element("xpath",
-                                                     "/html/body/main/div/div/div[3]/div[2]/div[1]/p[1]")
-            price_element = driver.find_element("xpath",
-                                                "/html/body/main/div/div/div[3]/div[2]/div[2]")
-            listed_date_element = driver.find_element("xpath",
-                                                      "/html/body/main/div/div/div[2]/span[1]")
-            views_element = driver.find_element("xpath", "/html/body/main/div/div/div[2]/span[3]")
-            description_element = driver.find_element("xpath", "/html/body/main/div/div/div[4]/div/div[1]/p[2]")
+            try:
+                seller_name_div = driver.find_element(By.CLASS_NAME, "right-top__name")
+                seller_element = seller_name_div.find_element(By.CLASS_NAME, "bold")
+                sellers.append(seller_element.text)
+            except Exception as e:
+                print("Error occurred while extracting seller data:", e)
+                sellers.append(None)
 
-            monthly_income_element = driver.find_element("xpath",
-                                                         "/html/body/main/div/div/div[3]/div[2]/div[1]/p[2]")
-            monthly_expense_element = driver.find_element("xpath",
-                                                          "/html/body/main/div/div/div[3]/div[2]/div[1]/p[3]")
+            try:
+                names_element = driver.find_element("xpath",
+                                                    "/html/body/main/div/div/div[@class = 'group-info group']/div[@class = 'group-info']/h1/span")
+                names.append(names_element.text)
+            except Exception as e:
+                print("Error occurred while extracting names data:", e)
+                names.append(None)
 
-            splitCandA = categoryAndAddress_element.text.split('|')
-            names.append(names_element.text)
-            categories.append(splitCandA[0].strip())
-            followers.append(subscribed_element.text)
-            prices.append(price_element.text)
-            listed_dates.append(listed_date_element.text)
-            descriptions.append(description_element.text)
-            monthly_expenses.append(monthly_expense_element.text)
-            monthly_incomes.append(monthly_income_element.text)
-            address.append(splitCandA[1].strip())
+            try:
+                categoryAndAddress_element = driver.find_element("xpath",
+                                                                 "/html/body/main/div/div/div[3]/div[2]/p")
+                splitCandA = categoryAndAddress_element.text.split('|')
+                categories.append(splitCandA[0].strip())
+                address.append(splitCandA[1].strip())
+            except Exception as e:
+                print("Error occurred while extracting category and address data:", e)
+                categories.append(None)
+                address.append(None)
+
+            try:
+                subscribed_element = driver.find_element("xpath",
+                                                         "/html/body/main/div/div/div[3]/div[2]/div[1]/p[1]")
+                subSplit = subscribed_element.text.split('-')
+                followers.append(subSplit[0].strip())
+            except Exception as e:
+                print("Error occurred while extracting subscribed data:", e)
+                followers.append(None)
+
+            try:
+                price_element = driver.find_element("xpath",
+                                                    "/html/body/main/div/div/div[3]/div[2]/div[2]")
+                prices.append(price_element.text)
+
+            except Exception as e:
+                print("Error occurred while extracting price data:", e)
+                prices.append(None)
+
+            try:
+                listed_date_element = driver.find_element("xpath",
+                                                          "/html/body/main/div/div/div[2]/span[1]")
+                listedSplit = listed_date_element.text.split(":")
+                listed_dates.append(listedSplit[1].strip())
+            except Exception as e:
+                print("Error occurred while extracting listed date data:", e)
+                listed_dates.append(None)
+
+            try:
+                views_element = driver.find_element("xpath", "/html/body/main/div/div/div[2]/span[3]")
+                viewsSplit = views_element.text.split(":")
+                views.append(viewsSplit[1].strip())
+            except Exception as e:
+                print("Error occurred while extracting views data:", e)
+                views.append(None)
+
+            try:
+                description_element = driver.find_element("xpath",
+                                                          "/html/body/main/div/div/div[4]/div/div[1]/p[2]")
+                descriptions.append(description_element.text)
+            except Exception as e:
+                print("Error occurred while extracting description data:", e)
+                descriptions.append(None)
+
+            try:
+                monthly_income_element = driver.find_element("xpath",
+                                                             "/html/body/main/div/div/div[3]/div[2]/div[1]/p[2]")
+                monthly_expense_element = driver.find_element("xpath",
+                                                              "/html/body/main/div/div/div[3]/div[2]/div[1]/p[3]")
+                expensesSplit = monthly_expense_element.text.split("-")
+                monthly_expenses.append(expensesSplit[0].strip())
+                incomeSplit = monthly_income_element.text.split("-")
+                monthly_incomes.append(incomeSplit[0].strip())
+            except Exception as e:
+                print("Error occurred while extracting monthly income and expense data:", e)
+                monthly_expenses.append(None)
+                monthly_incomes.append(None)
+
             social_media.append(socialMedia)
-            sellers.append(seller_element.text)
-            views.append(views_element.text)
 
             driver.close()
             driver.switch_to.window(original_window)

@@ -46,29 +46,37 @@ def scrape_data(driver, url, social_media):
 
     while (i < int(number_of_pages) - 1):
 
-        names_element = driver.find_elements("xpath", "//div[@class = 'product-shop-area']/div/div/div/div/div/a")
-
-        category_element = driver.find_elements("xpath",
-                                                "//div[@class = 'product-shop-area']/div/div/div/div/div/div[@class='product-topic']")
-        subscribed_element = driver.find_elements("xpath",
-                                                  "//div[@class = 'product-shop-area']/div/div/div/div/div/ul[@class='list-inline list-meta mb-0']/li[@class='list-inline-item list-follow']")
-
-        for j in range(len(names_element) - 1):
-            URLs.append(names_element[j].get_attribute("href"))
-            names.append(names_element[j].text)
-            categories.append(category_element[j].text)
-            followers.append(subscribed_element[j].text)
-            address.append(names_element[j].text)
-            social_medias.append(social_media)
-
-            try:
-                price_element = driver.find_elements(By.XPATH, "//p[@class='price']//span[not(ancestor::ins)]/bdi")
-                if not price_element[j].text:
-                    prices.append("75")
-                else: prices.append(price_element[j].text)
-            except:
-                # Handle the case where the element is not found
-                prices.append("50")
+        try:
+            names_element = driver.find_elements("xpath", "//div[@class = 'product-shop-area']/div/div/div/div/div/a")
+            category_element = driver.find_elements("xpath",
+                                                    "//div[@class = 'product-shop-area']/div/div/div/div/div/div[@class='product-topic']")
+            subscribed_element = driver.find_elements("xpath",
+                                                      "//div[@class = 'product-shop-area']/div/div/div/div/div/ul[@class='list-inline list-meta mb-0']/li[@class='list-inline-item list-follow']")
+            for j in range(len(names_element)):
+                URLs.append(names_element[j].get_attribute("href"))
+                names.append(names_element[j].text)
+                categories.append(category_element[j].text)
+                followers.append(subscribed_element[j].text)
+                address.append(names_element[j].text)
+                social_medias.append(social_media)
+                try:
+                    price_element = driver.find_elements(By.XPATH, "//p[@class='price']//span[not(ancestor::ins)]/bdi")
+                    if not price_element[j].text:
+                        prices.append("75")
+                    else:
+                        prices.append(price_element[j].text)
+                except:
+                    # Handle the case where the element is not found
+                    prices.append("50")
+        except Exception as e:
+            print("Error occurred while extracting elements information:", e)
+            URLs.append(None)
+            names.append(None)
+            categories.append(None)
+            followers.append(None)
+            address.append(None)
+            social_medias.append(None)
+            prices.append(None)
 
         next_page_link = driver.find_element(By.XPATH, "//a[@class='next page-numbers']")
         next_page_url = next_page_link.get_attribute("href")

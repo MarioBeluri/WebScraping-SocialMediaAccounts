@@ -46,7 +46,7 @@ while (i < int(number_of_pages.accessible_name) - 1):
     elements = driver.find_elements("xpath", "/html/body/div/div/div[3]/div[2]/div/div[2]/table/tbody/tr/td[1]/a")
 
     for element in elements:
-        name = element.text
+        names.append(element.text)
         link = element.get_attribute("href")
         original_window = driver.current_window_handle
         URLs.append(link)
@@ -78,7 +78,7 @@ while (i < int(number_of_pages.accessible_name) - 1):
                     rate.append(text.split(":")[-1].strip())
                 elif 'Revenue' in text:
                     revenue.append(text.split(":")[-1].strip())
-        except:
+        except Exception as e:
             posts.append("None")
             views.append("None")
             verified.append("None")
@@ -87,44 +87,85 @@ while (i < int(number_of_pages.accessible_name) - 1):
             rate.append("None")
             revenue.append("None")
 
-        seller = driver.find_element(By.XPATH,'//div[@class="panel-body"]/strong/a').text
-        trust_score = driver.find_element(By.XPATH,
-            '//div[@class="panel-body"]//small/strong').text
-        seller_nationality_element = driver.find_elements(By.XPATH, '//p[@class="text-muted"]/small')[1]
-        seller_nationality.append(seller_nationality_element.text.strip())
+        try:
+            seller = driver.find_element(By.XPATH,'//div[@class="panel-body"]/strong/a').text
+        except Exception as e:
+            print("Error occurred while extracting seller information:", e)
+            seller.append(None)
 
-        category_element = driver.find_element("xpath",
-                                               "/html/body/div[1]/div/div[2]/div[1]/div[1]/div/div[3]/table/tbody/tr/td[4]/a")
-        subscribed_element = driver.find_element("xpath",
-                                                 "/html/body/div[1]/div/div[2]/div[1]/div[1]/div/div[3]/table/tbody/tr/td[1]")
-        price_element = driver.find_element("xpath",
-                                            "/html/body/div[1]/div/div[2]/div[1]/div[1]/div/div[3]/table/tbody/tr/td[2]")
-        listed_date_element = driver.find_element("xpath",
-                                                  "/html/body/div[1]/div/div[2]/div[1]/div[1]/div/div[3]/table/tbody/tr/td[3]")
-        description_element = driver.find_element("xpath", "/html/body/div[1]/div/div[2]/div[1]/div[1]/div/div[4]/p")
+        try:
+            strust_score = driver.find_element(By.XPATH, '//div[@class="panel-body"]//small/strong').text
+        except Exception as e:
+            print("Error occurred while extracting seller information:", e)
+            strust_score.append(None)
+
+        try:
+            seller_nationality_element = driver.find_elements(By.XPATH, '//p[@class="text-muted"]/small')[1]
+            seller_nationality.append(seller_nationality_element.text.strip())
+        except Exception as e:
+            print("Error occurred while extracting seller information:", e)
+            seller.append(None)
+
+        try:
+            category_element = driver.find_element("xpath",
+                                                   "/html/body/div[1]/div/div[2]/div[1]/div[1]/div/div[3]/table/tbody/tr/td[4]/a")
+            categories.append(category_element.accessible_name)
+        except Exception as e:
+            print("Error occurred while extracting category information:", e)
+            categories.append(None)
+
+        try:
+            subscribed_element = driver.find_element("xpath",
+                                                     "/html/body/div[1]/div/div[2]/div[1]/div[1]/div/div[3]/table/tbody/tr/td[1]")
+            followers.append(subscribed_element.text)
+        except Exception as e:
+            print("Error occurred while extracting followers information:", e)
+            followers.append(None)
+
+        try:
+            price_element = driver.find_element("xpath",
+                                                "/html/body/div[1]/div/div[2]/div[1]/div[1]/div/div[3]/table/tbody/tr/td[2]")
+            prices.append(price_element.text)
+        except Exception as e:
+            print("Error occurred while extracting price information:", e)
+            prices.append(None)
+
+        try:
+            listed_date_element = driver.find_element("xpath",
+                                                      "/html/body/div[1]/div/div[2]/div[1]/div[1]/div/div[3]/table/tbody/tr/td[3]")
+            listed_dates.append(listed_date_element.text)
+        except Exception as e:
+            print("Error occurred while extracting listed date information:", e)
+            listed_dates.append(None)
+
+        try:
+            description_element = driver.find_element("xpath",
+                                                      "/html/body/div[1]/div/div[2]/div[1]/div[1]/div/div[4]/p")
+            descriptions.append(description_element.text)
+        except Exception as e:
+            print("Error occurred while extracting description information:", e)
+            descriptions.append(None)
+
         sleep(2)
 
-        names.append(name)
-        categories.append(category_element.accessible_name)
-        followers.append(subscribed_element.text)
-        prices.append(price_element.text)
-        listed_dates.append(listed_date_element.text)
-        descriptions.append(description_element.text)
-        social_media_element = driver.find_element("xpath", "/html/body/div[1]/div/div[1]/h1/span")
-
-        if 'Youtube' in social_media_element.text:
-            social_media.append("Youtube")
-        elif 'Twitter':
-            social_media.append("Twitter")
-        else:
-            social_media.append("Tiktok")
+        try:
+            social_media_element = driver.find_element("xpath", "/html/body/div[1]/div/div[1]/h1/span")
+            if 'Youtube' in social_media_element.text:
+                social_media.append("Youtube")
+            elif 'Twitter':
+                social_media.append("Twitter")
+            else:
+                social_media.append("Tiktok")
+        except Exception as e:
+            print("Error occurred while extracting description information:", e)
+            social_media.append(None)
 
         driver.close()
         driver.switch_to.window(original_window)
         sleep(2)
     driver.find_element("xpath", "//ul[@class='pagination']/li/a[@rel='next']").click()
     i += 1
-
+driver.quit()
 # try:
 #     client = MongoClient()
 #     db = client.WebScraping

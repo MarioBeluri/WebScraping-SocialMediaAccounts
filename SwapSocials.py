@@ -10,9 +10,6 @@ from selenium.webdriver.common.by import By
 from pymongo import MongoClient
 from time import sleep
 
-#options = Options()
-#options.add_experimental_option("detach", True)
-#driver = uc.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 driver = Driver(uc=True)
 website = "https://swapsocials.com/instagram-accounts-for-sale/"
 
@@ -38,7 +35,7 @@ li_elements = ul_element.find_elements(By.TAG_NAME,'li')
 
 number_of_pages = li_elements[-2].text
 
-while (i < int(number_of_pages) - 1):
+while i < int(number_of_pages) - 1:
     elements = driver.find_elements("xpath", "/html/body/div[1]/div[1]/div[2]/div[2]/div[2]/div[2]/div/div[2]/div/ul/li/div[@class = 'nm-shop-loop-thumbnail nm-loader']/a")
 
     for element in elements:
@@ -56,30 +53,54 @@ while (i < int(number_of_pages) - 1):
                 break
         sleep(5)
 
-        names_element = driver.find_element("xpath", "/html/body/div[1]/div[1]/div[2]/div[3]/div[1]/div[3]/div/div/div[2]/div[1]/h1")
+        try:
+            names_element = driver.find_element("xpath",
+                                                "/html/body/div[1]/div[1]/div[2]/div[3]/div[1]/div[3]/div/div/div[2]/div[1]/h1")
+            names.append(names_element.text)
+        except Exception as e:
+            print("Error occurred while extracting names information:", e)
+            names.append(None)
 
-        category_element = driver.find_element("xpath",
-                                               "/html/body/div[1]/div[1]/div[2]/div[3]/div[1]/div[1]/div/div[1]/nav/a[3]")
-        subscribedAndAverageLikes_element = driver.find_element(By.XPATH,
-                                                 "//div[@class='woocommerce-product-details__short-description']//p[2]")
-        price_element = driver.find_elements("xpath",
-                                            "//p[@class='price']//span[@class='woocommerce-Price-amount amount']/bdi")
-        description_element = driver.find_element("xpath", "/html/body/div[1]/div[1]/div[2]/div[3]/div[1]/div[3]/div/div/div[2]/div[2]/div[1]/p[3]")
+        try:
+            category_element = driver.find_element("xpath",
+                                                   "/html/body/div[1]/div[1]/div[2]/div[3]/div[1]/div[1]/div/div[1]/nav/a[3]")
+            categories.append(category_element.text)
+        except Exception as e:
+            print("Error occurred while extracting category information:", e)
+            categories.append(None)
 
-        names.append(names_element.text)
-        categories.append(category_element.text)
+        try:
+            subscribedAndAverageLikes_element = driver.find_element(By.XPATH,
+                                                                    "//div[@class='woocommerce-product-details__short-description']//p[2]")
+            subAndLikes = subscribedAndAverageLikes_element.text
+            split_index = subAndLikes.index('\n')
+            followers_string = subAndLikes[:split_index]
+            likes_string = subAndLikes[split_index + 1:]
+            followers_split = followers_string.split(":")
+            followers.append(followers_split[1].strip())
+            likes_split = likes_string.split(":")
+            average_likes.append(likes_split[1].strip())
+        except Exception as e:
+            print("Error occurred while extracting followers information:", e)
+            followers.append(None)
+            average_likes.append(None)
 
-        subAndLikes = subscribedAndAverageLikes_element.text
-        split_index = subAndLikes.index('\n')
-        followers_string = subAndLikes[:split_index]
-        likes_string = subAndLikes[split_index + 1:]
-        followers_split = followers_string.split(":")
-        followers.append(followers_split[1].strip())
-        prices.append(price_element[0].text)
-        likes_split = likes_string.split(":")
-        average_likes.append(likes_split[1].strip())
+        try:
+            price_element = driver.find_elements("xpath",
+                                                 "//p[@class='price']//span[@class='woocommerce-Price-amount amount']/bdi")
+            prices.append(price_element[0].text)
+        except Exception as e:
+            print("Error occurred while extracting price information:", e)
+            prices.append(None)
 
-        descriptions.append(description_element.text)
+        try:
+            description_element = driver.find_element("xpath",
+                                                      "/html/body/div[1]/div[1]/div[2]/div[3]/div[1]/div[3]/div/div/div[2]/div[2]/div[1]/p[3]")
+            descriptions.append(description_element.text)
+        except Exception as e:
+            print("Error occurred while extracting description information:", e)
+            descriptions.append(None)
+
         social_media.append("Instagram")
 
         driver.close()
@@ -92,4 +113,5 @@ while (i < int(number_of_pages) - 1):
     next_page_click.click()
     i += 1
 
+driver.quit()
 print(names, categories, followers, prices, listed_dates, descriptions, monthly_expenses, monthly_incomes, address, social_media)
