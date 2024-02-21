@@ -23,7 +23,7 @@ import sys
 import time
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+from selenium.webdriver.chrome.service import Service
 from utils.logging import logger as LOGGER
 import constants as constantsModule
 
@@ -42,7 +42,7 @@ def get_new_browser_instance(config):
 	chrome_options.add_argument("--media-cache-size=0")
 	chrome_options.add_argument("--ignore-certificate-errors")
 	chrome_options.add_argument("--disable-extensions")
-	chrome_options.add_argument("--incognito")
+	# chrome_options.add_argument("--incognito")
 	chrome_options.add_argument("--disable-impl-side-painting")
 	chrome_options.add_argument("--disable-seccomp-filter-sandbox")
 	chrome_options.add_argument("--disable-breakpad")
@@ -63,8 +63,9 @@ def get_new_browser_instance(config):
 		chrome_options.add_argument("--headless")
 
 	# print(chrome_options.arguments)
-
-	driver = webdriver.Chrome(chromedriver, options=chrome_options)
+	# service = Service(executable_path=chromedriver)
+	# driver = webdriver.Chrome(service=service, options=chrome_options)
+	driver = webdriver.Chrome(options=chrome_options)
 	return driver
 
 def navigate(driver, url):
@@ -87,7 +88,7 @@ def close(driver):
 	"""
 	try:
 		if driver:
-			driver.close()
+			driver.quit()
 			return True
 		return False
 	except:

@@ -29,6 +29,7 @@
 import os
 import json
 import argparse
+import time
 import utils.io as IOModule
 import utils.driver as driverModule
 import constants as constantsModule
@@ -40,7 +41,7 @@ def get_data_script_for_catalog(batch_no, batch_size=18):
 	script to collect account info from the listing catalog of instagram accounts
 	"""
 	script = """
-	var offset = %d * %d;
+	var offset = parseInt(%d) * parseInt(%d);
 	var card_items = document.getElementsByClassName('proitem');
 	var data = [];
 	for (var i=offset; i< card_items.length; i++){
@@ -51,7 +52,7 @@ def get_data_script_for_catalog(batch_no, batch_size=18):
 		e.imageurl = item.querySelector("span[class=ifront] > img").getAttribute('src').trim();
 		e.title = item.querySelector("a[class=pro_title").innerText.trim();
 
-		var prices = item.querySelector("div[class=pro_price").innerText.trim().split('\n');
+		var prices = item.querySelector("div[class=pro_price").innerText.trim().split('\\n');
 		e.price = prices[0];
 		e.discounted = prices[1];
 		data.push(e);
@@ -71,7 +72,7 @@ def get_data_script_for_item():
 	
 	script = """
 	var qs = document.querySelector('div[class=woocommerce-product-details__short-description] > p').innerText.trim();
-	var parts = qs.split('\n');
+	var parts = qs.split('\\n');
 	
 	var s = {};
 	s.followers = "";
@@ -92,6 +93,7 @@ def get_data_script_for_item():
 	}
 	return s;
 	"""
+	return script
 
 def main():
 
@@ -118,6 +120,13 @@ def main():
 
 
 	driver = driverModule.navigate(driver, catalog_url)
+	main_window = driver.current_window_handle
+
+	# create a new tab and return
+	driver.switch_to.new_window('tab')
+	driver.get('https://google.com')
+	driver.switch_to.window(main_window)
+	time.sleep(5)
 
 	data = []
 	batch_size = 18
@@ -125,12 +134,16 @@ def main():
 	MAX_ITERATIONS = 4
 	done = False
 
+	batch_script = get_data_script_for_catalog(batch_no, batch_size)
+
 	while not done:
 		batch_script = get_data_script_for_catalog(batch_no, batch_size)
 		batch_data = driver.execute_script(batch_script)
 		if batch_no == MAX_ITERATIONS or len(batch_data) > batch_no*batch_size:
 			
 			completed_batch_data = []
+			driver.switch_to.window(driver.window_handles[1])
+
 			for item in batch_data:
 				if "shopurl" in item:
 					shopurl = item["shopurl"]
@@ -148,6 +161,7 @@ def main():
 			data.extend(completed_batch_data)
 			batch_no += 1
 
+			driver.switch_to.window(driver.window_handles[0])
 			# press the load more button
 			driver.execute_script("document.getElementById('load-more').click()")
 
