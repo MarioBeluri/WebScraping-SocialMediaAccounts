@@ -1,0 +1,6 @@
+# adjust to your env config
+env:
+  output_dir: "/mnt/ramdisksocialmedia/"
+  chromedriver: "/usr/bin/chromedriver" 
+  headless: true
+
