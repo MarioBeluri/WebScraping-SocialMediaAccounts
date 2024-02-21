@@ -35,6 +35,11 @@ import utils.driver as driverModule
 import constants as constantsModule
 from utils.logging import logger as LOGGER
 
+from datetime import datetime
+
+def get_timestamp():
+	timestamp = str(datetime.now().strftime('%Y-%m-%d_%H-%M-%S'))
+	return timestamp
 
 def get_data_script_for_catalog(batch_no, batch_size=18):
 	"""
@@ -131,7 +136,7 @@ def main():
 	data = []
 	batch_size = 18
 	batch_no = 0
-	MAX_ITERATIONS = 2
+	MAX_ITERATIONS = 500
 	done = False
 
 	batch_script = get_data_script_for_catalog(batch_no, batch_size)
@@ -139,7 +144,7 @@ def main():
 	while not done:
 		batch_script = get_data_script_for_catalog(batch_no, batch_size)
 		batch_data = driver.execute_script(batch_script)
-		if batch_no < MAX_ITERATIONS and len(batch_data) > batch_no*batch_size:
+		if batch_no < MAX_ITERATIONS and len(batch_data) > 0:
 			
 			completed_batch_data = []
 			driver.switch_to.window(driver.window_handles[1])
@@ -162,8 +167,10 @@ def main():
 			batch_no += 1
 
 			driver.switch_to.window(driver.window_handles[0])
+			time.sleep(1)
 			# press the load more button
-			driver.execute_script("document.getElementById('load-more').click()")
+			driver.execute_script("document.getElementById('load-more').click();")
+			time.sleep(5)
 
 		else:
 			LOGGER.info(f"batch_no: ${batch_no}; length: ${len(batch_data)}")
@@ -172,8 +179,8 @@ def main():
 
 	driverModule.close(driver)
 
-	SITE_NAME = "toofame"
-	output_file = os.path.join(constantsModule.OUTPUT_DIR, SITE_NAME + ".json")
+	filename = "toofame" + get_timestamp() + '.json'
+	output_file = os.path.join(constantsModule.OUTPUT_DIR, filename)
 	with open(output_file, 'w+', encoding='utf-8') as fd:
 		json.dump(data, fd, ensure_ascii=False, indent=4)
 
