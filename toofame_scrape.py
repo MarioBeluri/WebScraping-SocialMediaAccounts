@@ -131,7 +131,7 @@ def main():
 	data = []
 	batch_size = 18
 	batch_no = 0
-	MAX_ITERATIONS = 4
+	MAX_ITERATIONS = 2
 	done = False
 
 	batch_script = get_data_script_for_catalog(batch_no, batch_size)
@@ -139,7 +139,7 @@ def main():
 	while not done:
 		batch_script = get_data_script_for_catalog(batch_no, batch_size)
 		batch_data = driver.execute_script(batch_script)
-		if batch_no == MAX_ITERATIONS or len(batch_data) > batch_no*batch_size:
+		if batch_no < MAX_ITERATIONS and len(batch_data) > batch_no*batch_size:
 			
 			completed_batch_data = []
 			driver.switch_to.window(driver.window_handles[1])
@@ -165,8 +165,8 @@ def main():
 			# press the load more button
 			driver.execute_script("document.getElementById('load-more').click()")
 
-
 		else:
+			LOGGER.info(f"batch_no: ${batch_no}; length: ${len(batch_data)}")
 			done = True
 			break
 
@@ -175,7 +175,7 @@ def main():
 	SITE_NAME = "toofame"
 	output_file = os.path.join(constantsModule.OUTPUT_DIR, SITE_NAME + ".json")
 	with open(output_file, 'w+', encoding='utf-8') as fd:
-		json.dumps(data, fd, ensure_ascii=False, indent=4)
+		json.dump(data, fd, ensure_ascii=False, indent=4)
 
 
 if __name__ == "__main__":
