@@ -44,3 +44,6 @@ outputs/*
 
 # config
 local.config.yaml
+
+# executables
+*.exe

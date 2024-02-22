@@ -122,13 +122,14 @@ def main():
 		if "output_dir" in config["env"]:
 			constantsModule.OUTPUT_DIR = config["env"]["output_dir"]
 
-
+	LOGGER.info("spawn selenium instance.")
 	driver = driverModule.get_new_browser_instance(config)
 
 	# init data scraping
 	catalog_url = "https://www.toofame.com/instagram-accounts-for-sale/"
 
 
+	LOGGER.info("loading url: %s"%catalog_url)
 	driver = driverModule.navigate(driver, catalog_url)
 	main_window = driver.current_window_handle
 
@@ -151,6 +152,7 @@ def main():
 	batch_script = get_data_script_for_catalog(batch_no, batch_size)
 
 	while not done:
+		LOGGER.info("executing script for batch_no: %s"%str(batch_no))
 		batch_script = get_data_script_for_catalog(batch_no, batch_size)
 		batch_data = driver.execute_script(batch_script)
 		if batch_no < MAX_ITERATIONS and len(batch_data) > 0:
@@ -178,6 +180,7 @@ def main():
 			# iteratively update saved data once for each batch
 			# so that we do not lose the collected data in memory
 			# in the case of selenium errors
+			LOGGER.info("saving data for batch_no: %s"%str(batch_no))
 			save_output(output_file, data)
 
 			driver.switch_to.window(driver.window_handles[0])
@@ -187,11 +190,12 @@ def main():
 			time.sleep(5)
 
 		else:
-			LOGGER.info(f"batch_no: ${batch_no}; length: ${len(batch_data)}")
+			LOGGER.info(f"terminated at batch_no: ${batch_no}; length: ${len(batch_data)}")
 			done = True
 			break
 
 	driverModule.close(driver)
+	LOGGER.info("saving all data: %s"%str(batch_no))
 	save_output(output_file, data)
 
 if __name__ == "__main__":

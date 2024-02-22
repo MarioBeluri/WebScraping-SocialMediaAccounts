@@ -4,3 +4,6 @@ env:
   chromedriver: "/usr/bin/chromedriver" 
   headless: true
 
+# sudo mount -t tmpfs -o size=250G tmpfs /mnt/ramdisksocialmedia 
+# sudo umount /mnt/ramdisksocialmedia 
+
