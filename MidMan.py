@@ -14,37 +14,22 @@ from time import sleep
 social_media_urls = {
     "Twitter": "https://mid-man.com/twitter/",
     "Instagram": "https://mid-man.com/instagram/",
-    "YouTube": "https://mid-man.com/facebook/",
-    "Facebook": "https://accs-market.com/fb",
-    "TikTok": "https://mid-man.com/tiktok/"
+    "Youtube": "https://mid-man.com/youtube/",
+    "Facebook": "https://mid-man.com/facebook/",
+    "Tiktok": "https://mid-man.com/tiktok/"
 }
 
-def scrape_data(driver, url, social_media):
+def scrape_data(driver, url, social_media, collection):
     driver.get(url)
     i = 0
     URLs = []
     names = []
     social_medias = []
-    address = []
     followers = []
     prices = []
-    descriptions = []
-    listed_dates = []
     categories = []
-    monthly_incomes = []
-    monthly_expenses = []
-    average_likes = []
 
-    # Find the div element with class "nav-links"
-    nav_links_div = driver.find_element(By.CLASS_NAME, "nav-links")
-
-    # Find all the anchor elements within the div
-    anchor_elements = nav_links_div.find_elements(By.TAG_NAME, "a")
-
-    # Get the second-to-last anchor element's text
-    number_of_pages = anchor_elements[-2].text
-
-    while (i < int(number_of_pages) - 1):
+    while True:
 
         try:
             names_element = driver.find_elements("xpath", "//div[@class = 'product-shop-area']/div/div/div/div/div/a")
@@ -57,7 +42,6 @@ def scrape_data(driver, url, social_media):
                 names.append(names_element[j].text)
                 categories.append(category_element[j].text)
                 followers.append(subscribed_element[j].text)
-                address.append(names_element[j].text)
                 social_medias.append(social_media)
                 try:
                     price_element = driver.find_elements(By.XPATH, "//p[@class='price']//span[not(ancestor::ins)]/bdi")
@@ -74,25 +58,49 @@ def scrape_data(driver, url, social_media):
             names.append(None)
             categories.append(None)
             followers.append(None)
-            address.append(None)
             social_medias.append(None)
             prices.append(None)
 
-        next_page_link = driver.find_element(By.XPATH, "//a[@class='next page-numbers']")
-        next_page_url = next_page_link.get_attribute("href")
-        driver.get(next_page_url)
-        i += 1
+        try:
+            for j in range(len(names_element)):
+                entry_data = {
+                    "url": URLs[j],
+                    "title": names[j],
+                    "category": categories[j],
+                    "price": prices[j],
+                    "social_media": social_medias[j],
+                    "followers": followers[j],
+                }
+                collection.insert_one(entry_data)
+            URLs.clear()
+            names.clear()
+            categories.clear()
+            prices.clear()
+            social_medias.clear()
+            followers.clear()
+        except:
+            print("Error Occured")
 
-    print(names, categories, followers, prices, listed_dates, descriptions, monthly_expenses, monthly_incomes, address,
-          social_medias)
+        try:
+            next_page_link = driver.find_element(By.XPATH, "//a[@class='next page-numbers']")
+            next_page_link.click()
+            sleep(5)
+        except:
+            break
 
 # User input for social media platform
-social_media_input = input("Enter social media platform (Twitter, Instagram, Facebook): ")
+social_media_input = input("Enter social media platform (Twitter, Instagram, Facebook, Tiktok, Youtube): ")
 
 # Validate user input and scrape data accordingly
 if social_media_input in social_media_urls:
     driver = Driver(uc=True)
-    scrape_data(driver, social_media_urls[social_media_input], social_media_input)
+    client = MongoClient()
+    db = client.WebScraping
+    collection = db.WebScraping
+    scrape_data(driver, social_media_urls[social_media_input], social_media_input, collection)
     driver.quit()
+    client.close()
+    print("Connection Closed")
+    print("Scraping finished")
 else:
     print("Invalid social media platform. Please enter a valid Social Media platform.")

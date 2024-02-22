@@ -11,37 +11,22 @@ from pymongo import MongoClient
 from time import sleep
 
 driver = Driver(uc=True)
+client = MongoClient()
+db = client.WebScraping
+collection = db.WebScraping
 website = "https://swapsocials.com/instagram-accounts-for-sale/"
 
 i = 0
-URLs = []
-names = []
-social_media = []
-address = []
-followers = []
-prices = []
-descriptions = []
-listed_dates = []
-categories = []
-monthly_incomes = []
-monthly_expenses = []
-average_likes = []
 
 driver.get(website)
 
-ul_element = driver.find_element(By.CSS_SELECTOR,'.page-numbers')
-
-li_elements = ul_element.find_elements(By.TAG_NAME,'li')
-
-number_of_pages = li_elements[-2].text
-
-while i < int(number_of_pages) - 1:
+while True:
     elements = driver.find_elements("xpath", "/html/body/div[1]/div[1]/div[2]/div[2]/div[2]/div[2]/div/div[2]/div/ul/li/div[@class = 'nm-shop-loop-thumbnail nm-loader']/a")
 
     for element in elements:
         link = element.get_attribute("href")
 
-        URLs.append(link)
+        URL = link
         original_window = driver.current_window_handle
 
         driver.switch_to.new_window('tab')
@@ -56,18 +41,18 @@ while i < int(number_of_pages) - 1:
         try:
             names_element = driver.find_element("xpath",
                                                 "/html/body/div[1]/div[1]/div[2]/div[3]/div[1]/div[3]/div/div/div[2]/div[1]/h1")
-            names.append(names_element.text)
+            name = names_element.text
         except Exception as e:
             print("Error occurred while extracting names information:", e)
-            names.append(None)
+            name = None
 
         try:
             category_element = driver.find_element("xpath",
                                                    "/html/body/div[1]/div[1]/div[2]/div[3]/div[1]/div[1]/div/div[1]/nav/a[3]")
-            categories.append(category_element.text)
+            categorie = category_element.text
         except Exception as e:
             print("Error occurred while extracting category information:", e)
-            categories.append(None)
+            categorie = None
 
         try:
             subscribedAndAverageLikes_element = driver.find_element(By.XPATH,
@@ -77,41 +62,62 @@ while i < int(number_of_pages) - 1:
             followers_string = subAndLikes[:split_index]
             likes_string = subAndLikes[split_index + 1:]
             followers_split = followers_string.split(":")
-            followers.append(followers_split[1].strip())
+            follower = followers_split[1].strip()
             likes_split = likes_string.split(":")
-            average_likes.append(likes_split[1].strip())
+            average_like = likes_split[1].strip()
         except Exception as e:
             print("Error occurred while extracting followers information:", e)
-            followers.append(None)
-            average_likes.append(None)
+            follower = None
+            average_like = None
 
         try:
             price_element = driver.find_elements("xpath",
                                                  "//p[@class='price']//span[@class='woocommerce-Price-amount amount']/bdi")
-            prices.append(price_element[0].text)
+            price = price_element[0].text
         except Exception as e:
             print("Error occurred while extracting price information:", e)
-            prices.append(None)
+            price = None
 
         try:
             description_element = driver.find_element("xpath",
                                                       "/html/body/div[1]/div[1]/div[2]/div[3]/div[1]/div[3]/div/div/div[2]/div[2]/div[1]/p[3]")
-            descriptions.append(description_element.text)
+            description = description_element.text
         except Exception as e:
             print("Error occurred while extracting description information:", e)
-            descriptions.append(None)
+            description = None
 
-        social_media.append("Instagram")
+        social_media = "Instagram"
+
+        try:
+            entry_data = {
+                    "url": URL,
+                    "title": name,
+                    "price": price,
+                    "social_media": social_media,
+                    "description": description,
+                    "followers": follower,
+                    "category": categorie,
+                    "average_likes": average_like,
+                }
+            collection.insert_one(entry_data)
+
+        except Exception as e:
+            print("Error Occurred:", e)
+            client.close()
+            print("Connection Closed")
 
         driver.close()
         driver.switch_to.window(original_window)
         sleep(2)
 
-    next_page = driver.find_element(By.XPATH,
-                                    "//nav[@class='woocommerce-pagination nm-pagination nm-infload']//a[@class='next page-numbers']")
-    next_page_click = next_page.get_attribute("href")
-    next_page_click.click()
-    i += 1
+    try:
+        next_page = driver.find_element(By.XPATH,
+                                        "//nav[@class='woocommerce-pagination nm-pagination nm-infload']//a[@class='next page-numbers']")
+        next_page.click()
+    except:
+        break
 
+client.close()
+print("Connection Closed")
 driver.quit()
-print(names, categories, followers, prices, listed_dates, descriptions, monthly_expenses, monthly_incomes, address, social_media)
+print("Web Scraping finished")

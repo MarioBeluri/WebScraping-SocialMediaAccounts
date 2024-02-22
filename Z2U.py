@@ -2,6 +2,7 @@ import time
 from hashlib import new
 from telnetlib import EC
 
+from pymongo import MongoClient
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.wait import WebDriverWait
 from seleniumbase import Driver
@@ -13,30 +14,11 @@ social_media_urls = {
     "Facebook": "https://www.z2u.com/facebook/accounts-5-15128"
 }
 
-def scrape_data(driver, url, social_media):
+def scrape_data(driver, url, social_media, collection):
     login = "https://www.z2u.com/"
 
     i = 0
     j = 2
-    sellers = []
-    URLs = []
-    titles = []
-    names = []
-    social_medias = []
-    address = []
-    followers = []
-    prices = []
-    descriptions = []
-    listed_dates = []
-    categories = []
-    monthly_incomes = []
-    monthly_expenses = []
-    average_likes = []
-    positive_reviews = []
-    positive_rating = []
-    total_orders = []
-    offer_ids = []
-    offers = []
 
     driver.get(login)
     time.sleep(120)
@@ -58,7 +40,7 @@ def scrape_data(driver, url, social_media):
         for element in elements:
             link = element.get_attribute("href")
             original_window = driver.current_window_handle
-            URLs.append(link)
+            URL = link
 
             driver.switch_to.new_window('tab')
             driver.get(link)
@@ -70,55 +52,76 @@ def scrape_data(driver, url, social_media):
                     break
 
             try:
-                titles.append(driver.find_element(By.XPATH, "//div[@class = 'combin-light-bg-wrap']/h2").text)
+                title = driver.find_element(By.XPATH, "//div[@class = 'combin-light-bg-wrap']/h2").text
             except Exception as e:
                 print("Error finding title:", e)
-                titles.append(None)
+                title = None
 
             try:
-                sellers.append(driver.find_element(By.CLASS_NAME, 'seller__name').text)
+                seller = driver.find_element(By.CLASS_NAME, 'seller__name').text
             except Exception as e:
                 print("Error finding seller:", e)
-                sellers.append(None)
+                seller = None
 
             try:
                 info_element = driver.find_element(By.CSS_SELECTOR, ".boxbottom.dengji.flex_between .u-info li")
                 text = info_element.text
                 parts = text.split("\n")
-                total_orders.append(parts[0].split(": ")[1])
-                positive_rating.append(parts[1].split(': ')[1].split(' ')[0])
-                positive_reviews.append(parts[1].split('(')[1].split(')')[0])
+                total_order = parts[0].split(": ")[1]
+                positive_rating = parts[1].split(': ')[1].split(' ')[0]
+                positive_review = parts[1].split('(')[1].split(')')[0]
             except Exception as e:
                 print("Error finding seller info:", e)
-                total_orders.append(None)
-                positive_rating.append(None)
-                positive_reviews.append(None)
+                total_order = None
+                positive_rating = None
+                positive_review = None
 
             try:
-                offer_ids.append(driver.find_element(By.CLASS_NAME, "wenbenright").text.split('#')[1])
+                offer_id = driver.find_element(By.CLASS_NAME, "wenbenright").text.split('#')[1]
             except Exception as e:
                 print("Error finding offer id:", e)
-                offer_ids.append(None)
+                offer_id = None
 
             try:
-                offers.append(driver.find_element(By.CSS_SELECTOR, ".more-offers strong").text)
+                offer = driver.find_element(By.CSS_SELECTOR, ".more-offers strong").text
             except Exception as e:
                 print("Error finding offers:", e)
-                offers.append(None)
+                offer = None
 
             try:
-                prices.append(driver.find_element(By.CLASS_NAME, "price").text)
+                price = driver.find_element(By.CLASS_NAME, "price").text
             except Exception as e:
                 print("Error finding price:", e)
-                prices.append(None)
+                price = None
 
             try:
-                descriptions.append(driver.find_element(By.CLASS_NAME, "wb_text_in").text)
+                description = driver.find_element(By.CLASS_NAME, "wb_text_in").text
             except Exception as e:
                 print("Error finding description:", e)
-                descriptions.append(None)
+                description = None
 
-            social_medias.append(social_media)
+            social_medias = social_media
+
+            try:
+                entry_data = {
+                    "url": URL,
+                    "title": title,
+                    "seller": seller,
+                    "total_order": total_order,
+                    "rating_pct": positive_rating,
+                    "rating_count": positive_review,
+                    "offer_id": offer_id,
+                    "pending_offers": offer,
+                    "description": description,
+                    "price": price,
+                    "social_media": social_medias
+                }
+                collection.insert_one(entry_data)
+            except Exception as e:
+                print("Error Occurred:", e)
+                client.close()
+                print("Connection Closed")
+
             driver.close()
             driver.switch_to.window(original_window)
             time.sleep(2)
@@ -130,15 +133,19 @@ def scrape_data(driver, url, social_media):
 
     driver.close()
 
-    print(names, categories, followers, prices, listed_dates, descriptions, monthly_expenses, monthly_incomes, address, social_media)
-
 # User input for social media platform
 social_media_input = input("Enter social media platform (Twitter, Instagram, Facebook): ")
 
 # Validate user input and scrape data accordingly
 if social_media_input in social_media_urls:
     driver = Driver(uc=True)
-    scrape_data(driver, social_media_urls[social_media_input], social_media_input)
+    client = MongoClient()
+    db = client.WebScraping
+    collection = db.WebScraping
+    scrape_data(driver, social_media_urls[social_media_input], social_media_input, collection)
+    client.close()
+    print("Connection Closed")
     driver.quit()
+    print("Web Scraping finished")
 else:
     print("Invalid social media platform. Please enter a valid Social Media platform.")

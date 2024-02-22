@@ -9,6 +9,9 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 from pymongo import MongoClient
 from time import sleep
+from pymongo import MongoClient
+from db_util import MongoDBActor
+
 
 social_media_urls = {
     "Twitter": "https://accsmarket.com/en/catalog/twitter",
@@ -19,16 +22,8 @@ social_media_urls = {
 def scrape_data(driver, url, social_media):
     driver.get(url)
 
-    names = []
-    address = []
-    followers = []
-    listed_dates = []
-    categories = []
-    monthly_incomes = []
-    monthly_expenses = []
-    average_likes = []
-
     listings = driver.find_elements(By.XPATH, "//div[@class = 'soc-text']/p/a")
+
     quantity = [quantity.text for quantity in driver.find_elements(By.XPATH, "//div[@class = 'soc-qty']")]
     URls = [url.get_attribute("href") for url in driver.find_elements(By.XPATH, "//div[@class = 'soc-text']/p/a")]
     prices = [price.get_attribute("textContent") for price in
@@ -41,8 +36,24 @@ def scrape_data(driver, url, social_media):
         if index_of_dollar != -1:
             prices[i] = prices[i][index_of_dollar:].strip()
 
-    driver.close()
-    print(names, categories, followers, prices, listed_dates, descriptions, monthly_expenses, monthly_incomes, address, social_media)
+    try:
+        client = MongoClient()
+        db = client.WebScraping
+        collection = db.WebScraping
+        for j in range(len(listings)):
+            entry_data = {
+                "url": URls[j],
+                "title": descriptions[j],
+                "quantity": quantity[j],
+                "price": prices[j],
+                "social_media": social_medias[j]
+            }
+            collection.insert_one(entry_data)
+    except:
+        print("Error Occured")
+    finally:
+        client.close()
+        print("Conenction Closed")
 
 # User input for social media platform
 social_media_input = input("Enter social media platform (Twitter, Instagram, Facebook): ")
@@ -52,5 +63,6 @@ if social_media_input in social_media_urls:
     driver = Driver(uc=True)
     scrape_data(driver, social_media_urls[social_media_input], social_media_input)
     driver.quit()
+    print("Scraping finished")
 else:
     print("Invalid social media platform. Please enter a valid Social Media platform.")
