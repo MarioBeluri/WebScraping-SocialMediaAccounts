@@ -100,6 +100,11 @@ def get_data_script_for_item():
 	"""
 	return script
 
+def save_output(file_path_name, data):
+	with open(file_path_name, 'w+', encoding='utf-8') as fd:
+		json.dump(data, fd, ensure_ascii=False, indent=4)
+
+
 def main():
 
 	CONFIG_FILE_DEFAULT = os.path.join(constantsModule.BASE_DIR, 'config.yaml')
@@ -139,6 +144,10 @@ def main():
 	MAX_ITERATIONS = 500
 	done = False
 
+	filename = "toofame" + get_timestamp() + '.json'
+	output_file = os.path.join(constantsModule.OUTPUT_DIR, filename)
+
+
 	batch_script = get_data_script_for_catalog(batch_no, batch_size)
 
 	while not done:
@@ -166,6 +175,11 @@ def main():
 			data.extend(completed_batch_data)
 			batch_no += 1
 
+			# iteratively update saved data once for each batch
+			# so that we do not lose the collected data in memory
+			# in the case of selenium errors
+			save_output(output_file, data)
+
 			driver.switch_to.window(driver.window_handles[0])
 			time.sleep(1)
 			# press the load more button
@@ -178,12 +192,7 @@ def main():
 			break
 
 	driverModule.close(driver)
-
-	filename = "toofame" + get_timestamp() + '.json'
-	output_file = os.path.join(constantsModule.OUTPUT_DIR, filename)
-	with open(output_file, 'w+', encoding='utf-8') as fd:
-		json.dump(data, fd, ensure_ascii=False, indent=4)
-
+	save_output(output_file, data)
 
 if __name__ == "__main__":
 	main()
