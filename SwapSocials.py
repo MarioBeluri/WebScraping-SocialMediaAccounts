@@ -1,12 +1,9 @@
 from hashlib import new
 from telnetlib import EC
 
-from selenium.webdriver.support.wait import WebDriverWait
 from seleniumbase import Driver
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.chrome.options import Options
-from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
+from utils.logging import logger as LOGGER
 from pymongo import MongoClient
 from time import sleep
 
@@ -43,7 +40,7 @@ while True:
                                                 "/html/body/div[1]/div[1]/div[2]/div[3]/div[1]/div[3]/div/div/div[2]/div[1]/h1")
             name = names_element.text
         except Exception as e:
-            print("Error occurred while extracting names information:", e)
+            LOGGER.info("Error occurred while extracting names information:", e)
             name = None
 
         try:
@@ -51,7 +48,7 @@ while True:
                                                    "/html/body/div[1]/div[1]/div[2]/div[3]/div[1]/div[1]/div/div[1]/nav/a[3]")
             categorie = category_element.text
         except Exception as e:
-            print("Error occurred while extracting category information:", e)
+            LOGGER.info("Error occurred while extracting category information:", e)
             categorie = None
 
         try:
@@ -62,20 +59,20 @@ while True:
             followers_string = subAndLikes[:split_index]
             likes_string = subAndLikes[split_index + 1:]
             followers_split = followers_string.split(":")
-            follower = followers_split[1].strip()
+            follower = int(followers_split[1].strip())
             likes_split = likes_string.split(":")
-            average_like = likes_split[1].strip()
+            average_like = int(likes_split[1].strip())
         except Exception as e:
-            print("Error occurred while extracting followers information:", e)
+            LOGGER.info("Error occurred while extracting followers information:", e)
             follower = None
             average_like = None
 
         try:
             price_element = driver.find_elements("xpath",
                                                  "//p[@class='price']//span[@class='woocommerce-Price-amount amount']/bdi")
-            price = price_element[0].text
+            price = float(price_element[0].text.replace("$", ""))
         except Exception as e:
-            print("Error occurred while extracting price information:", e)
+            LOGGER.info("Error occurred while extracting price information:", e)
             price = None
 
         try:
@@ -83,7 +80,7 @@ while True:
                                                       "/html/body/div[1]/div[1]/div[2]/div[3]/div[1]/div[3]/div/div/div[2]/div[2]/div[1]/p[3]")
             description = description_element.text
         except Exception as e:
-            print("Error occurred while extracting description information:", e)
+            LOGGER.info("Error occurred while extracting description information:", e)
             description = None
 
         social_media = "Instagram"
@@ -102,9 +99,9 @@ while True:
             collection.insert_one(entry_data)
 
         except Exception as e:
-            print("Error Occurred:", e)
+            LOGGER.info("Error Occurred:", e)
             client.close()
-            print("Connection Closed")
+            LOGGER.info("Connection Closed")
 
         driver.close()
         driver.switch_to.window(original_window)
@@ -118,6 +115,6 @@ while True:
         break
 
 client.close()
-print("Connection Closed")
+LOGGER.info("Connection Closed")
 driver.quit()
-print("Web Scraping finished")
+LOGGER.info("Web Scraping finished")

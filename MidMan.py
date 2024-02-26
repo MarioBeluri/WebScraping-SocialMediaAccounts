@@ -1,15 +1,12 @@
 from hashlib import new
 from telnetlib import EC
 
-from selenium.common import NoSuchElementException
-from selenium.webdriver.support.wait import WebDriverWait
 from seleniumbase import Driver
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.chrome.options import Options
-from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 from pymongo import MongoClient
 from time import sleep
+import humanfriendly
+from utils.logging import logger as LOGGER
 
 social_media_urls = {
     "Twitter": "https://mid-man.com/twitter/",
@@ -19,72 +16,109 @@ social_media_urls = {
     "Tiktok": "https://mid-man.com/tiktok/"
 }
 
-def scrape_data(driver, url, social_media, collection):
+def scrape_data(driver, url, socialMedia, collection):
     driver.get(url)
-    i = 0
-    URLs = []
-    names = []
-    social_medias = []
-    followers = []
-    prices = []
-    categories = []
+    sleep(10)  # Adjust the sleep time as needed
 
     while True:
+        elements = driver.find_elements("xpath", "//div[@class = 'product-shop-area']/div/div/div/div/div/a")
 
-        try:
-            names_element = driver.find_elements("xpath", "//div[@class = 'product-shop-area']/div/div/div/div/div/a")
-            category_element = driver.find_elements("xpath",
-                                                    "//div[@class = 'product-shop-area']/div/div/div/div/div/div[@class='product-topic']")
-            subscribed_element = driver.find_elements("xpath",
-                                                      "//div[@class = 'product-shop-area']/div/div/div/div/div/ul[@class='list-inline list-meta mb-0']/li[@class='list-inline-item list-follow']")
-            for j in range(len(names_element)):
-                URLs.append(names_element[j].get_attribute("href"))
-                names.append(names_element[j].text)
-                categories.append(category_element[j].text)
-                followers.append(subscribed_element[j].text)
-                social_medias.append(social_media)
-                try:
-                    price_element = driver.find_elements(By.XPATH, "//p[@class='price']//span[not(ancestor::ins)]/bdi")
-                    if not price_element[j].text:
-                        prices.append("75")
-                    else:
-                        prices.append(price_element[j].text)
-                except:
-                    # Handle the case where the element is not found
-                    prices.append("50")
-        except Exception as e:
-            print("Error occurred while extracting elements information:", e)
-            URLs.append(None)
-            names.append(None)
-            categories.append(None)
-            followers.append(None)
-            social_medias.append(None)
-            prices.append(None)
+        for element in elements:
+            link = element.get_attribute("href")
+            URL = link
+            original_window = driver.current_window_handle
 
-        try:
-            for j in range(len(names_element)):
-                entry_data = {
-                    "url": URLs[j],
-                    "title": names[j],
-                    "category": categories[j],
-                    "price": prices[j],
-                    "social_media": social_medias[j],
-                    "followers": followers[j],
-                }
-                collection.insert_one(entry_data)
-            URLs.clear()
-            names.clear()
-            categories.clear()
-            prices.clear()
-            social_medias.clear()
-            followers.clear()
-        except:
-            print("Error Occured")
-
-        try:
-            next_page_link = driver.find_element(By.XPATH, "//a[@class='next page-numbers']")
-            next_page_link.click()
+            driver.switch_to.new_window('tab')
+            driver.get(link)
+            sleep(2)
+            for handle in driver.window_handles:
+                if handle != original_window:
+                    driver.switch_to.window(handle)
+                    break
             sleep(5)
+
+            try:
+                follower_element = driver.find_element(By.CLASS_NAME, "list-inline-item").find_element(By.TAG_NAME, "span")
+                follower_count = follower_element.text.split()[0]
+                if "K" in follower_count:
+                    follower = humanfriendly.parse_size(follower_count)
+                elif "M" in follower_count.text:
+                    follower = humanfriendly.parse_size(follower_count)
+                else:
+                    follower = int(follower_count)
+            except Exception as e:
+                LOGGER.info("Error occurred while extracting follower data:", e)
+                follower = None
+
+            try:
+                category_element = driver.find_element(By.CLASS_NAME, "list-inline-item:last-child").find_element(
+                    By.TAG_NAME, "span")
+                categorie = category_element.text
+            except Exception as e:
+                LOGGER.info("Error occurred while extracting category data:", e)
+                categorie = None
+
+            try:
+                title_element = driver.find_element(By.CSS_SELECTOR, ".widget-title-product h1")
+                title = title_element.text
+            except Exception as e:
+                LOGGER.info("Error occurred while extracting title data:", e)
+                title = None
+
+            try:
+                price_element = driver.find_element(By.CLASS_NAME, "woocommerce-Price-amount")
+                price_text = price_element.text
+                price = float(price_text.split('$')[1].replace(",", ""))
+            except Exception as e:
+                LOGGER.info("Error occurred while extracting price data:", e)
+                price = None
+
+            try:
+                author_element = driver.find_element(By.CLASS_NAME, "name-author").find_element(By.TAG_NAME, "a")
+                seller = author_element.text
+            except Exception as e:
+                LOGGER.info("Error occurred while extracting seller data:", e)
+                seller = None
+
+            try:
+                seller_website = author_element.get_attribute("href")
+            except Exception as e:
+                LOGGER.info("Error occurred while extracting seller website data:", e)
+                seller_website = None
+
+            try:
+                description_element = driver.find_element(By.ID, "tab-description")
+                description = description_element.text
+            except Exception as e:
+                LOGGER.info("Error occurred while extracting description data:", e)
+                description = None
+
+            social_media = socialMedia
+
+            try:
+               entry_data = {
+                    "url": URL,
+                    "title": title,
+                    "seller": seller,
+                    "price": price,
+                    "social_media": social_media,
+                    "description": description,
+                    "followers": follower,
+                    "category": categorie,
+                    "seller_website": seller_website,
+                }
+               collection.insert_one(entry_data)
+            except Exception as e:
+                LOGGER.info("Error Occurred:", e)
+                client.close()
+                LOGGER.info("Connection Closed")
+
+            driver.close()
+            driver.switch_to.window(original_window)
+            sleep(2)
+        try:
+            next_page = driver.find_element(By.XPATH, "//a[@class='next page-numbers']")
+            next_page.click()
         except:
             break
 
@@ -100,7 +134,7 @@ if social_media_input in social_media_urls:
     scrape_data(driver, social_media_urls[social_media_input], social_media_input, collection)
     driver.quit()
     client.close()
-    print("Connection Closed")
-    print("Scraping finished")
+    LOGGER.info("Connection Closed")
+    LOGGER.info("Scraping finished")
 else:
-    print("Invalid social media platform. Please enter a valid Social Media platform.")
+    LOGGER.info("Invalid social media platform. Please enter a valid Social Media platform.")

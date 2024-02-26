@@ -1,16 +1,11 @@
 from hashlib import new
 from telnetlib import EC
 
-from selenium.webdriver.support.wait import WebDriverWait
 from seleniumbase import Driver
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.chrome.options import Options
-from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
-from pymongo import MongoClient
 from time import sleep
 from pymongo import MongoClient
-from db_util import MongoDBActor
+from utils.logging import logger as LOGGER
 
 
 social_media_urls = {
@@ -21,10 +16,10 @@ social_media_urls = {
 
 def scrape_data(driver, url, social_media):
     driver.get(url)
-
+    sleep(10)
     listings = driver.find_elements(By.XPATH, "//div[@class = 'soc-text']/p/a")
 
-    quantity = [quantity.text for quantity in driver.find_elements(By.XPATH, "//div[@class = 'soc-qty']")]
+    quantity = [quantity.text.split()[0] for quantity in driver.find_elements(By.XPATH, "//div[@class = 'soc-qty']")]
     URls = [url.get_attribute("href") for url in driver.find_elements(By.XPATH, "//div[@class = 'soc-text']/p/a")]
     prices = [price.get_attribute("textContent") for price in
               driver.find_elements(By.XPATH, "//div[@class = 'soc-price']/div")]
@@ -34,7 +29,7 @@ def scrape_data(driver, url, social_media):
     for i in range(len(prices)):
         index_of_dollar = prices[i].find('$')
         if index_of_dollar != -1:
-            prices[i] = prices[i][index_of_dollar:].strip()
+            prices[i] = prices[i][index_of_dollar:].strip().replace("$", "")
 
     try:
         client = MongoClient()
@@ -44,16 +39,16 @@ def scrape_data(driver, url, social_media):
             entry_data = {
                 "url": URls[j],
                 "title": descriptions[j],
-                "quantity": quantity[j],
-                "price": prices[j],
+                "quantity": int(quantity[j]),
+                "price": float(prices[j]),
                 "social_media": social_medias[j]
             }
             collection.insert_one(entry_data)
     except:
-        print("Error Occured")
+        LOGGER.info("Error Occured")
     finally:
         client.close()
-        print("Conenction Closed")
+        LOGGER.info("Conenction Closed")
 
 # User input for social media platform
 social_media_input = input("Enter social media platform (Twitter, Instagram, Facebook): ")
@@ -63,6 +58,6 @@ if social_media_input in social_media_urls:
     driver = Driver(uc=True)
     scrape_data(driver, social_media_urls[social_media_input], social_media_input)
     driver.quit()
-    print("Scraping finished")
+    LOGGER.info("Scraping finished")
 else:
-    print("Invalid social media platform. Please enter a valid Social Media platform.")
+    LOGGER.info("Invalid social media platform. Please enter a valid Social Media platform.")

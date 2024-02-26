@@ -1,16 +1,11 @@
 from hashlib import new
 from telnetlib import EC
 
-from selenium.webdriver.support.wait import WebDriverWait
 from seleniumbase import Driver
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.chrome.options import Options
-from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 from pymongo import MongoClient
 from time import sleep
-from db_util import MongoDBActor
-from selenium_driver_util import PageDriver
+from utils.logging import logger as LOGGER
 
 
 # Define a dictionary to map social media platforms to URLs
@@ -64,14 +59,14 @@ def scrape_data(driver, url, socialMedia, collection):
                     elif 'Monetization ' in text:
                         monetization_enabled = text.split(":")[-1].strip()
             except Exception as e:
-                print("Error occurred while extracting group data:", e)
+                LOGGER.info("Error occurred while extracting group data:", e)
 
             try:
                 seller_name_div = driver.find_element(By.CLASS_NAME, "right-top__name")
                 seller_element = seller_name_div.find_element(By.CLASS_NAME, "bold")
                 seller = seller_element.text
             except Exception as e:
-                print("Error occurred while extracting seller data:", e)
+                LOGGER.info("Error occurred while extracting seller data:", e)
                 seller = None
 
             try:
@@ -79,7 +74,7 @@ def scrape_data(driver, url, socialMedia, collection):
                                                     "/html/body/main/div/div/div[@class = 'group-info group']/div[@class = 'group-info']/h1/span")
                 name = names_element.text
             except Exception as e:
-                print("Error occurred while extracting names data:", e)
+                LOGGER.info("Error occurred while extracting names data:", e)
                 name = None
 
             try:
@@ -89,7 +84,7 @@ def scrape_data(driver, url, socialMedia, collection):
                 categorie = splitCandA[0].strip()
                 address = splitCandA[1].strip()
             except Exception as e:
-                print("Error occurred while extracting category and address data:", e)
+                LOGGER.info("Error occurred while extracting category and address data:", e)
                 categorie = None
                 address = None
 
@@ -99,7 +94,7 @@ def scrape_data(driver, url, socialMedia, collection):
                 subSplit = subscribed_element.text.split('-')
                 follower = subSplit[0].strip()
             except Exception as e:
-                print("Error occurred while extracting subscribed data:", e)
+                LOGGER.info("Error occurred while extracting subscribed data:", e)
                 follower = None
 
             try:
@@ -108,7 +103,7 @@ def scrape_data(driver, url, socialMedia, collection):
                 price = price_element.text
 
             except Exception as e:
-                print("Error occurred while extracting price data:", e)
+                LOGGER.info("Error occurred while extracting price data:", e)
                 price = None
 
             try:
@@ -117,7 +112,7 @@ def scrape_data(driver, url, socialMedia, collection):
                 listedSplit = listed_date_element.text.split(":")
                 listed_date = listedSplit[1].strip()
             except Exception as e:
-                print("Error occurred while extracting listed date data:", e)
+                LOGGER.info("Error occurred while extracting listed date data:", e)
                 listed_date = None
 
             try:
@@ -125,7 +120,7 @@ def scrape_data(driver, url, socialMedia, collection):
                 viewsSplit = views_element.text.split(":")
                 view = viewsSplit[1].strip()
             except Exception as e:
-                print("Error occurred while extracting views data:", e)
+                LOGGER.info("Error occurred while extracting views data:", e)
                 view = None
 
             try:
@@ -133,7 +128,7 @@ def scrape_data(driver, url, socialMedia, collection):
                                                           "/html/body/main/div/div/div[4]/div/div[1]/p[2]")
                 description = description_element.text
             except Exception as e:
-                print("Error occurred while extracting description data:", e)
+                LOGGER.info("Error occurred while extracting description data:", e)
                 description = None
 
             try:
@@ -146,7 +141,7 @@ def scrape_data(driver, url, socialMedia, collection):
                 incomeSplit = monthly_income_element.text.split("-")
                 monthly_income = incomeSplit[0].strip()
             except Exception as e:
-                print("Error occurred while extracting monthly income and expense data:", e)
+                LOGGER.info("Error occurred while extracting monthly income and expense data:", e)
                 monthly_expense = None
                 monthly_income = None
 
@@ -200,9 +195,9 @@ def scrape_data(driver, url, socialMedia, collection):
                 collection.insert_one(entry_data)
 
             except Exception as e:
-                print("Error Occurred:", e)
+                LOGGER.info("Error Occurred:", e)
                 client.close()
-                print("Connection Closed")
+                LOGGER.info("Connection Closed")
 
             driver.close()
             driver.switch_to.window(original_window)
@@ -224,8 +219,8 @@ if social_media_input in social_media_urls:
     collection = db.WebScraping
     scrape_data(driver, social_media_urls[social_media_input], social_media_input, collection)
     client.close()
-    print("Connection Closed")
+    LOGGER.info("Connection Closed")
     driver.quit()
-    print("Scraping finished")
+    LOGGER.info("Scraping finished")
 else:
-    print("Invalid social media platform. Please enter a valid Social Media platform.")
+    LOGGER.info("Invalid social media platform. Please enter a valid Social Media platform.")

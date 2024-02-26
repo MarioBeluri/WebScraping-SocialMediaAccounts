@@ -3,10 +3,9 @@ from hashlib import new
 from telnetlib import EC
 
 from pymongo import MongoClient
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.support.wait import WebDriverWait
 from seleniumbase import Driver
 from selenium.webdriver.common.by import By
+from utils.logging import logger as LOGGER
 
 social_media_urls = {
     "Twitter": "https://www.z2u.com/twitter/accounts-5-15142",
@@ -54,13 +53,13 @@ def scrape_data(driver, url, social_media, collection):
             try:
                 title = driver.find_element(By.XPATH, "//div[@class = 'combin-light-bg-wrap']/h2").text
             except Exception as e:
-                print("Error finding title:", e)
+                LOGGER.info("Error finding title:", e)
                 title = None
 
             try:
                 seller = driver.find_element(By.CLASS_NAME, 'seller__name').text
             except Exception as e:
-                print("Error finding seller:", e)
+                LOGGER.info("Error finding seller:", e)
                 seller = None
 
             try:
@@ -71,7 +70,7 @@ def scrape_data(driver, url, social_media, collection):
                 positive_rating = parts[1].split(': ')[1].split(' ')[0]
                 positive_review = parts[1].split('(')[1].split(')')[0]
             except Exception as e:
-                print("Error finding seller info:", e)
+                LOGGER.info("Error finding seller info:", e)
                 total_order = None
                 positive_rating = None
                 positive_review = None
@@ -79,25 +78,25 @@ def scrape_data(driver, url, social_media, collection):
             try:
                 offer_id = driver.find_element(By.CLASS_NAME, "wenbenright").text.split('#')[1]
             except Exception as e:
-                print("Error finding offer id:", e)
+                LOGGER.info("Error finding offer id:", e)
                 offer_id = None
 
             try:
                 offer = driver.find_element(By.CSS_SELECTOR, ".more-offers strong").text
             except Exception as e:
-                print("Error finding offers:", e)
+                LOGGER.info("Error finding offers:", e)
                 offer = None
 
             try:
                 price = driver.find_element(By.CLASS_NAME, "price").text
             except Exception as e:
-                print("Error finding price:", e)
+                LOGGER.info("Error finding price:", e)
                 price = None
 
             try:
                 description = driver.find_element(By.CLASS_NAME, "wb_text_in").text
             except Exception as e:
-                print("Error finding description:", e)
+                LOGGER.info("Error finding description:", e)
                 description = None
 
             social_medias = social_media
@@ -118,9 +117,9 @@ def scrape_data(driver, url, social_media, collection):
                 }
                 collection.insert_one(entry_data)
             except Exception as e:
-                print("Error Occurred:", e)
+                LOGGER.info("Error Occurred:", e)
                 client.close()
-                print("Connection Closed")
+                LOGGER.info("Connection Closed")
 
             driver.close()
             driver.switch_to.window(original_window)
@@ -144,8 +143,8 @@ if social_media_input in social_media_urls:
     collection = db.WebScraping
     scrape_data(driver, social_media_urls[social_media_input], social_media_input, collection)
     client.close()
-    print("Connection Closed")
+    LOGGER.info("Connection Closed")
     driver.quit()
-    print("Web Scraping finished")
+    LOGGER.info("Web Scraping finished")
 else:
-    print("Invalid social media platform. Please enter a valid Social Media platform.")
+    LOGGER.info("Invalid social media platform. Please enter a valid Social Media platform.")
