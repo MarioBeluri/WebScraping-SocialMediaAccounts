@@ -18,7 +18,7 @@ social_media_urls = {
 
 def scrape_data(driver, url, socialMedia, collection):
     driver.get(url)
-    sleep(10)  # Adjust the sleep time as needed
+    sleep(10)
 
     while True:
         elements = driver.find_elements("xpath", "//div[@class = 'product-shop-area']/div/div/div/div/div/a")
@@ -30,7 +30,7 @@ def scrape_data(driver, url, socialMedia, collection):
 
             driver.switch_to.new_window('tab')
             driver.get(link)
-            sleep(2)
+            sleep(5)
             for handle in driver.window_handles:
                 if handle != original_window:
                     driver.switch_to.window(handle)
@@ -130,7 +130,7 @@ if social_media_input in social_media_urls:
     driver = Driver(uc=True)
     client = MongoClient()
     db = client.WebScraping
-    collection = db.WebScraping
+    collection = db.MidMan
     scrape_data(driver, social_media_urls[social_media_input], social_media_input, collection)
     driver.quit()
     client.close()

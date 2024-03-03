@@ -22,7 +22,7 @@ def scrape_data(driver, url, social_media, collection):
     driver.get(login)
     time.sleep(120)
     driver.get(url)
-    time.sleep(3)
+    time.sleep(5)
 
     paging_element = driver.find_element(By.CLASS_NAME, "M-box11")
 
@@ -66,9 +66,9 @@ def scrape_data(driver, url, social_media, collection):
                 info_element = driver.find_element(By.CSS_SELECTOR, ".boxbottom.dengji.flex_between .u-info li")
                 text = info_element.text
                 parts = text.split("\n")
-                total_order = parts[0].split(": ")[1]
+                total_order = int(parts[0].split(": ")[1])
                 positive_rating = parts[1].split(': ')[1].split(' ')[0]
-                positive_review = parts[1].split('(')[1].split(')')[0]
+                positive_review = int(parts[1].split('(')[1].split(')')[0])
             except Exception as e:
                 LOGGER.info("Error finding seller info:", e)
                 total_order = None
@@ -76,19 +76,19 @@ def scrape_data(driver, url, social_media, collection):
                 positive_review = None
 
             try:
-                offer_id = driver.find_element(By.CLASS_NAME, "wenbenright").text.split('#')[1]
+                offer_id = int(driver.find_element(By.CLASS_NAME, "wenbenright").text.split('#')[1])
             except Exception as e:
                 LOGGER.info("Error finding offer id:", e)
                 offer_id = None
 
             try:
-                offer = driver.find_element(By.CSS_SELECTOR, ".more-offers strong").text
+                offer = int(driver.find_element(By.CSS_SELECTOR, ".more-offers strong").text)
             except Exception as e:
                 LOGGER.info("Error finding offers:", e)
                 offer = None
 
             try:
-                price = driver.find_element(By.CLASS_NAME, "price").text
+                price = float(driver.find_element(By.CLASS_NAME, "price").text.replace(',', ''))
             except Exception as e:
                 LOGGER.info("Error finding price:", e)
                 price = None
@@ -140,7 +140,7 @@ if social_media_input in social_media_urls:
     driver = Driver(uc=True)
     client = MongoClient()
     db = client.WebScraping
-    collection = db.WebScraping
+    collection = db.Z2U
     scrape_data(driver, social_media_urls[social_media_input], social_media_input, collection)
     client.close()
     LOGGER.info("Connection Closed")

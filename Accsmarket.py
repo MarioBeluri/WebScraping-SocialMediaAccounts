@@ -14,7 +14,7 @@ social_media_urls = {
     "Facebook": "https://accsmarket.com/en/catalog/facebook"
 }
 
-def scrape_data(driver, url, social_media):
+def scrape_data(driver, url, social_media, collection):
     driver.get(url)
     sleep(10)
     listings = driver.find_elements(By.XPATH, "//div[@class = 'soc-text']/p/a")
@@ -29,12 +29,9 @@ def scrape_data(driver, url, social_media):
     for i in range(len(prices)):
         index_of_dollar = prices[i].find('$')
         if index_of_dollar != -1:
-            prices[i] = prices[i][index_of_dollar:].strip().replace("$", "")
+            prices[i] = prices[i][index_of_dollar:].strip().replace("$", "").replace(',', '.')
 
     try:
-        client = MongoClient()
-        db = client.WebScraping
-        collection = db.WebScraping
         for j in range(len(listings)):
             entry_data = {
                 "url": URls[j],
@@ -46,9 +43,6 @@ def scrape_data(driver, url, social_media):
             collection.insert_one(entry_data)
     except:
         LOGGER.info("Error Occured")
-    finally:
-        client.close()
-        LOGGER.info("Conenction Closed")
 
 # User input for social media platform
 social_media_input = input("Enter social media platform (Twitter, Instagram, Facebook): ")
@@ -56,8 +50,13 @@ social_media_input = input("Enter social media platform (Twitter, Instagram, Fac
 # Validate user input and scrape data accordingly
 if social_media_input in social_media_urls:
     driver = Driver(uc=True)
-    scrape_data(driver, social_media_urls[social_media_input], social_media_input)
+    client = MongoClient()
+    db = client.WebScraping
+    collection = db.AccsMarket
+    scrape_data(driver, social_media_urls[social_media_input], social_media_input, collection)
     driver.quit()
     LOGGER.info("Scraping finished")
+    client.close()
+    LOGGER.info("Connection closed")
 else:
     LOGGER.info("Invalid social media platform. Please enter a valid Social Media platform.")

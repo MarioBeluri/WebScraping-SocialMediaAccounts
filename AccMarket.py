@@ -6,6 +6,7 @@ from selenium.webdriver.common.by import By
 from pymongo import MongoClient
 from time import sleep
 from utils.logging import logger as LOGGER
+import re
 
 
 # Define a dictionary to map social media platforms to URLs
@@ -32,7 +33,7 @@ def scrape_data(driver, url, socialMedia, collection):
 
             driver.switch_to.new_window('tab')
             driver.get(link)
-            sleep(2)
+            sleep(5)
             for handle in driver.window_handles:
                 if handle != original_window:
                     driver.switch_to.window(handle)
@@ -92,7 +93,7 @@ def scrape_data(driver, url, socialMedia, collection):
                 subscribed_element = driver.find_element("xpath",
                                                          "/html/body/main/div/div/div[3]/div[2]/div[1]/p[1]")
                 subSplit = subscribed_element.text.split('-')
-                follower = subSplit[0].strip()
+                follower = int(re.sub(r'\D', '', subSplit[0].strip()))
             except Exception as e:
                 LOGGER.info("Error occurred while extracting subscribed data:", e)
                 follower = None
@@ -100,8 +101,7 @@ def scrape_data(driver, url, socialMedia, collection):
             try:
                 price_element = driver.find_element("xpath",
                                                     "/html/body/main/div/div/div[3]/div[2]/div[2]")
-                price = price_element.text
-
+                price = float(price_element.text.replace("$", "").replace(" ", ""))
             except Exception as e:
                 LOGGER.info("Error occurred while extracting price data:", e)
                 price = None
@@ -118,7 +118,7 @@ def scrape_data(driver, url, socialMedia, collection):
             try:
                 views_element = driver.find_element("xpath", "/html/body/main/div/div/div[2]/span[3]")
                 viewsSplit = views_element.text.split(":")
-                view = viewsSplit[1].strip()
+                view = int(viewsSplit[1].strip())
             except Exception as e:
                 LOGGER.info("Error occurred while extracting views data:", e)
                 view = None
@@ -137,9 +137,9 @@ def scrape_data(driver, url, socialMedia, collection):
                 monthly_expense_element = driver.find_element("xpath",
                                                               "/html/body/main/div/div/div[3]/div[2]/div[1]/p[3]")
                 expensesSplit = monthly_expense_element.text.split("-")
-                monthly_expense = expensesSplit[0].strip()
+                monthly_expense = float(re.search(r'\d+', expensesSplit[0].strip()).group())
                 incomeSplit = monthly_income_element.text.split("-")
-                monthly_income = incomeSplit[0].strip()
+                monthly_income = float(re.search(r'\d+', incomeSplit[0].strip()).group())
             except Exception as e:
                 LOGGER.info("Error occurred while extracting monthly income and expense data:", e)
                 monthly_expense = None
@@ -216,7 +216,7 @@ if social_media_input in social_media_urls:
     driver = Driver(uc=True)
     client = MongoClient()
     db = client.WebScraping
-    collection = db.WebScraping
+    collection = db.AccMarket
     scrape_data(driver, social_media_urls[social_media_input], social_media_input, collection)
     client.close()
     LOGGER.info("Connection Closed")

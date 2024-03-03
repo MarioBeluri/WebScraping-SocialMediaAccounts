@@ -13,13 +13,9 @@ from time import sleep
 driver = Driver(uc=True)
 client = MongoClient()
 db = client.WebScraping
-collection = db.WebScraping
+collection = db.SocialTradia
 
 website = "https://socialtradia.com/product-categories/"  # Categories
-xpath_expressions = [
-    "/html/body/div/div[1]/div/div[2]/div/div[2]/div/div/div/ul/li/div[2]/div/div[@class='nm-shop-loop-price']/span/del/span/span",
-    "/html/body/div/div[1]/div/div[2]/div/div[2]/div/div/div/ul/li/div[2]/div/div[@class='nm-shop-loop-price']/span/span/span"
-]
 
 driver.get(website)
 
@@ -32,7 +28,7 @@ for categories in number_of_categories:
 
     driver.switch_to.new_window('tab')
     driver.get(categories_link)
-    sleep(2)
+    sleep(5)
     for handle in driver.window_handles:
         if handle != original_window:
             driver.switch_to.window(handle)
@@ -61,7 +57,7 @@ for categories in number_of_categories:
             driver.switch_to.new_window('tab')
             driver.get(element_link)
             URL = element_link
-            sleep(2)
+            sleep(5)
             for handle in driver.window_handles:
                 if handle != original_window_2 and handle != original_window:
                     driver.switch_to.window(handle)
@@ -142,8 +138,6 @@ for categories in number_of_categories:
             driver.close()
             driver.switch_to.window(original_window_2)
             sleep(2)
-
-
 
         try:
             pagination_nav = driver.find_element(By.LINK_TEXT,"→")

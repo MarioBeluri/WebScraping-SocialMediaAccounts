@@ -10,10 +10,8 @@ from time import sleep
 driver = Driver(uc=True)
 client = MongoClient()
 db = client.WebScraping
-collection = db.WebScraping
+collection = db.SwapSocials
 website = "https://swapsocials.com/instagram-accounts-for-sale/"
-
-i = 0
 
 driver.get(website)
 
@@ -28,7 +26,7 @@ while True:
 
         driver.switch_to.new_window('tab')
         driver.get(link)
-        sleep(2)
+        sleep(5)
         for handle in driver.window_handles:
             if handle != original_window:
                 driver.switch_to.window(handle)
