@@ -10,17 +10,30 @@ from utils.logging import logger as LOGGER
 
 social_media_urls = {
     "Twitter": "https://mid-man.com/twitter/",
-    "Instagram": "https://mid-man.com/instagram/",
+    "Instagram": "https://mid-man.com/instagram/page/12/",
     "Youtube": "https://mid-man.com/youtube/",
     "Facebook": "https://mid-man.com/facebook/",
     "Tiktok": "https://mid-man.com/tiktok/"
 }
 
+def get_next_page():
+    """
+    script to navigate to next page
+    """
+    script = """
+    var nextLink = document.querySelector('a.next.page-numbers');
+    var nextPageURL = nextLink.getAttribute('href');
+    window.location.href = nextPageURL;
+    """
+    return script
+
 def scrape_data(driver, url, socialMedia, collection):
     driver.get(url)
+    driver.maximize_window()
     sleep(10)
 
     while True:
+
         elements = driver.find_elements("xpath", "//div[@class = 'product-shop-area']/div/div/div/div/div/a")
 
         for element in elements:
@@ -117,8 +130,8 @@ def scrape_data(driver, url, socialMedia, collection):
             driver.switch_to.window(original_window)
             sleep(2)
         try:
-            next_page = driver.find_element(By.XPATH, "//a[@class='next page-numbers']")
-            next_page.click()
+            script = get_next_page()
+            driver.execute_script(script)
         except:
             break
 

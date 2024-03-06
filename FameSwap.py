@@ -130,7 +130,7 @@ while True:
             offer_best_amount = offer_paragraph.split()[0]
             offer_amount = float(offer_best_amount[1:])
         except Exception as e:
-            LOGGER.info("Error occurred while extracting description information:", e)
+            LOGGER.info("Error occurred while extracting offer information:", e)
             offer_amount = None
 
         try:
@@ -174,7 +174,7 @@ while True:
                     "average_likes": likes,
                     "average_dislikes": dislikes,
                     "best_offer": offer_amount,
-                    "comments": comments,
+                    "average_comments": comments,
                     "revenue": revenue,
                     "rate": rate
                 }
@@ -191,6 +191,7 @@ while True:
     try:
         next_page = driver.find_element("xpath", "//ul[@class='pagination']/li/a[@rel='next']")
         next_page.click()
+        sleep(8)
     except:
         break
 
