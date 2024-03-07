@@ -12,7 +12,7 @@ login = "https://fameswap.com/auth/login"
 website = "https://fameswap.com/browse?v=1706219067&social=3%2C4%2C5"
 
 driver.get(login)
-sleep(30)
+sleep(60)
 driver.get(website)
 sleep(5)
 while True:

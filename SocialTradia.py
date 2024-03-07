@@ -10,7 +10,7 @@ import humanfriendly
 import re
 from time import sleep
 
-driver = Driver(uc=True)
+driver = Driver(uc=True, headless=True)
 client = MongoClient()
 db = client.WebScraping
 collection = db.SocialTradia

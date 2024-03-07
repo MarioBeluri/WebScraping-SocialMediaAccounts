@@ -7,7 +7,7 @@ from utils.logging import logger as LOGGER
 from pymongo import MongoClient
 from time import sleep
 
-driver = Driver(uc=True)
+driver = Driver(uc=True, headless=True)
 client = MongoClient()
 db = client.WebScraping
 collection = db.SwapSocials

@@ -140,7 +140,7 @@ social_media_input = input("Enter social media platform (Twitter, Instagram, Fac
 
 # Validate user input and scrape data accordingly
 if social_media_input in social_media_urls:
-    driver = Driver(uc=True)
+    driver = Driver(uc=True, headless=True)
     client = MongoClient()
     db = client.WebScraping
     collection = db.MidMan
