@@ -55,7 +55,7 @@ def scrape_data(driver, url, socialMedia, collection):
                 follower_count = follower_element.text.split()[0]
                 if "K" in follower_count:
                     follower = humanfriendly.parse_size(follower_count)
-                elif "M" in follower_count.text:
+                elif "M" in follower_count:
                     follower = humanfriendly.parse_size(follower_count)
                 else:
                     follower = int(follower_count)
