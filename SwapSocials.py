@@ -57,9 +57,9 @@ while True:
             followers_string = subAndLikes[:split_index]
             likes_string = subAndLikes[split_index + 1:]
             followers_split = followers_string.split(":")
-            follower = int(followers_split[1].strip())
+            follower = int(followers_split[1].strip().replace(".", ""))
             likes_split = likes_string.split(":")
-            average_like = int(likes_split[1].strip())
+            average_like = int(likes_split[1].strip().replace(".", ""))
         except Exception as e:
             LOGGER.info("Error occurred while extracting followers information:", e)
             follower = None
@@ -68,7 +68,7 @@ while True:
         try:
             price_element = driver.find_elements("xpath",
                                                  "//p[@class='price']//span[@class='woocommerce-Price-amount amount']/bdi")
-            price = float(price_element[0].text.replace("$", ""))
+            price = float(price_element[0].text.replace("$", "").replace(",", ""))
         except Exception as e:
             LOGGER.info("Error occurred while extracting price information:", e)
             price = None

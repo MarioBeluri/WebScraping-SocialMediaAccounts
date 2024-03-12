@@ -110,12 +110,15 @@ for categories in number_of_categories:
                 LOGGER.info("No address found")
                 address = None
 
-            if "k" in subscribed_number.replace("Followers", ""):
-                follower = humanfriendly.parse_size(subscribed_number.replace("Followers", ""))
-            elif "m" in subscribed_number.replace("Followers", ""):
-                follower = humanfriendly.parse_size(subscribed_number.replace("Followers", ""))
-            else:
-                follower = int(subscribed_number.replace("Followers", ""))
+            try:
+                if "k" in subscribed_number.replace("Followers", ""):
+                    follower = humanfriendly.parse_size(subscribed_number.replace("Followers", ""))
+                elif "m" in subscribed_number.replace("Followers", ""):
+                    follower = humanfriendly.parse_size(subscribed_number.replace("Followers", ""))
+                else:
+                    follower = int(subscribed_number.replace("Followers", ""))
+            except Exception as e:
+                follower = 0
 
             social_media = "Instagram"
             try:

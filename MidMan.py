@@ -10,7 +10,7 @@ from utils.logging import logger as LOGGER
 
 social_media_urls = {
     "Twitter": "https://mid-man.com/twitter/",
-    "Instagram": "https://mid-man.com/instagram/page/12/",
+    "Instagram": "https://mid-man.com/instagram/",
     "Youtube": "https://mid-man.com/youtube/",
     "Facebook": "https://mid-man.com/facebook/",
     "Tiktok": "https://mid-man.com/tiktok/"
@@ -51,8 +51,8 @@ def scrape_data(driver, url, socialMedia, collection):
             sleep(5)
 
             try:
-                follower_element = driver.find_element(By.CLASS_NAME, "list-inline-item").find_element(By.TAG_NAME, "span")
-                follower_count = follower_element.text.split()[0]
+                followerandCategory_element = driver.find_element(By.CLASS_NAME, "list-meta").find_elements(By.TAG_NAME, "span")
+                follower_count = followerandCategory_element[0].text.split()[0]
                 if "K" in follower_count:
                     follower = humanfriendly.parse_size(follower_count)
                 elif "M" in follower_count:
@@ -64,9 +64,7 @@ def scrape_data(driver, url, socialMedia, collection):
                 follower = None
 
             try:
-                category_element = driver.find_element(By.CLASS_NAME, "list-inline-item:last-child").find_element(
-                    By.TAG_NAME, "span")
-                categorie = category_element.text
+                categorie = followerandCategory_element[1].text
             except Exception as e:
                 LOGGER.info("Error occurred while extracting category data:", e)
                 categorie = None
