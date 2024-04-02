@@ -21,7 +21,7 @@ social_media_urls = {
 # Function to scrape data for a given social media platform URL
 def scrape_data(driver, url, socialMedia, collection):
     driver.get(url)
-    sleep(30)  # Adjust the sleep time as needed
+    sleep(120)  # Adjust the sleep time as needed
 
     while True:
         elements = driver.find_elements(By.XPATH, "//div[@class='post__more']/a")
@@ -39,6 +39,14 @@ def scrape_data(driver, url, socialMedia, collection):
                     driver.switch_to.window(handle)
                     break
             sleep(5)
+
+            email_included = "none"
+            promotion = "none"
+            source_expense = "none"
+            source_income = "none"
+            supports = "none"
+            content = "none"
+            monetization_enabled = "none"
 
             try:
                 group_data_div = driver.find_element(By.CLASS_NAME, "group-data")
@@ -201,7 +209,7 @@ def scrape_data(driver, url, socialMedia, collection):
 
             driver.close()
             driver.switch_to.window(original_window)
-            sleep(2)
+            sleep(7)
         try:
             next_page = driver.find_element(By.XPATH, "//div[@class='pagination']/a[@class='next']")
             next_page.click()
@@ -213,7 +221,7 @@ social_media_input = input("Enter social media platform (Twitter, Instagram, You
 
 # Validate user input and scrape data accordingly
 if social_media_input in social_media_urls:
-    driver = Driver(uc=True)
+    driver = Driver(uc=True, headed=True)
     client = MongoClient()
     db = client.WebScraping
     collection = db.AccMarket

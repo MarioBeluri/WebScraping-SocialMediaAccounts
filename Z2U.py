@@ -13,26 +13,32 @@ social_media_urls = {
     "Facebook": "https://www.z2u.com/facebook/accounts-5-15128"
 }
 
+
+def get_next_page():
+    """
+    script to navigate to next page
+    """
+    script = """
+    var nextLink = document.querySelector('a.next');    
+    nextLink.click();
+    """
+    return script
+
+
 def scrape_data(driver, url, social_media, collection):
     login = "https://www.z2u.com/"
 
-    i = 0
-    j = 2
-
     driver.get(login)
-    time.sleep(120)
+    time.sleep(40)
     driver.get(url)
     time.sleep(5)
 
-    paging_element = driver.find_element(By.CLASS_NAME, "M-box11")
+    for _ in range(15):
+        script = get_next_page()
+        driver.execute_script(script)
+        time.sleep(10)
 
-    # Find all the page number links
-    page_number_links = paging_element.find_elements(By.TAG_NAME, "a")
-
-    # Extract the last page number from the last link
-    number_of_pages = int(page_number_links[-3].text)
-
-    while i < number_of_pages - 1:
+    while True:
 
         elements = driver.find_elements("xpath", "//div[@class = 'row wrapper shop_list']/div//a")
 
@@ -43,7 +49,7 @@ def scrape_data(driver, url, social_media, collection):
 
             driver.switch_to.new_window('tab')
             driver.get(link)
-            time.sleep(10)
+            time.sleep(20)
 
             for handle in driver.window_handles:
                 if handle != original_window:
@@ -123,21 +129,23 @@ def scrape_data(driver, url, social_media, collection):
 
             driver.close()
             driver.switch_to.window(original_window)
-            time.sleep(2)
+            time.sleep(20)
 
-        clickable = driver.find_element(By.LINK_TEXT, str(j))
-        clickable.click()
-        i += 1
-        j += 1
+        try:
+            script = get_next_page()
+            driver.execute_script(script)
+            time.sleep(7)
+        except Exception as e:
+            print("Next Page error")
+            break
 
-    driver.close()
 
 # User input for social media platform
 social_media_input = input("Enter social media platform (Twitter, Instagram, Facebook): ")
 
 # Validate user input and scrape data accordingly
 if social_media_input in social_media_urls:
-    driver = Driver(uc=True)
+    driver = Driver(uc=True, headed=True)
     client = MongoClient()
     db = client.WebScraping
     collection = db.Z2U
