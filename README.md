@@ -1,6 +1,29 @@
 ## Buy and Sale of Social Media Profiles
 The buying and selling of social media profiles such as Twitter, Instagram, YouTube, and TikTok have been on the rise lately. In this research, we plan to study buying and selling in an end-to-end form.
 
+## Quick Start
+
+Create a `python3` virtual env and install the dependencies:
+```
+$ python3 -m venv venv
+$ venv/bin/pip3 install -r requirements.txt
+```
+
+Run a data collection script:
+```
+$ venv/bin/python3 scripts.FILENAME --conf=$(pwd)/config.yaml
+```
+
+where FILENAME is the name of the script you want to run.
+
+## Dependencies
+
+Update using:
+
+```
+$ venv/bin/pip3 freeze > requirements.txt
+```
+
 ## Collaboration Uniformity
 For consistency and uniformity, we plan to use selenium as the page-scrapping tool (selenium_driver_util.py) and MongoDB 
 as the database (db_util.py) to insert the data collected. The format for insertion into DB will be in the dictionary (or json) 

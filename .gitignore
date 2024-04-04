@@ -47,3 +47,7 @@ local.config.yaml
 
 # executables
 *.exe
+
+*_.out
+# virtual env
+venv

@@ -3,6 +3,7 @@ env:
   output_dir: "/mnt/ramdisksocialmedia/"
   chromedriver: "/usr/bin/chromedriver" 
   headless: true
+  debug: false
 
 # sudo mount -t tmpfs -o size=250G tmpfs /mnt/ramdisksocialmedia 
 # sudo umount /mnt/ramdisksocialmedia 

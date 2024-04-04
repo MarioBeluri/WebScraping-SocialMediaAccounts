@@ -22,7 +22,7 @@
 
 	Usage
 	-------------
-	$ python3 toofame_scrape.py --conf=$(pwd)/local.config.yaml
+	$ python3 -m scripts.toofame --conf=$(pwd)/local.config.yaml
 
 	
 """
@@ -32,14 +32,11 @@ import argparse
 import time
 import utils.io as IOModule
 import utils.driver as driverModule
+import utils.utility as utilityModule
 import constants as constantsModule
 from utils.logging import logger as LOGGER
 
-from datetime import datetime
 
-def get_timestamp():
-	timestamp = str(datetime.now().strftime('%Y-%m-%d_%H-%M-%S'))
-	return timestamp
 
 def get_data_script_for_catalog(batch_no, batch_size=18):
 	"""
@@ -100,10 +97,6 @@ def get_data_script_for_item():
 	"""
 	return script
 
-def save_output(file_path_name, data):
-	with open(file_path_name, 'w+', encoding='utf-8') as fd:
-		json.dump(data, fd, ensure_ascii=False, indent=4)
-
 
 def main():
 
@@ -145,7 +138,7 @@ def main():
 	MAX_ITERATIONS = 500
 	done = False
 
-	filename = "toofame" + get_timestamp() + '.json'
+	filename = "toofame" + utilityModule.get_timestamp() + '.json'
 	output_file = os.path.join(constantsModule.OUTPUT_DIR, filename)
 
 
@@ -181,7 +174,7 @@ def main():
 			# so that we do not lose the collected data in memory
 			# in the case of selenium errors
 			LOGGER.info("saving data for batch_no: %s"%str(batch_no))
-			save_output(output_file, data)
+			utilityModule.save_json_output(output_file, data)
 
 			driver.switch_to.window(driver.window_handles[0])
 			time.sleep(1)
@@ -196,7 +189,7 @@ def main():
 
 	driverModule.close(driver)
 	LOGGER.info("saving all data: %s"%str(batch_no))
-	save_output(output_file, data)
+	utilityModule.save_json_output(output_file, data)
 
 if __name__ == "__main__":
 	main()
