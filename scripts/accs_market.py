@@ -2,7 +2,7 @@
 """
 	Usage
 	-------------
-	$ python3 -m scripts.accs_market --conf=$(pwd)/local.config.yaml
+	$ venv/bin/python3 -m scripts.accs_market --conf=$(pwd)/local.config.yaml
 """
 
 import os
