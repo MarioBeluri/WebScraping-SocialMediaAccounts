@@ -7,4 +7,4 @@ screen -dmS s3 bash -c 'venv/bin/python3 -m scripts.midman --conf=$(pwd)/local.c
 screen -dmS s4 bash -c 'venv/bin/python3 -m scripts.socialtradia --conf=$(pwd)/local.config.yaml; exec sh'
 screen -dmS s5 bash -c 'venv/bin/python3 -m scripts.surgegram --conf=$(pwd)/local.config.yaml; exec sh'
 screen -dmS s6 bash -c 'venv/bin/python3 -m scripts.swapsocials --conf=$(pwd)/local.config.yaml; exec sh'
-
+screen -dmS s7 bash -c 'venv/bin/python3 -m scripts.buysocia --conf=$(pwd)/local.config.yaml; exec sh'

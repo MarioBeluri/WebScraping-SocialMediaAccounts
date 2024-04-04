@@ -14,7 +14,7 @@
 
 	Description:
 	-------------
-	Data scraper for https://www.toofame.com
+	Data scraper for https://www.buysocia.com
 
 	Catalogs
 	-------------
