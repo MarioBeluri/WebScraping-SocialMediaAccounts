@@ -15,17 +15,20 @@ class TwitterTimeline:
         if not _is_fetch_success:
             return
         _numeric_id = self.get_user_id_from_user_detail()
+        print(_numeric_id)
         if not _numeric_id:  # chances are account is suspended
             return
 
         # fetch timeline from last timestamp of fetched
         may_be_last_time_line = self.get_time_lines_last_created_date()
+        print(may_be_last_time_line)
 
         if may_be_last_time_line is not None:
             _timelines = TwitterFeeds().get_user_tweets(numeric_user_id=_numeric_id,
                                                         _additional_query_param={
                                                             'start_time': may_be_last_time_line
                                                         })
+            print(_timelines)
         else:
             _timelines = TwitterFeeds().get_user_tweets(numeric_user_id=_numeric_id)
         for _tl in _timelines:
@@ -106,5 +109,5 @@ if __name__ == "__main__":
                              help="Each twitter timeline data to collect")
 
     _arg_value = _arg_parser.parse_args()
-    time_line = TwitterTimeline(_arg_value.screenPname)
+    time_line = TwitterTimeline(_arg_value.screen_name)
     time_line.process()

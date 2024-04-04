@@ -51,7 +51,8 @@ class TwitterFeeds:
         return r
 
     def make_get_request(self, url, params):
-        response = requests.get(url, auth=self.bearer_oauth, params=params)
+        #response = requests.get(url, auth=self.bearer_oauth, params=params)
+        response = requests.request("GET", url, auth=self.bearer_oauth, params=params)
         if response.status_code != 200:
             raise Exception(response.status_code, response.text)
         return response.json()
@@ -155,7 +156,7 @@ class TwitterFeeds:
     def get_user_tweets(self, numeric_user_id='1532420332497342466', _additional_query_param=None):
         # sample suspended id: 2881117795
         _tweets_data = []
-        _url = "https://api.twitter.com/2/users/{}/tweets/".format(numeric_user_id)
+        _url = "https://api.twitter.com/2/users/{}/tweets".format(numeric_user_id)
         _param = {
             'tweet.fields': 'attachments,author_id,context_annotations,conversation_id,created_at,entities,geo,'
                             'id,in_reply_to_user_id,lang,possibly_sensitive,referenced_tweets,reply_settings,'
@@ -175,17 +176,19 @@ class TwitterFeeds:
 
         try:
             json_response = self.make_get_request(_url, _param)
+            print(json_response)
 
-            if 'errors' in json_response:
-                # this is list
-                _errors = json_response['errors']
-                return _errors
+            #if 'errors' in json_response:
+            #     # this is list
+            #    _errors = json_response['errors']
+            #    return _errors
 
             if 'data' not in json_response:
-                return []
+                return json_response
 
             _data = json_response['data']
             for _tweet in _data:
+                print(_tweet)
                 _tweets_data.append(_tweet)
 
             # error case where user_id is suspended
