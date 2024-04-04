@@ -83,14 +83,16 @@ def scrape_data(driver, url, social_media):
 			try:
 				title = driver.find_element(By.XPATH, "//h4").text
 			except Exception as e:
-				LOGGER.info("Error finding title:", e)
+				LOGGER.info("Error finding title:")
+				LOGGER.error(e)
 				title = None
 
 			try:
 				seller = driver.find_element(By.XPATH,
 											 '//h5[@class="margin-bottom-15 f-size-24 slippa-semiblod"]/a[2]').text
 			except Exception as e:
-				LOGGER.info("Error finding seller:", e)
+				LOGGER.info("Error finding seller:")
+				LOGGER.error(e)
 				seller = None
 
 			try:
@@ -98,13 +100,15 @@ def scrape_data(driver, url, social_media):
 												  '//h5[@class="margin-bottom-15 f-size-24 slippa-semiblod"]/a[2]').get_attribute(
 					"href")
 			except Exception as e:
-				LOGGER.info("Error finding seller link:", e)
+				LOGGER.info("Error finding seller link:")
+				LOGGER.error(e)
 				seller_link = None
 
 			try:
 				social_media_link = driver.find_element(By.XPATH, '//h4/a').get_attribute("href")
 			except Exception as e:
-				LOGGER.info("Error finding seller:", e)
+				LOGGER.info("Error finding seller:")
+				LOGGER.error(e)
 				social_media_link = None
 
 			try:
@@ -112,18 +116,20 @@ def scrape_data(driver, url, social_media):
 				age_element = info_element[0].text.split('\n')
 				age = age_element[0]
 				subscribers_element = info_element[2].text.split('\n')
-				subscribers = int(subscribers_element[0].replace(',', ''))
+				subscribers = subscribers_element[0].replace(',', '')
 			except Exception as e:
-				LOGGER.info("Error finding info:", e)
+				LOGGER.info("Error finding info:")
+				LOGGER.error(e)
 				age = None
 				subscribers = None
 
 			try:
 				extra_info = driver.find_elements(By.XPATH, "//div[@class='domains-overview-inner']/ul/a/li/h5")
-				net_profit = float(extra_info[1].text.replace('$', '').replace(',', '').strip())
-				views = int(extra_info[2].text.replace(',', ''))
+				net_profit = extra_info[1].text.replace('$', '').replace(',', '').strip()
+				views = extra_info[2].text.replace(',', '')
 			except Exception as e:
-				LOGGER.info("Error finding extra info:", e)
+				LOGGER.info("Error finding extra info:")
+				LOGGER.error(e)
 				net_profit = None
 				views = None
 
@@ -131,9 +137,10 @@ def scrape_data(driver, url, social_media):
 				price_element = driver.find_element(By.XPATH,
 													"//a[@class = 'button ripple-effect move-on-hover full-width margin-top-20']/span").text.split(
 					'$')
-				price = float(price_element[-1].replace(',', ''))
+				price = price_element[-1].replace(',', '')
 			except Exception as e:
-				LOGGER.info("Error finding offers:", e)
+				LOGGER.info("Error finding offers:")
+				LOGGER.error(e)
 				price = None
 
 			social_medias = social_media
@@ -154,7 +161,8 @@ def scrape_data(driver, url, social_media):
 				}
 				data.append(entry_data)
 			except Exception as e:
-				LOGGER.info("Error occurred:", e)
+				LOGGER.info("Error occurred:")
+				LOGGER.error(e)
 
 			driver.close()
 			driver.switch_to.window(original_window)

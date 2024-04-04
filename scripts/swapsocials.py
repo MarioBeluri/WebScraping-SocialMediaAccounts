@@ -82,7 +82,8 @@ def main():
 													"/html/body/div[1]/div[1]/div[2]/div[3]/div[1]/div[3]/div/div/div[2]/div[1]/h1")
 				name = names_element.text
 			except Exception as e:
-				LOGGER.info("Error occurred while extracting names information:", e)
+				LOGGER.info("Error occurred while extracting names information:")
+				LOGGER.error(e)
 				name = None
 
 			try:
@@ -90,7 +91,8 @@ def main():
 													   "/html/body/div[1]/div[1]/div[2]/div[3]/div[1]/div[1]/div/div[1]/nav/a[3]")
 				categorie = category_element.text
 			except Exception as e:
-				LOGGER.info("Error occurred while extracting category information:", e)
+				LOGGER.info("Error occurred while extracting category information:")
+				LOGGER.error(e)
 				categorie = None
 
 			try:
@@ -101,20 +103,23 @@ def main():
 				followers_string = subAndLikes[:split_index]
 				likes_string = subAndLikes[split_index + 1:]
 				followers_split = followers_string.split(":")
-				follower = int(followers_split[1].strip().replace(".", ""))
+				follower = followers_split[1].strip().replace(".", "")
 				likes_split = likes_string.split(":")
-				average_like = int(likes_split[1].strip().replace(".", ""))
+				average_like = likes_split[1].strip().replace(".", "")
+
 			except Exception as e:
-				LOGGER.info("Error occurred while extracting followers information:", e)
+				LOGGER.info("Error occurred while extracting followers information:")
+				LOGGER.error(e)
 				follower = None
 				average_like = None
 
 			try:
 				price_element = driver.find_elements("xpath",
 													 "//p[@class='price']//span[@class='woocommerce-Price-amount amount']/bdi")
-				price = float(price_element[0].text.replace("$", "").replace(",", ""))
+				price = price_element[0].text.replace("$", "").replace(",", "")
 			except Exception as e:
-				LOGGER.info("Error occurred while extracting price information:", e)
+				LOGGER.info("Error occurred while extracting price information:")
+				LOGGER.error(e)
 				price = None
 
 			try:
@@ -122,7 +127,8 @@ def main():
 														  "/html/body/div[1]/div[1]/div[2]/div[3]/div[1]/div[3]/div/div/div[2]/div[2]/div[1]/p[3]")
 				description = description_element.text
 			except Exception as e:
-				LOGGER.info("Error occurred while extracting description information:", e)
+				LOGGER.info("Error occurred while extracting description information:")
+				LOGGER.error(e)
 				description = None
 
 			social_media = "Instagram"
@@ -141,9 +147,8 @@ def main():
 				data.append(entry_data)
 
 			except Exception as e:
-				LOGGER.info("Error Occurred:", e)
-				client.close()
-				LOGGER.info("Connection Closed")
+				LOGGER.info("Error Occurred")
+				LOGGER.error(e)
 
 			driver.close()
 			driver.switch_to.window(original_window)

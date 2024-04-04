@@ -97,9 +97,9 @@ def scrape_data(driver, url, social_media):
                 info_element = driver.find_element(By.CSS_SELECTOR, ".boxbottom.dengji.flex_between .u-info li")
                 text = info_element.text
                 parts = text.split("\n")
-                total_order = int(parts[0].split(": ")[1])
+                total_order = parts[0].split(": ")[1]
                 positive_rating = parts[1].split(': ')[1].split(' ')[0]
-                positive_review = int(parts[1].split('(')[1].split(')')[0])
+                positive_review = parts[1].split('(')[1].split(')')[0]
             except Exception as e:
                 LOGGER.info("Error finding seller info:", e)
                 total_order = None
@@ -107,19 +107,19 @@ def scrape_data(driver, url, social_media):
                 positive_review = None
 
             try:
-                offer_id = int(driver.find_element(By.CLASS_NAME, "wenbenright").text.split('#')[1])
+                offer_id = driver.find_element(By.CLASS_NAME, "wenbenright").text.split('#')[1]
             except Exception as e:
                 LOGGER.info("Error finding offer id:", e)
                 offer_id = None
 
             try:
-                offer = int(driver.find_element(By.CSS_SELECTOR, ".more-offers strong").text)
+                offer = driver.find_element(By.CSS_SELECTOR, ".more-offers strong").text
             except Exception as e:
                 LOGGER.info("Error finding offers:", e)
                 offer = None
 
             try:
-                price = float(driver.find_element(By.CLASS_NAME, "price").text.replace(',', ''))
+                price = driver.find_element(By.CLASS_NAME, "price").text.replace(',', '')
             except Exception as e:
                 LOGGER.info("Error finding price:", e)
                 price = None

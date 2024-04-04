@@ -101,7 +101,8 @@ def main():
                                                        "//div[@class = 'float-right']/h3")
                 username = username_element.text
             except Exception as e:
-                LOGGER.info("Error occurred while extracting username information:", e)
+                LOGGER.info("Error occurred while extracting username information:")
+                LOGGER.error(e)
                 username = None
 
             try:
@@ -109,39 +110,44 @@ def main():
                                                        "title")
                 categorie = category_element.text.split("Instagram")[0].strip()
             except Exception as e:
-                LOGGER.info("Error occurred while extracting category information:", e)
+                LOGGER.info("Error occurred while extracting category information:")
+                LOGGER.error(e)
                 categorie = None
 
             try:
                 likes_element = driver.find_element(By.XPATH,
                                                     "//div[2]/div[1]/div/div[6]/div/h3")
-                likes = int(likes_element.text.strip().replace(",", ""))
+                likes = likes_element.text.strip().replace(",", "")
             except Exception as e:
-                LOGGER.info("Error occurred while extracting followers information:", e)
+                LOGGER.info("Error occurred while extracting followers information:")
+                LOGGER.error(e)
                 follower = None
 
             try:
                 followers_element = driver.find_element(By.XPATH,
                                                         "//div[2]/div[1]/div/div[2]/div/h3/span")
-                follower = int(followers_element.text.strip().replace(",", ""))
+                follower = followers_element.text.strip().replace(",", "")
             except Exception as e:
-                LOGGER.info("Error occurred while extracting followers information:", e)
+                LOGGER.info("Error occurred while extracting followers information:")
+                LOGGER.error(e)
                 follower = None
 
             try:
                 price_element = driver.find_element("xpath",
                                                     "//div/div[3]/div/h3/span")
-                price = float(price_element.text.strip().replace(",", ""))
+                price = price_element.text.strip().replace(",", "")
             except Exception as e:
-                LOGGER.info("Error occurred while extracting price information:", e)
+                LOGGER.info("Error occurred while extracting price information:")
+                LOGGER.error(e)
                 price = None
 
             try:
                 posts_element = driver.find_element("xpath",
                                                     "//div[2]/div[1]/div/div[5]/div/h3/span")
-                posts = int(posts_element.text)
+                posts = posts_element.text
             except Exception as e:
-                LOGGER.info("Error occurred while extracting posts information:", e)
+                LOGGER.info("Error occurred while extracting posts information:")
+                LOGGER.error(e)
                 posts = None
 
             try:
@@ -151,7 +157,8 @@ def main():
                 for paragraph in description_paragraphs:
                     description += paragraph.text + "\n"
             except Exception as e:
-                LOGGER.info("Error occurred while extracting description information:", e)
+                LOGGER.info("Error occurred while extracting description information:")
+                LOGGER.error(e)
                 description = None
 
             try:
@@ -161,13 +168,15 @@ def main():
                 seller_name_element = seller_element.find_element(By.TAG_NAME, "a")
                 seller_name = seller_name_element.text
             except Exception as e:
-                LOGGER.info("Error occurred while extracting seller name information:", e)
+                LOGGER.info("Error occurred while extracting seller name information:")
+                LOGGER.error(e)
                 seller_name = None
 
             try:
                 seller_link = seller_name_element.get_attribute("href")
             except Exception as e:
-                LOGGER.info("Error occurred while extracting seller link information:", e)
+                LOGGER.info("Error occurred while extracting seller link information:")
+                LOGGER.error(e)
                 seller_name = None
 
             try:
@@ -177,14 +186,16 @@ def main():
                 else:
                     last_online = last_online_element.text.split(": ")[1]
             except Exception as e:
-                LOGGER.info("Error occurred while extracting last online information:", e)
+                LOGGER.info("Error occurred while extracting last online information:")
+                LOGGER.error(e)
                 last_online = None
 
             try:
                 successful_trans_element = seller_info_element.find_element(By.CLASS_NAME, "escrow-count")
-                successful_trans = int(successful_trans_element.text.split()[0])
+                successful_trans = successful_trans_element.text.split()[0]
             except Exception as e:
-                LOGGER.info("Error occurred while extracting successful transactions number information:", e)
+                LOGGER.info("Error occurred while extracting successful transactions number information:")
+                LOGGER.error(e)
                 successful_trans = None
 
             social_media = "Instagram"
@@ -208,7 +219,8 @@ def main():
                 data.append(entry_data)
 
             except Exception as e:
-                LOGGER.info("Error occurred:", e)
+                LOGGER.info("Error occurred:")
+                LOGGER.error(e)
 
             driver.close()
             driver.switch_to.window(original_window)

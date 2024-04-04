@@ -49,8 +49,8 @@ def scrape_data(driver, url, social_media):
 			entry_data = {
 				"url": URls[j],
 				"title": descriptions[j],
-				"quantity": int(quantity[j]),
-				"price": float(prices[j]),
+				"quantity": quantity[j],
+				"price": prices[j],
 				"social_media": social_medias[j]
 			}
 			outputs.append(entry_data)

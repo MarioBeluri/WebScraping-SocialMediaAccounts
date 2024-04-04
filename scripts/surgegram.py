@@ -119,7 +119,8 @@ def main():
 													   "//h1")
 				username = username_element.text
 			except Exception as e:
-				LOGGER.info("Error occurred while extracting username information:", e)
+				LOGGER.info("Error occurred while extracting username information:")
+				LOGGER.error(e)
 				username = None
 
 			try:
@@ -130,41 +131,46 @@ def main():
 					print("No category match found.")
 					categorie = None
 			except Exception as e:
-				LOGGER.info("Error occurred while extracting category information:", e)
+				LOGGER.info("Error occurred while extracting category information:")
+				LOGGER.error(e)
 				categorie = None
 
 			try:
 				likes_script = get_likes()
 				likes_data = driver.execute_script(likes_script)
-				likes = int(likes_data[-1].split(" ")[0].replace(",", ""))
+				likes = likes_data[-1].split(" ")[0].replace(",", "")
 			except Exception as e:
-				LOGGER.info("Error occurred while extracting likes information:", e)
+				LOGGER.info("Error occurred while extracting likes information:")
+				LOGGER.error(e)
 				likes = None
 
 			try:
 				price_element = driver.find_elements("xpath",
 													 "//div[@class = 'product-info summary col-fit col entry-summary product-summary text-left']/div[@class ='price-wrapper']//span[@class = 'woocommerce-Price-amount amount']/bdi")
 				if len(price_element) > 2:
-					price = float(price_element[1].text.replace("$", "").replace(",", ""))
+					price = price_element[1].text.replace("$", "").replace(",", "")
 				else:
-					price = float(price_element[0].text.replace("$", "").replace(",", ""))
+					price = price_element[0].text.replace("$", "").replace(",", "")
 			except Exception as e:
-				LOGGER.info("Error occurred while extracting price information:", e)
+				LOGGER.info("Error occurred while extracting price information:")
+				LOGGER.error(e)
 				price = None
 
 			try:
 				users_script = get_users()
 				users_data = driver.execute_script(users_script)
-				users = int(users_data[-1].split(" ")[0].replace(",", ""))
+				users = users_data[-1].split(" ")[0].replace(",", "")
 			except Exception as e:
-				LOGGER.info("Error occurred while extracting users information:", e)
+				LOGGER.info("Error occurred while extracting users information:")
+				LOGGER.error(e)
 				users = None
 
 			try:
 				description_element = driver.find_element(By.XPATH, "//span[@style='color: #555555;']")
 				description = description_element.text
 			except Exception as e:
-				LOGGER.info("Error occurred while extracting description information:", e)
+				LOGGER.info("Error occurred while extracting description information:")
+				LOGGER.error(e)
 				description = None
 
 			social_media = "Instagram"
@@ -183,7 +189,8 @@ def main():
 				data.append(entry_data)
 
 			except Exception as e:
-				LOGGER.warning("Error occurred:", e)
+				LOGGER.warning("Error occurred:")
+				LOGGER.error(e)
 
 			driver.close()
 			driver.switch_to.window(original_window)

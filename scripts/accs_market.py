@@ -90,14 +90,16 @@ def scrape_data(driver, url, platform):
 					elif 'Monetization ' in text:
 						monetization_enabled = text.split(":")[-1].strip()
 			except Exception as e:
-				LOGGER.info("Error occurred while extracting group data:", e)
+				LOGGER.info("Error occurred while extracting group data:")
+				LOGGER.error(e)
 
 			try:
 				seller_name_div = driver.find_element(By.CLASS_NAME, "right-top__name")
 				seller_element = seller_name_div.find_element(By.CLASS_NAME, "bold")
 				seller = seller_element.text
 			except Exception as e:
-				LOGGER.info("Error occurred while extracting seller data:", e)
+				LOGGER.info("Error occurred while extracting seller data:")
+				LOGGER.error(e)
 				seller = None
 
 			try:
@@ -105,7 +107,8 @@ def scrape_data(driver, url, platform):
 													"/html/body/main/div/div/div[@class = 'group-info group']/div[@class = 'group-info']/h1/span")
 				name = names_element.text
 			except Exception as e:
-				LOGGER.info("Error occurred while extracting names data:", e)
+				LOGGER.info("Error occurred while extracting names data:")
+				LOGGER.error(e)
 				name = None
 
 			try:
@@ -115,7 +118,8 @@ def scrape_data(driver, url, platform):
 				categorie = splitCandA[0].strip()
 				address = splitCandA[1].strip()
 			except Exception as e:
-				LOGGER.info("Error occurred while extracting category and address data:", e)
+				LOGGER.info("Error occurred while extracting category and address data:")
+				LOGGER.error(e)
 				categorie = None
 				address = None
 
@@ -123,17 +127,19 @@ def scrape_data(driver, url, platform):
 				subscribed_element = driver.find_element("xpath",
 														 "/html/body/main/div/div/div[3]/div[2]/div[1]/p[1]")
 				subSplit = subscribed_element.text.split('-')
-				follower = int(re.sub(r'\D', '', subSplit[0].strip()))
+				follower = re.sub(r'\D', '', subSplit[0].strip())
 			except Exception as e:
-				LOGGER.info("Error occurred while extracting subscribed data:", e)
+				LOGGER.info("Error occurred while extracting subscribed data:")
+				LOGGER.error(e)
 				follower = None
 
 			try:
 				price_element = driver.find_element("xpath",
 													"/html/body/main/div/div/div[3]/div[2]/div[2]")
-				price = float(price_element.text.replace("$", "").replace(" ", ""))
+				price = price_element.text.replace("$", "").replace(" ", "")
 			except Exception as e:
-				LOGGER.info("Error occurred while extracting price data:", e)
+				LOGGER.info("Error occurred while extracting price data:")
+				LOGGER.error(e)
 				price = None
 
 			try:
@@ -142,15 +148,17 @@ def scrape_data(driver, url, platform):
 				listedSplit = listed_date_element.text.split(":")
 				listed_date = listedSplit[1].strip()
 			except Exception as e:
-				LOGGER.info("Error occurred while extracting listed date data:", e)
+				LOGGER.info("Error occurred while extracting listed date data:")
+				LOGGER.error(e)
 				listed_date = None
 
 			try:
 				views_element = driver.find_element("xpath", "/html/body/main/div/div/div[2]/span[3]")
 				viewsSplit = views_element.text.split(":")
-				view = int(viewsSplit[1].strip())
+				view = viewsSplit[1].strip()
 			except Exception as e:
-				LOGGER.info("Error occurred while extracting views data:", e)
+				LOGGER.info("Error occurred while extracting views data:")
+				LOGGER.error(e)
 				view = None
 
 			try:
@@ -158,7 +166,8 @@ def scrape_data(driver, url, platform):
 														  "/html/body/main/div/div/div[4]/div/div[1]/p[2]")
 				description = description_element.text
 			except Exception as e:
-				LOGGER.info("Error occurred while extracting description data:", e)
+				LOGGER.info("Error occurred while extracting description data:")
+				LOGGER.error(e)
 				description = None
 
 			try:
@@ -167,11 +176,12 @@ def scrape_data(driver, url, platform):
 				monthly_expense_element = driver.find_element("xpath",
 															  "/html/body/main/div/div/div[3]/div[2]/div[1]/p[3]")
 				expensesSplit = monthly_expense_element.text.split("-")
-				monthly_expense = float(re.search(r'\d+', expensesSplit[0].strip()).group())
+				monthly_expense = re.search(r'\d+', expensesSplit[0].strip()).group()
 				incomeSplit = monthly_income_element.text.split("-")
-				monthly_income = float(re.search(r'\d+', incomeSplit[0].strip()).group())
+				monthly_income = re.search(r'\d+', incomeSplit[0].strip()).group()
 			except Exception as e:
-				LOGGER.info("Error occurred while extracting monthly income and expense data:", e)
+				LOGGER.info("Error occurred while extracting monthly income and expense data:")
+				LOGGER.error(e)
 				monthly_expense = None
 				monthly_income = None
 
@@ -225,7 +235,8 @@ def scrape_data(driver, url, platform):
 				outputs.append(entry_data)
 
 			except Exception as e:
-				LOGGER.info("Error Occurred:", e)
+				LOGGER.info("Error occurred:")
+				LOGGER.error(e)
 
 			driver.close()
 			driver.switch_to.window(original_window)

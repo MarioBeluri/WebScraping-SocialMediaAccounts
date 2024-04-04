@@ -82,14 +82,16 @@ def main():
 				names_elements = driver.find_elements(By.XPATH,
 													  "//div[@class = 'nm-shop-loop-details']/h3/a")
 			except Exception as e:
-				LOGGER.info("Error occurred while extracting list information:", e)
+				LOGGER.info("Error occurred while extracting list information:")
+				LOGGER.error(e)
 
 			try:
 				category_element = driver.find_element(By.XPATH,
 													   "/html/body/div/div[1]/div/div[2]/div/div[1]/div/div/div/div/h1/span")
 				categorie = category_element.text
 			except Exception as e:
-				LOGGER.info("Error occurred while extracting category information:", e)
+				LOGGER.info("Error occurred while extracting category information:")
+				LOGGER.error(e)
 
 			for element in names_elements:
 				element_link = element.get_attribute("href")
@@ -112,37 +114,42 @@ def main():
 					name = name_and_followers[0].strip()
 					subscribed_number = name_and_followers[1].split(")")[0].strip().lower()
 				except Exception as e:
-					LOGGER.info("Error occurred while extracting name information:", e)
+					LOGGER.info("Error occurred while extracting name information:")
+					LOGGER.error(e)
 					name = "NotFound"
-					subscribed_number = 0
+					subscribed_number = ""
 
 				try:
 					price_element = driver.find_element(By.CLASS_NAME, "woocommerce-Price-amount")
-					price = float(price_element.text.replace("$", "").replace(",", ""))
+					price = price_element.text.replace("$", "").replace(",", "")
 				except Exception as e:
-					LOGGER.info("Error occurred while extracting price information:", e)
-					price = float("0")
+					LOGGER.info("Error occurred while extracting price information:")
+					LOGGER.error(e)
+					price = ""
 
 				try:
 					offers_pending_element = driver.find_element(By.CLASS_NAME, "ofw-info")
-					offers = int(offers_pending_element.text.split()[0])
+					offers = offers_pending_element.text.split()[0]
 				except Exception as e:
-					LOGGER.info("Error occurred while extracting offer information:", e)
-					offers = int("0")
+					LOGGER.info("Error occurred while extracting offer information:")
+					LOGGER.error(e)
+					offers = ""
 
 				try:
 					stock_element = driver.find_element(By.CLASS_NAME, "stock")
-					stock = int(stock_element.text.split()[0])
+					stock = stock_element.text.split()[0]
 				except Exception as e:
-					LOGGER.info("Error occurred while extracting stock information:", e)
-					stock = int("0")
+					LOGGER.info("Error occurred while extracting stock information:")
+					LOGGER.error(e)
+					stock = ""
 
 				try:
 					description_element = driver.find_element(By.CLASS_NAME,
 															  "woocommerce-product-details__short-description")
 					description = description_element.text
 				except Exception as e:
-					LOGGER.info("Error occurred while extracting description information:", e)
+					LOGGER.info("Error occurred while extracting description information:")
+					LOGGER.error(e)
 					description = None
 
 				try:
@@ -152,14 +159,9 @@ def main():
 					address = None
 
 				try:
-					if "k" in subscribed_number.replace("Followers", ""):
-						follower = humanfriendly.parse_size(subscribed_number.replace("Followers", ""))
-					elif "m" in subscribed_number.replace("Followers", ""):
-						follower = humanfriendly.parse_size(subscribed_number.replace("Followers", ""))
-					else:
-						follower = int(subscribed_number.replace("Followers", ""))
+					follower = subscribed_number.replace("Followers", "")
 				except Exception as e:
-					follower = 0
+					follower = ""
 
 				social_media = "Instagram"
 				try:
@@ -177,7 +179,7 @@ def main():
 					}
 					data.append(entry_data)
 				except:
-					LOGGER.info("Error Occured")
+					LOGGER.info("Error occured")
 
 				driver.close()
 				driver.switch_to.window(original_window_2)

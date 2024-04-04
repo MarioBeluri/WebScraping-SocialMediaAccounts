@@ -3,8 +3,6 @@
     -------------
     $ venv/bin/python3 -m scripts.midman --conf=$(pwd)/local.config.yaml
     
-    TODO: fix runtime errors
-
 """
 
 import os
@@ -13,7 +11,6 @@ import sys
 import re
 import argparse
 import time
-import humanfriendly
 import utils.io as IOModule
 import utils.driver as driverModule
 import utils.utility as utilityModule
@@ -74,56 +71,58 @@ def scrape_data(driver, url, socialMedia):
                     return data
             try:
                 followerandCategory_element = driver.find_element(By.CLASS_NAME, "list-meta").find_elements(By.TAG_NAME, "span")
-                follower_count = followerandCategory_element[0].text.split()[0]
-                if "K" in follower_count:
-                    follower = humanfriendly.parse_size(follower_count)
-                elif "M" in follower_count:
-                    follower = humanfriendly.parse_size(follower_count)
-                else:
-                    follower = int(follower_count)
+                follower = followerandCategory_element[0].text.split()[0]
+
             except Exception as e:
-                LOGGER.info("Error occurred while extracting follower data:", e)
+                LOGGER.info("Error occurred while extracting follower data:")
+                LOGGER.error(e)
                 follower = None
 
             try:
                 categorie = followerandCategory_element[1].text
             except Exception as e:
-                LOGGER.info("Error occurred while extracting category data:", e)
+                LOGGER.info("Error occurred while extracting category data:")
+                LOGGER.error(e)
                 categorie = None
 
             try:
                 title_element = driver.find_element(By.CSS_SELECTOR, ".widget-title-product h1")
                 title = title_element.text
             except Exception as e:
-                LOGGER.info("Error occurred while extracting title data:", e)
+                LOGGER.info("Error occurred while extracting title data:")
+                LOGGER.error(e)
                 title = None
 
             try:
                 price_element = driver.find_element(By.CLASS_NAME, "woocommerce-Price-amount")
                 price_text = price_element.text
-                price = float(price_text.split('$')[1].replace(",", ""))
+                price = price_text.split('$')[1].replace(",", "")
             except Exception as e:
-                LOGGER.info("Error occurred while extracting price data:", e)
+                LOGGER.info("Error occurred while extracting price data:")
+                LOGGER.error(e)
                 price = None
 
             try:
                 author_element = driver.find_element(By.CLASS_NAME, "name-author").find_element(By.TAG_NAME, "a")
                 seller = author_element.text
             except Exception as e:
-                LOGGER.info("Error occurred while extracting seller data:", e)
+                LOGGER.info("Error occurred while extracting seller data:")
+                LOGGER.error(e)
                 seller = None
 
             try:
                 seller_website = author_element.get_attribute("href")
             except Exception as e:
-                LOGGER.info("Error occurred while extracting seller website data:", e)
+                LOGGER.info("Error occurred while extracting seller website data:")
+                LOGGER.error(e)
                 seller_website = None
 
             try:
                 description_element = driver.find_element(By.ID, "tab-description")
                 description = description_element.text
             except Exception as e:
-                LOGGER.info("Error occurred while extracting description data:", e)
+                LOGGER.info("Error occurred while extracting description data:")
+                LOGGER.error(e)
                 description = None
 
             social_media = socialMedia
@@ -142,7 +141,7 @@ def scrape_data(driver, url, socialMedia):
                 }
                data.append(entry_data)
             except Exception as e:
-                LOGGER.info("Error occurred:", e)
+                LOGGER.error(e)
 
             driver.close()
             driver.switch_to.window(original_window)

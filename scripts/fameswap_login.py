@@ -95,21 +95,21 @@ def main():
                 for statistic in statistics:
                     text = statistic.text
                     if 'Views' in text:
-                        view = int(text.split(":")[-1].strip().split()[0].replace(",", ""))
+                        view = text.split(":")[-1].strip().split()[0].replace(",", "")
                     elif 'Verified' in text:
                         verified = text.split(":")[-1].strip()
                     elif 'Posts' in text:
-                        posts = int(text.split(":")[-1].strip())
+                        posts = text.split(":")[-1].strip()
                     elif 'Likes' in text:
-                        likes = int(text.split(":")[-1].strip())
+                        likes = text.split(":")[-1].strip()
                     elif 'Dislikes' in text:
-                        dislikes = int(text.split(":")[-1].strip())
+                        dislikes = text.split(":")[-1].strip()
                     elif 'Comments' in text:
-                        comments = int(text.split(":")[-1].strip())
+                        comments = text.split(":")[-1].strip()
                     elif 'Eng' in text:
                         rate = text.split(":")[-1].strip()
                     elif 'Revenue' in text:
-                        revenue = float(text.split(":")[-1].strip().replace("$", ""))
+                        revenue = text.split(":")[-1].strip().replace("$", "")
             except Exception as e:
                 posts = None
                 view = None
@@ -125,20 +125,23 @@ def main():
             try:
                 seller = driver.find_element(By.XPATH,'//div[@class="panel-body"]/strong/a').text
             except Exception as e:
-                LOGGER.info("Error occurred while extracting seller information:", e)
+                LOGGER.info("Error occurred while extracting seller information:")
+                LOGGER.error(e)
                 seller = None
 
             try:
-                trust_score = int(driver.find_element(By.XPATH, '//div[@class="panel-body"]//small/strong').text.strip("()"))
+                trust_score = driver.find_element(By.XPATH, '//div[@class="panel-body"]//small/strong').text.strip("()")
             except Exception as e:
-                LOGGER.info("Error occurred while extracting seller information:", e)
+                LOGGER.info("Error occurred while extracting seller information:")
+                LOGGER.error(e)
                 trust_score = None
 
             try:
                 seller_nationality_element = driver.find_elements(By.XPATH, '//p[@class="text-muted"]/small')[1]
                 seller_nationality = seller_nationality_element.text.strip()
             except Exception as e:
-                LOGGER.info("Error occurred while extracting seller information:", e)
+                LOGGER.info("Error occurred while extracting seller information:")
+                LOGGER.error(e)
                 seller_nationality = None
 
             try:
@@ -146,23 +149,26 @@ def main():
                                                        "/html/body/div[1]/div/div[2]/div[1]/div[1]/div/div[3]/table/tbody/tr/td[4]/a")
                 categorie = category_element.accessible_name
             except Exception as e:
-                LOGGER.info("Error occurred while extracting category information:", e)
+                LOGGER.info("Error occurred while extracting category information:")
+                LOGGER.error(e)
                 categorie = None
 
             try:
                 subscribed_element = driver.find_element("xpath",
                                                          "/html/body/div[1]/div/div[2]/div[1]/div[1]/div/div[3]/table/tbody/tr/td[1]")
-                follower = int(subscribed_element.text.replace(",", ""))
+                follower = subscribed_element.text.replace(",", "")
             except Exception as e:
-                LOGGER.info("Error occurred while extracting followers information:", e)
+                LOGGER.info("Error occurred while extracting followers information:")
+                LOGGER.error(e)
                 follower = None
 
             try:
                 price_element = driver.find_element("xpath",
                                                     "/html/body/div[1]/div/div[2]/div[1]/div[1]/div/div[3]/table/tbody/tr/td[2]")
-                price = float(price_element.text.replace(",", ""))
+                price = price_element.text.replace(",", "")
             except Exception as e:
-                LOGGER.info("Error occurred while extracting price information:", e)
+                LOGGER.info("Error occurred while extracting price information:")
+                LOGGER.error(e)
                 price = None
 
             try:
@@ -170,15 +176,17 @@ def main():
                                                           "/html/body/div[1]/div/div[2]/div[1]/div[1]/div/div[3]/table/tbody/tr/td[3]")
                 listed_date = listed_date_element.text
             except Exception as e:
-                LOGGER.info("Error occurred while extracting listed date information:", e)
+                LOGGER.info("Error occurred while extracting listed date information:")
+                LOGGER.error(e)
                 listed_date = None
 
             try:
                 offer_paragraph = driver.find_element(By.XPATH, "//div[@class='panel-body']/p[contains(text(), 'best offer so far')]").text
                 offer_best_amount = offer_paragraph.split()[0]
-                offer_amount = float(offer_best_amount[1:])
+                offer_amount = offer_best_amount[1:]
             except Exception as e:
-                LOGGER.info("Error occurred while extracting offer information:", e)
+                LOGGER.info("Error occurred while extracting offer information:")
+                LOGGER.error(e)
                 offer_amount = None
 
             try:
@@ -186,7 +194,8 @@ def main():
                                                           "/html/body/div[1]/div/div[2]/div[1]/div[1]/div/div[4]/p")
                 description = description_element.text
             except Exception as e:
-                LOGGER.info("Error occurred while extracting description information:", e)
+                LOGGER.info("Error occurred while extracting description information:")
+                LOGGER.error(e)
                 description = None
 
             sleep(2)
@@ -200,7 +209,8 @@ def main():
                 else:
                     social_media = "Tiktok"
             except Exception as e:
-                LOGGER.info("Error occurred while extracting description information:", e)
+                LOGGER.info("Error occurred while extracting description information:")
+                LOGGER.error(e)
                 social_media = None
 
             try:
@@ -229,7 +239,8 @@ def main():
                 outputs.append(entry_data)
 
             except Exception as e:
-                LOGGER.info("Error Occurred:", e)
+                LOGGER.info("Error occurred:")
+                LOGGER.error(e)
 
             driver.close()
             driver.switch_to.window(original_window)
