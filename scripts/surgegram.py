@@ -139,7 +139,10 @@ def main():
 			try:
 				likes_script = get_likes()
 				likes_data = driver.execute_script(likes_script)
-				likes = likes_data[-1].split(" ")[0].replace(",", "")
+				if len(likes_data):
+					likes = likes_data[-1].split(" ")[0].replace(",", "")
+				else:
+					likes = None
 			except Exception as e:
 				LOGGER.info("Error occurred while extracting likes information:")
 				LOGGER.error(e)
