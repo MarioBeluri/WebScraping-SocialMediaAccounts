@@ -2,6 +2,10 @@
 	Usage
 	-------------
 	$ venv/bin/python3 -m scripts.midman --conf=$(pwd)/local.config.yaml
+
+	Notes:
+	-------------
+	it seems that the site has anti-bot protection in headless mode!
 	
 """
 
@@ -36,12 +40,16 @@ def get_next_page():
 	"""
 	script = """
 	var nextLink = document.querySelector('a.next.page-numbers');
-	var nextPageURL = nextLink.getAttribute('href');
-	window.location.href = nextPageURL;
+	if(nextLink){
+		var nextPageURL = nextLink.getAttribute('href');
+		window.location.href = nextPageURL;
+		return true;
+	}
+	return false;
 	"""
 	return script
 
-def scrape_data(driver, url, socialMedia):
+def scrape_data(driver, url, platform):
 	
 	data = [] # outputs
 	driver = driverModule.navigate(driver, url)
@@ -49,108 +57,51 @@ def scrape_data(driver, url, socialMedia):
 	global DEBUG
 	LOGGER.info(f"DEBUG: {DEBUG == True}")    
 
+
 	while True:
+		if platform == "Twitter":
+			script="""
+			var items = [];
+			var elements = document.getElementsByClassName('download-item-content')
+			for(var e of elements){
+			 	var o = {};
+			 	o.category = e.querySelector('[class=product-topic]').innerText.trim();
+			 	o.url = e.querySelector('[class=product-title]').getAttribute('href');
+			 	let u = e.querySelector('[class=product-title]').innerText.trim();
+			 	o.username_desc= u;
 
-		elements = driver.find_elements("xpath", "//div[@class = 'product-shop-area']/div/div/div/div/div/a")
+			 	if(u.includes(' ')){
+			 		if(u.includes('@')){
+			 			let s = u.slice(u.indexOf('@'))
+			 			let at_index = s.indexOf('@');
+			 			let space_index = s.indexOf(' ');
+			 			s = s.substring(at_index, space_index);
+			 			o.username = s.replace('@', '');
+			 		}else{
+			 		 	o.username= "";
+			 		}
+			 	}else{
+			 		o.username = u.replace('@', '');
+			 	}
+			 	
+			 	 
+			 	o.followers = e.querySelector('.list-follow').innerText.replace('followers', '').trim();
+			 	o.price = e.querySelector('.price').innerText.trim();
+			 	items.push(o);
+			}
+			return items
+			"""
+			records = driver.execute_script(script)
+			data.extend(records)
 
-		for element in elements:
-			link = element.get_attribute("href")
-			URL = link
-			original_window = driver.current_window_handle
+			next_page = driver.execute_script(get_next_page())
+			# break on last page
+			if not next_page:
+				break
+			sleep(constantsModule.PAGE_LOAD_WAIT_TIME_DEFAULT)
 
-			driver.switch_to.new_window('tab')
-			driver.get(link)
-			sleep(5)
-			for handle in driver.window_handles:
-				if handle != original_window:
-					driver.switch_to.window(handle)
-					break
-			sleep(5)
-			if DEBUG:
-				if len(data) == 2:
-					return data
-			try:
-				followerandCategory_element = driver.find_element(By.CLASS_NAME, "list-meta").find_elements(By.TAG_NAME, "span")
-				follower = followerandCategory_element[0].text.split()[0]
 
-			except Exception as e:
-				LOGGER.info("Error occurred while extracting follower data:")
-				LOGGER.error(e)
-				follower = None
 
-			try:
-				categorie = followerandCategory_element[1].text
-			except Exception as e:
-				LOGGER.info("Error occurred while extracting category data:")
-				LOGGER.error(e)
-				categorie = None
-
-			try:
-				title_element = driver.find_element(By.CSS_SELECTOR, ".widget-title-product h1")
-				title = title_element.text
-			except Exception as e:
-				LOGGER.info("Error occurred while extracting title data:")
-				LOGGER.error(e)
-				title = None
-
-			try:
-				price_element = driver.find_element(By.CLASS_NAME, "woocommerce-Price-amount")
-				price_text = price_element.text
-				price = price_text.split('$')[1].replace(",", "")
-			except Exception as e:
-				LOGGER.info("Error occurred while extracting price data:")
-				LOGGER.error(e)
-				price = None
-
-			try:
-				author_element = driver.find_element(By.CLASS_NAME, "name-author").find_element(By.TAG_NAME, "a")
-				seller = author_element.text
-			except Exception as e:
-				LOGGER.info("Error occurred while extracting seller data:")
-				LOGGER.error(e)
-				seller = None
-
-			try:
-				seller_website = author_element.get_attribute("href")
-			except Exception as e:
-				LOGGER.info("Error occurred while extracting seller website data:")
-				LOGGER.error(e)
-				seller_website = None
-
-			try:
-				description_element = driver.find_element(By.ID, "tab-description")
-				description = description_element.text
-			except Exception as e:
-				LOGGER.info("Error occurred while extracting description data:")
-				LOGGER.error(e)
-				description = None
-
-			social_media = socialMedia
-
-			try:
-			   entry_data = {
-					"url": URL,
-					"title": title,
-					"seller": seller,
-					"price": price,
-					"social_media": social_media,
-					"description": description,
-					"followers": follower,
-					"category": categorie,
-					"seller_website": seller_website,
-				}
-			   data.append(entry_data)
-			except Exception as e:
-				LOGGER.error(e)
-
-			driver.close()
-			driver.switch_to.window(original_window)
-			sleep(2)
-		try:
-			script = get_next_page()
-			driver.execute_script(script)
-		except:
-			break
 
 	return data
 
@@ -183,10 +134,10 @@ def main():
 
 	platforms = [
 		"Twitter",
-		"Instagram",
-		"Youtube",
-		"Facebook",
-		"Tiktok"
+		# "Instagram",
+		# "Youtube",
+		# "Facebook",
+		# "Tiktok"
 	]
 
 	for platform in platforms:
