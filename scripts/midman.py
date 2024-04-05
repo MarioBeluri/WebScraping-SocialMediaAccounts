@@ -59,48 +59,77 @@ def scrape_data(driver, url, platform):
 
 
 	while True:
-		if platform == "Twitter":
-			script="""
-			var items = [];
-			var elements = document.getElementsByClassName('download-item-content')
-			for(var e of elements){
-			 	var o = {};
-			 	o.category = e.querySelector('[class=product-topic]').innerText.trim();
-			 	o.url = e.querySelector('[class=product-title]').getAttribute('href');
-			 	let u = e.querySelector('[class=product-title]').innerText.trim();
-			 	o.username_desc= u;
+		script="""
+		var items = [];
+		var elements = document.getElementsByClassName('download-item-content')
+		for(var e of elements){
+		 	var o = {};
+		 	
+		 	let cat = e.querySelector('[class=product-topic]');
+		 	if(cat){
+		 		cat = cat.innerText.trim();
+		 	}else{
+		 		cat = ""
+		 	}
+		 	o.category = cat;
 
-			 	if(u.includes(' ')){
-			 		if(u.includes('@')){
-			 			let s = u.slice(u.indexOf('@'))
-			 			let at_index = s.indexOf('@');
-			 			let space_index = s.indexOf(' ');
-			 			s = s.substring(at_index, space_index);
-			 			o.username = s.replace('@', '');
-			 		}else{
-			 		 	o.username= "";
-			 		}
-			 	}else{
-			 		o.username = u.replace('@', '');
-			 	}
-			 	
-			 	 
-			 	o.followers = e.querySelector('.list-follow').innerText.replace('followers', '').trim();
-			 	o.price = e.querySelector('.price').innerText.trim();
-			 	items.push(o);
-			}
-			return items
-			"""
-			records = driver.execute_script(script)
-			data.extend(records)
+		 	let url = e.querySelector('[class=product-title]');
+		 	if(url){
+		 		url = url.getAttribute('href');
+		 	}else{
+		 		url = "";
+		 	}
+		 	o.url = url;
 
-			next_page = driver.execute_script(get_next_page())
-			# break on last page
-			if not next_page:
-				break
-			sleep(constantsModule.PAGE_LOAD_WAIT_TIME_DEFAULT)
+		 	let u = e.querySelector('[class=product-title]');
+		 	if(u){
+		 		u = u.innerText.trim();
+		 	}else{
+		 	 	u = ""
+		 	}
+		 	o.username_desc= u;
 
+		 	if(u.includes(' ')){
+		 		if(u.includes('@')){
+		 			let s = u.slice(u.indexOf('@'))
+		 			let at_index = s.indexOf('@');
+		 			let space_index = s.indexOf(' ');
+		 			s = s.substring(at_index, space_index);
+		 			o.username = s.replace('@', '');
+		 		}else{
+		 		 	o.username= "";
+		 		}
+		 	}else{
+		 		o.username = u.replace('@', '');
+		 	}
+		 	
+		 	let followers = e.querySelector('.list-follow');
+		 	if(followers){
+		 		followers = followers.innerText.replace('followers', '').trim();
+		 	}else{
+		 		followers = "";
+		 	}
+		 	o.followers = followers;
 
+		 	let price = e.querySelector('.price');
+		 	if(price){
+		 		price = price.innerText.trim();
+		 	}else{
+		 		price = "";
+		 	}
+		 	o.price = price;
+		 	items.push(o);
+		}
+		return items
+		"""
+		records = driver.execute_script(script)
+		data.extend(records)
+
+		next_page = driver.execute_script(get_next_page())
+		# break on last page
+		if not next_page:
+			break
+		sleep(constantsModule.PAGE_LOAD_WAIT_TIME_DEFAULT)
 
 
 	return data
@@ -134,10 +163,10 @@ def main():
 
 	platforms = [
 		"Twitter",
-		# "Instagram",
-		# "Youtube",
-		# "Facebook",
-		# "Tiktok"
+		"Instagram",
+		"Youtube",
+		"Facebook",
+		"Tiktok"
 	]
 
 	for platform in platforms:
