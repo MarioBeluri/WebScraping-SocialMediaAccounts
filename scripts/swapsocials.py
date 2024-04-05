@@ -24,6 +24,7 @@ from time import sleep
 DEBUG = False
 
 def main():
+	global DEBUG
 	CONFIG_FILE_DEFAULT = os.path.join(constantsModule.BASE_DIR, 'config.yaml')
 	p = argparse.ArgumentParser(description='This script runs the scraper.')
 	p.add_argument('--conf', "-C",
