@@ -41,6 +41,7 @@ pip-delete-this-directory.txt
 # outputs 
 outputs/*
 !outputs/.gitkeep
+data
 
 # config
 local.config.yaml
@@ -51,3 +52,4 @@ local.config.yaml
 *_.out
 # virtual env
 venv
+
