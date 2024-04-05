@@ -98,7 +98,12 @@ def main():
 		elements = driver.find_elements(By.XPATH, "//div[@class='box-image']/div[@class = 'image-fade_in_back']/a")
 
 		for element in elements:
-			link = element.get_attribute("href")
+
+			try:
+				link = element.get_attribute("href")
+			except:
+				LOGGER.info('selenium state element error (element no longer in DOM?)')
+				continue
 
 			URL = link
 			original_window = driver.current_window_handle
