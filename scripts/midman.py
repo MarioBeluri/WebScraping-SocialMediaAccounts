@@ -132,6 +132,25 @@ def scrape_data(driver, url, platform):
 		sleep(constantsModule.PAGE_LOAD_WAIT_TIME_DEFAULT)
 
 
+	new_data = []
+	if platform == "Youtube" or platform == "Tiktok" or platform == "Facebook":
+		for record in data:
+			url = record["url"]
+			if len(url) > 0:
+				driver = driverModule.navigate(driver, url)
+				script = """
+				var qs = document.getElementsByClassName('single_direct_link_button'); 
+				if(qs && qs.length >= 1){
+					return qs[1].href; 
+				}
+				return "";
+				"""
+				channel = driver.execute_script(script)
+				record["channel"] = channel
+				new_data.append(record)
+
+		data = new_data
+
 	return data
 
 def main():
@@ -162,11 +181,11 @@ def main():
 
 
 	platforms = [
-		"Twitter",
-		"Instagram",
 		"Youtube",
 		"Facebook",
-		"Tiktok"
+		"Tiktok",
+		"Twitter",
+		"Instagram"		
 	]
 
 	for platform in platforms:
