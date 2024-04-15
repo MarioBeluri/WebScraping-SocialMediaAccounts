@@ -4,9 +4,9 @@
 import json
 import utils.utility as utilityModule
 
-INSTAGRAM = False
-YOUTUBE = False
-TIKTOK = False
+INSTAGRAM = True
+YOUTUBE = True
+TIKTOK = True
 FACEBOOK = True
 
 def union_sets(*args):
@@ -126,8 +126,8 @@ def main():
 		u2 = get_instagram_usernames("./data/toofame_2024-04-04_19-11-23.json", "toofame")
 		u3 = get_instagram_usernames("./data/midman_instagram_2024-04-05_16-23-48.json", "midman")
 		u4 = get_instagram_usernames("./data/accs_market_instagram_2024-04-04_23-59-59.json", "accs_market")
-
-		union = union_sets(u1, u2, u3, u4)
+		u5 = get_instagram_usernames("./data/midman_instagram_2024-04-10_17-32-08.json", "midman")
+		union = union_sets(u1, u2, u3, u4, u5)
 
 		with open(f'./handles/instagram_usernames_{timestamp}.txt', 'w+') as fd:
 			for item in union:
@@ -137,8 +137,8 @@ def main():
 	if YOUTUBE:
 		u1 = get_youtube_channel_urls("./data/accs_market_youtube_2024-04-05_07-55-13.json", "accs_market")
 		u2 = get_youtube_channel_urls("./data/midman_youtube_2024-04-05_16-27-08.json", "midman")
-
-		union = union_sets(u1, u2)
+		u3 = get_youtube_channel_urls("./data/midman_youtube_2024-04-10_13-50-40.json", "midman")
+		union = union_sets(u1, u2, u3)
 		with open(f'./handles/youtube_channels_{timestamp}.txt', 'w+') as fd:
 			for item in union:
 				fd.write(item+'\n')
@@ -146,8 +146,8 @@ def main():
 	if TIKTOK:
 		u1 = get_tiktok_urls("./data/accs_market_tiktok_2024-04-06_12-38-11.json", "accs_market")
 		u2 = get_tiktok_urls("./data/midman_tiktok_2024-04-05_16-31-00.json", "midman")
-
-		union = union_sets(u1, u2)
+		u3 = get_tiktok_urls("./data/midman_tiktok_2024-04-10_15-14-46.json", "midman")
+		union = union_sets(u1, u2, u3)
 		with open(f'./handles/tiktok_channels_{timestamp}.txt', 'w+') as fd:
 			for item in union:
 				fd.write(item+'\n')
@@ -156,11 +156,12 @@ def main():
 	if FACEBOOK:
 		u1 = get_facebook_urls("./data/accs_market_facebook_2024-04-06_09-11-26.json", "accs_market")
 		u2 = get_facebook_urls("./data/midman_facebook_2024-04-05_16-28-44.json", "midman")
-
-		union = union_sets(u1, u2)
+		u3 = get_facebook_urls("./data/midman_facebook_2024-04-10_14-24-32.json", "midman")
+		union = union_sets(u1, u2, u3)
 		with open(f'./handles/facebook_pages_{timestamp}.txt', 'w+') as fd:
 			for item in union:
 				fd.write(item+'\n')
+
 
 if __name__ == "__main__":
 	main()
