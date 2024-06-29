@@ -1,0 +1,695 @@
+[
+  {
+    "Social Media": "Twitter",
+    "Category": "DIY & Tutorials",
+    "Visible Count": 422,
+    "Not-Visible Count": 8,
+    "Total Count": 430
+  },
+  {
+    "Social Media": "Twitter",
+    "Category": "Entertainment & Media",
+    "Visible Count": 13,
+    "Not-Visible Count": 21,
+    "Total Count": 34
+  },
+  {
+    "Social Media": "Twitter",
+    "Category": "Women's Fashion & Beauty",
+    "Visible Count": 333,
+    "Not-Visible Count": 30,
+    "Total Count": 363
+  },
+  {
+    "Social Media": "Twitter",
+    "Category": "Education & Learning",
+    "Visible Count": 81,
+    "Not-Visible Count": 2,
+    "Total Count": 83
+  },
+  {
+    "Social Media": "Twitter",
+    "Category": "Luxury & Lifestyle",
+    "Visible Count": 380,
+    "Not-Visible Count": 14,
+    "Total Count": 394
+  },
+  {
+    "Social Media": "Twitter",
+    "Category": "Travel & Lifestyle",
+    "Visible Count": 194,
+    "Not-Visible Count": 3,
+    "Total Count": 197
+  },
+  {
+    "Social Media": "Twitter",
+    "Category": "Pets & Animals",
+    "Visible Count": 24,
+    "Not-Visible Count": 5,
+    "Total Count": 29
+  },
+  {
+    "Social Media": "Twitter",
+    "Category": "Food & Culture",
+    "Visible Count": 11,
+    "Not-Visible Count": 2,
+    "Total Count": 13
+  },
+  {
+    "Social Media": "Twitter",
+    "Category": "Cars & Bikes",
+    "Visible Count": 29,
+    "Not-Visible Count": 1,
+    "Total Count": 30
+  },
+  {
+    "Social Media": "Twitter",
+    "Category": "Gaming & Entertainment",
+    "Visible Count": 25,
+    "Not-Visible Count": 2,
+    "Total Count": 27
+  },
+  {
+    "Social Media": "Twitter",
+    "Category": "Humor & Memes",
+    "Visible Count": 17,
+    "Not-Visible Count": 49,
+    "Total Count": 66
+  },
+  {
+    "Social Media": "Twitter",
+    "Category": "Health & Wellness",
+    "Visible Count": 9,
+    "Not-Visible Count": 3,
+    "Total Count": 12
+  },
+  {
+    "Social Media": "Twitter",
+    "Category": "Miscellaneous",
+    "Visible Count": 0,
+    "Not-Visible Count": 1606,
+    "Total Count": 1606
+  },
+  {
+    "Social Media": "Twitter",
+    "Category": "Technology & Gadgets",
+    "Visible Count": 0,
+    "Not-Visible Count": 1,
+    "Total Count": 1
+  },
+  {
+    "Social Media": "Twitter",
+    "Category": "NFTs & Cryptocurrencies",
+    "Visible Count": 0,
+    "Not-Visible Count": 32,
+    "Total Count": 32
+  },
+  {
+    "Social Media": "Twitter",
+    "Category": "Business & Finance",
+    "Visible Count": 0,
+    "Not-Visible Count": 2,
+    "Total Count": 2
+  },
+  {
+    "Social Media": "Instagram",
+    "Category": "Luxury & Lifestyle",
+    "Visible Count": 489,
+    "Not-Visible Count": 267,
+    "Total Count": 756
+  },
+  {
+    "Social Media": "Instagram",
+    "Category": "Travel & Lifestyle",
+    "Visible Count": 127,
+    "Not-Visible Count": 303,
+    "Total Count": 430
+  },
+  {
+    "Social Media": "Instagram",
+    "Category": "Food & Culture",
+    "Visible Count": 106,
+    "Not-Visible Count": 857,
+    "Total Count": 963
+  },
+  {
+    "Social Media": "Instagram",
+    "Category": "Cars & Bikes",
+    "Visible Count": 83,
+    "Not-Visible Count": 265,
+    "Total Count": 348
+  },
+  {
+    "Social Media": "Instagram",
+    "Category": "Health & Wellness",
+    "Visible Count": 175,
+    "Not-Visible Count": 547,
+    "Total Count": 722
+  },
+  {
+    "Social Media": "Instagram",
+    "Category": "Pets & Animals",
+    "Visible Count": 137,
+    "Not-Visible Count": 1086,
+    "Total Count": 1223
+  },
+  {
+    "Social Media": "Instagram",
+    "Category": "Women's Fashion & Beauty",
+    "Visible Count": 635,
+    "Not-Visible Count": 767,
+    "Total Count": 1402
+  },
+  {
+    "Social Media": "Instagram",
+    "Category": "Education & Learning",
+    "Visible Count": 61,
+    "Not-Visible Count": 34,
+    "Total Count": 95
+  },
+  {
+    "Social Media": "Instagram",
+    "Category": "Gaming & Entertainment",
+    "Visible Count": 38,
+    "Not-Visible Count": 4,
+    "Total Count": 42
+  },
+  {
+    "Social Media": "Instagram",
+    "Category": "Humor & Memes",
+    "Visible Count": 46,
+    "Not-Visible Count": 78,
+    "Total Count": 124
+  },
+  {
+    "Social Media": "Instagram",
+    "Category": "Entertainment & Media",
+    "Visible Count": 82,
+    "Not-Visible Count": 321,
+    "Total Count": 403
+  },
+  {
+    "Social Media": "Instagram",
+    "Category": "DIY & Tutorials",
+    "Visible Count": 28,
+    "Not-Visible Count": 93,
+    "Total Count": 121
+  },
+  {
+    "Social Media": "Instagram",
+    "Category": "Miscellaneous",
+    "Visible Count": 736,
+    "Not-Visible Count": 3903,
+    "Total Count": 4639
+  },
+  {
+    "Social Media": "Instagram",
+    "Category": "Arts & Design",
+    "Visible Count": 120,
+    "Not-Visible Count": 588,
+    "Total Count": 708
+  },
+  {
+    "Social Media": "Instagram",
+    "Category": "Business & Finance",
+    "Visible Count": 2,
+    "Not-Visible Count": 201,
+    "Total Count": 203
+  },
+  {
+    "Social Media": "Instagram",
+    "Category": "Technology & Gadgets",
+    "Visible Count": 8,
+    "Not-Visible Count": 86,
+    "Total Count": 94
+  },
+  {
+    "Social Media": "Instagram",
+    "Category": "Social Media & Influencers",
+    "Visible Count": 4,
+    "Not-Visible Count": 182,
+    "Total Count": 186
+  },
+  {
+    "Social Media": "Instagram",
+    "Category": "Music & Dance",
+    "Visible Count": 3,
+    "Not-Visible Count": 73,
+    "Total Count": 76
+  },
+  {
+    "Social Media": "Instagram",
+    "Category": "Food & Drink",
+    "Visible Count": 10,
+    "Not-Visible Count": 45,
+    "Total Count": 55
+  },
+  {
+    "Social Media": "Instagram",
+    "Category": "Sports & Fitness",
+    "Visible Count": 2,
+    "Not-Visible Count": 0,
+    "Total Count": 2
+  },
+  {
+    "Social Media": "Instagram",
+    "Category": "NFTs & Cryptocurrencies",
+    "Visible Count": 1,
+    "Not-Visible Count": 3,
+    "Total Count": 4
+  },
+  {
+    "Social Media": "Instagram",
+    "Category": "Lifestyle & Hobbies",
+    "Visible Count": 1,
+    "Not-Visible Count": 8,
+    "Total Count": 9
+  },
+  {
+    "Social Media": "Instagram",
+    "Category": "Fashion & Style",
+    "Visible Count": 0,
+    "Not-Visible Count": 53,
+    "Total Count": 53
+  },
+  {
+    "Social Media": "Tiktok",
+    "Category": "Entertainment & Media",
+    "Visible Count": 344,
+    "Not-Visible Count": 774,
+    "Total Count": 1118
+  },
+  {
+    "Social Media": "Tiktok",
+    "Category": "Luxury & Lifestyle",
+    "Visible Count": 319,
+    "Not-Visible Count": 243,
+    "Total Count": 562
+  },
+  {
+    "Social Media": "Tiktok",
+    "Category": "Women's Fashion & Beauty",
+    "Visible Count": 343,
+    "Not-Visible Count": 621,
+    "Total Count": 964
+  },
+  {
+    "Social Media": "Tiktok",
+    "Category": "Cars & Bikes",
+    "Visible Count": 39,
+    "Not-Visible Count": 56,
+    "Total Count": 95
+  },
+  {
+    "Social Media": "Tiktok",
+    "Category": "Humor & Memes",
+    "Visible Count": 236,
+    "Not-Visible Count": 4062,
+    "Total Count": 4298
+  },
+  {
+    "Social Media": "Tiktok",
+    "Category": "Food & Culture",
+    "Visible Count": 37,
+    "Not-Visible Count": 49,
+    "Total Count": 86
+  },
+  {
+    "Social Media": "Tiktok",
+    "Category": "Travel & Lifestyle",
+    "Visible Count": 72,
+    "Not-Visible Count": 15,
+    "Total Count": 87
+  },
+  {
+    "Social Media": "Tiktok",
+    "Category": "Education & Learning",
+    "Visible Count": 70,
+    "Not-Visible Count": 167,
+    "Total Count": 237
+  },
+  {
+    "Social Media": "Tiktok",
+    "Category": "Gaming & Entertainment",
+    "Visible Count": 142,
+    "Not-Visible Count": 11,
+    "Total Count": 153
+  },
+  {
+    "Social Media": "Tiktok",
+    "Category": "Pets & Animals",
+    "Visible Count": 68,
+    "Not-Visible Count": 87,
+    "Total Count": 155
+  },
+  {
+    "Social Media": "Tiktok",
+    "Category": "DIY & Tutorials",
+    "Visible Count": 45,
+    "Not-Visible Count": 43,
+    "Total Count": 88
+  },
+  {
+    "Social Media": "Tiktok",
+    "Category": "Health & Wellness",
+    "Visible Count": 80,
+    "Not-Visible Count": 293,
+    "Total Count": 373
+  },
+  {
+    "Social Media": "Tiktok",
+    "Category": "Miscellaneous",
+    "Visible Count": 14,
+    "Not-Visible Count": 601,
+    "Total Count": 615
+  },
+  {
+    "Social Media": "Tiktok",
+    "Category": "Technology & Gadgets",
+    "Visible Count": 1,
+    "Not-Visible Count": 48,
+    "Total Count": 49
+  },
+  {
+    "Social Media": "Tiktok",
+    "Category": "Sports & Fitness",
+    "Visible Count": 3,
+    "Not-Visible Count": 1,
+    "Total Count": 4
+  },
+  {
+    "Social Media": "Tiktok",
+    "Category": "Social Media & Influencers",
+    "Visible Count": 12,
+    "Not-Visible Count": 10,
+    "Total Count": 22
+  },
+  {
+    "Social Media": "Tiktok",
+    "Category": "Music & Dance",
+    "Visible Count": 16,
+    "Not-Visible Count": 4,
+    "Total Count": 20
+  },
+  {
+    "Social Media": "Tiktok",
+    "Category": "Arts & Design",
+    "Visible Count": 7,
+    "Not-Visible Count": 13,
+    "Total Count": 20
+  },
+  {
+    "Social Media": "Tiktok",
+    "Category": "Food & Drink",
+    "Visible Count": 6,
+    "Not-Visible Count": 2,
+    "Total Count": 8
+  },
+  {
+    "Social Media": "Tiktok",
+    "Category": "NFTs & Cryptocurrencies",
+    "Visible Count": 4,
+    "Not-Visible Count": 5,
+    "Total Count": 9
+  },
+  {
+    "Social Media": "Tiktok",
+    "Category": "Lifestyle & Hobbies",
+    "Visible Count": 3,
+    "Not-Visible Count": 3,
+    "Total Count": 6
+  },
+  {
+    "Social Media": "Tiktok",
+    "Category": "Business & Finance",
+    "Visible Count": 3,
+    "Not-Visible Count": 0,
+    "Total Count": 3
+  },
+  {
+    "Social Media": "Youtube",
+    "Category": "Education & Learning",
+    "Visible Count": 801,
+    "Not-Visible Count": 148,
+    "Total Count": 949
+  },
+  {
+    "Social Media": "Youtube",
+    "Category": "Travel & Lifestyle",
+    "Visible Count": 150,
+    "Not-Visible Count": 11,
+    "Total Count": 161
+  },
+  {
+    "Social Media": "Youtube",
+    "Category": "Entertainment & Media",
+    "Visible Count": 1983,
+    "Not-Visible Count": 650,
+    "Total Count": 2633
+  },
+  {
+    "Social Media": "Youtube",
+    "Category": "Gaming & Entertainment",
+    "Visible Count": 1525,
+    "Not-Visible Count": 112,
+    "Total Count": 1637
+  },
+  {
+    "Social Media": "Youtube",
+    "Category": "DIY & Tutorials",
+    "Visible Count": 703,
+    "Not-Visible Count": 115,
+    "Total Count": 818
+  },
+  {
+    "Social Media": "Youtube",
+    "Category": "Cars & Bikes",
+    "Visible Count": 133,
+    "Not-Visible Count": 29,
+    "Total Count": 162
+  },
+  {
+    "Social Media": "Youtube",
+    "Category": "Humor & Memes",
+    "Visible Count": 276,
+    "Not-Visible Count": 912,
+    "Total Count": 1188
+  },
+  {
+    "Social Media": "Youtube",
+    "Category": "Women's Fashion & Beauty",
+    "Visible Count": 272,
+    "Not-Visible Count": 88,
+    "Total Count": 360
+  },
+  {
+    "Social Media": "Youtube",
+    "Category": "Luxury & Lifestyle",
+    "Visible Count": 382,
+    "Not-Visible Count": 74,
+    "Total Count": 456
+  },
+  {
+    "Social Media": "Youtube",
+    "Category": "Health & Wellness",
+    "Visible Count": 151,
+    "Not-Visible Count": 76,
+    "Total Count": 227
+  },
+  {
+    "Social Media": "Youtube",
+    "Category": "Food & Culture",
+    "Visible Count": 87,
+    "Not-Visible Count": 30,
+    "Total Count": 117
+  },
+  {
+    "Social Media": "Youtube",
+    "Category": "Pets & Animals",
+    "Visible Count": 115,
+    "Not-Visible Count": 36,
+    "Total Count": 151
+  },
+  {
+    "Social Media": "Youtube",
+    "Category": "Miscellaneous",
+    "Visible Count": 10,
+    "Not-Visible Count": 123,
+    "Total Count": 133
+  },
+  {
+    "Social Media": "Youtube",
+    "Category": "Technology & Gadgets",
+    "Visible Count": 1,
+    "Not-Visible Count": 71,
+    "Total Count": 72
+  },
+  {
+    "Social Media": "Youtube",
+    "Category": "Arts & Design",
+    "Visible Count": 1,
+    "Not-Visible Count": 2,
+    "Total Count": 3
+  },
+  {
+    "Social Media": "Youtube",
+    "Category": "Social Media & Influencers",
+    "Visible Count": 2,
+    "Not-Visible Count": 2,
+    "Total Count": 4
+  },
+  {
+    "Social Media": "Youtube",
+    "Category": "Business & Finance",
+    "Visible Count": 1,
+    "Not-Visible Count": 1,
+    "Total Count": 2
+  },
+  {
+    "Social Media": "Youtube",
+    "Category": "NFTs & Cryptocurrencies",
+    "Visible Count": 5,
+    "Not-Visible Count": 1,
+    "Total Count": 6
+  },
+  {
+    "Social Media": "Youtube",
+    "Category": "Music & Dance",
+    "Visible Count": 3,
+    "Not-Visible Count": 2,
+    "Total Count": 5
+  },
+  {
+    "Social Media": "Youtube",
+    "Category": "Sports & Fitness",
+    "Visible Count": 3,
+    "Not-Visible Count": 0,
+    "Total Count": 3
+  },
+  {
+    "Social Media": "Facebook",
+    "Category": "Humor & Memes",
+    "Visible Count": 47,
+    "Not-Visible Count": 1,
+    "Total Count": 48
+  },
+  {
+    "Social Media": "Facebook",
+    "Category": "Luxury & Lifestyle",
+    "Visible Count": 226,
+    "Not-Visible Count": 4,
+    "Total Count": 230
+  },
+  {
+    "Social Media": "Facebook",
+    "Category": "Entertainment & Media",
+    "Visible Count": 307,
+    "Not-Visible Count": 21,
+    "Total Count": 328
+  },
+  {
+    "Social Media": "Facebook",
+    "Category": "Women's Fashion & Beauty",
+    "Visible Count": 253,
+    "Not-Visible Count": 9,
+    "Total Count": 262
+  },
+  {
+    "Social Media": "Facebook",
+    "Category": "Health & Wellness",
+    "Visible Count": 59,
+    "Not-Visible Count": 4,
+    "Total Count": 63
+  },
+  {
+    "Social Media": "Facebook",
+    "Category": "DIY & Tutorials",
+    "Visible Count": 56,
+    "Not-Visible Count": 2,
+    "Total Count": 58
+  },
+  {
+    "Social Media": "Facebook",
+    "Category": "Travel & Lifestyle",
+    "Visible Count": 27,
+    "Not-Visible Count": 1,
+    "Total Count": 28
+  },
+  {
+    "Social Media": "Facebook",
+    "Category": "Education & Learning",
+    "Visible Count": 50,
+    "Not-Visible Count": 1,
+    "Total Count": 51
+  },
+  {
+    "Social Media": "Facebook",
+    "Category": "Gaming & Entertainment",
+    "Visible Count": 46,
+    "Not-Visible Count": 3,
+    "Total Count": 49
+  },
+  {
+    "Social Media": "Facebook",
+    "Category": "Cars & Bikes",
+    "Visible Count": 13,
+    "Not-Visible Count": 1,
+    "Total Count": 14
+  },
+  {
+    "Social Media": "Facebook",
+    "Category": "Food & Culture",
+    "Visible Count": 22,
+    "Not-Visible Count": 1,
+    "Total Count": 23
+  },
+  {
+    "Social Media": "Facebook",
+    "Category": "Pets & Animals",
+    "Visible Count": 30,
+    "Not-Visible Count": 0,
+    "Total Count": 30
+  },
+  {
+    "Social Media": "Facebook",
+    "Category": "Miscellaneous",
+    "Visible Count": 15,
+    "Not-Visible Count": 2988,
+    "Total Count": 3003
+  },
+  {
+    "Social Media": "Facebook",
+    "Category": "Social Media & Influencers",
+    "Visible Count": 5,
+    "Not-Visible Count": 1,
+    "Total Count": 6
+  },
+  {
+    "Social Media": "Facebook",
+    "Category": "Sports & Fitness",
+    "Visible Count": 14,
+    "Not-Visible Count": 2,
+    "Total Count": 16
+  },
+  {
+    "Social Media": "Facebook",
+    "Category": "Music & Dance",
+    "Visible Count": 3,
+    "Not-Visible Count": 0,
+    "Total Count": 3
+  },
+  {
+    "Social Media": "Facebook",
+    "Category": "Arts & Design",
+    "Visible Count": 3,
+    "Not-Visible Count": 0,
+    "Total Count": 3
+  },
+  {
+    "Social Media": "Facebook",
+    "Category": "Food & Drink",
+    "Visible Count": 1,
+    "Not-Visible Count": 0,
+    "Total Count": 1
+  }
+]

@@ -1,0 +1,1410 @@
+{
+  "Movies & Music": {
+    "total_accounts": 718,
+    "average_price": 692.849582172702,
+    "average_income": 10.720055710306406,
+    "average_expense": 3.788300835654596,
+    "average_followers": 120624.02785515321,
+    "average_views": 256.97353760445685
+  },
+  "Fashion & Style": {
+    "total_accounts": 354,
+    "average_price": 430.8728813559322,
+    "average_income": 5.731638418079096,
+    "average_expense": 1.0084745762711864,
+    "average_followers": 83924.99152542373,
+    "average_views": 151.33050847457628
+  },
+  "Educational & QA": {
+    "total_accounts": 613,
+    "average_price": 3824.4404567699835,
+    "average_income": 36.95758564437194,
+    "average_expense": 4.417618270799347,
+    "average_followers": 106946.86460032627,
+    "average_views": 234.7699836867863
+  },
+  "Reviews & How-to": {
+    "total_accounts": 768,
+    "average_price": 692.1380208333334,
+    "average_income": 13.559895833333334,
+    "average_expense": 1.3138020833333333,
+    "average_followers": 56991.973958333336,
+    "average_views": 196.03776041666666
+  },
+  "Luxury & Motivation": {
+    "total_accounts": 983,
+    "average_price": 427.6408952187182,
+    "average_income": 11.466937945066125,
+    "average_expense": 0.43947100712105797,
+    "average_followers": 129971.38657171922,
+    "average_views": 168.8880976602238
+  },
+  "Nature": {
+    "total_accounts": 180,
+    "average_price": 121.69444444444444,
+    "average_income": 6.85,
+    "average_expense": 0.16666666666666666,
+    "average_followers": 33025.66111111111,
+    "average_views": 134.71666666666667
+  },
+  "Beautiful girls": {
+    "total_accounts": 193,
+    "average_price": 408.4300518134715,
+    "average_income": 1.528497409326425,
+    "average_expense": 0.05699481865284974,
+    "average_followers": 53000.243523316065,
+    "average_views": 170.08290155440415
+  },
+  "Pets & Animals": {
+    "total_accounts": 183,
+    "average_price": 422.1366120218579,
+    "average_income": 8.163934426229508,
+    "average_expense": 0.9836065573770492,
+    "average_followers": 64079.0218579235,
+    "average_views": 248.5792349726776
+  },
+  "Models & Celebrities": {
+    "total_accounts": 334,
+    "average_price": 298.4760479041916,
+    "average_income": 14.652694610778443,
+    "average_expense": 0.0,
+    "average_followers": 77205.81137724551,
+    "average_views": 207.32634730538922
+  },
+  "YouTube shorts & Facebook reels": {
+    "total_accounts": 714,
+    "average_price": 1064.906162464986,
+    "average_income": 11.586834733893557,
+    "average_expense": 2.3529411764705883,
+    "average_followers": 190056.2100840336,
+    "average_views": 168.2156862745098
+  },
+  "Cars & Bikes": {
+    "total_accounts": 136,
+    "average_price": 495.3235294117647,
+    "average_income": 10.257352941176471,
+    "average_expense": 0.0,
+    "average_followers": 75276.95588235294,
+    "average_views": 219.10294117647058
+  },
+  "Games": {
+    "total_accounts": 1035,
+    "average_price": 444.1536231884058,
+    "average_income": 22.28599033816425,
+    "average_expense": 1.1507246376811595,
+    "average_followers": 90525.17004830918,
+    "average_views": 252.96908212560388
+  },
+  "Humor": {
+    "total_accounts": 298,
+    "average_price": 2289.7651006711408,
+    "average_income": 16.07046979865772,
+    "average_expense": 5.5369127516778525,
+    "average_followers": 200218.97651006712,
+    "average_views": 233.80872483221478
+  },
+  "Food": {
+    "total_accounts": 92,
+    "average_price": 545.5,
+    "average_income": 14.402173913043478,
+    "average_expense": 1.141304347826087,
+    "average_followers": 86644.19565217392,
+    "average_views": 221.33695652173913
+  },
+  "Fitness & Sports": {
+    "total_accounts": 251,
+    "average_price": 1631.5338645418326,
+    "average_income": 12.784860557768924,
+    "average_expense": 7.450199203187251,
+    "average_followers": 123190.8764940239,
+    "average_views": 168.3824701195219
+  },
+  "Travel": {
+    "total_accounts": 99,
+    "average_price": 225.58585858585857,
+    "average_income": 3.0606060606060606,
+    "average_expense": 0.0,
+    "average_followers": 41068.90909090909,
+    "average_views": 203.07070707070707
+  },
+  "null": {
+    "total_accounts": 112,
+    "average_price": 3714.6108035714287,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 243067.85714285713,
+    "average_views": 0.0
+  },
+  "Unknown": {
+    "total_accounts": 1395,
+    "average_price": 542.0488666666666,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 13257.951254480287,
+    "average_views": 0.0
+  },
+  "Art & Creativity": {
+    "total_accounts": 20,
+    "average_price": 5433.5,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 149556.6,
+    "average_views": 0.0
+  },
+  "Gaming & Entertainment": {
+    "total_accounts": 58,
+    "average_price": 2370.6724137931033,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 129874.93103448275,
+    "average_views": 0.0
+  },
+  "Humor & Memes": {
+    "total_accounts": 186,
+    "average_price": 4593.908602150537,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 291722.86559139786,
+    "average_views": 0.0
+  },
+  "Quotes & Sayings": {
+    "total_accounts": 20,
+    "average_price": 1312.0,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 143138.6,
+    "average_views": 0.0
+  },
+  "Crypto & NFT": {
+    "total_accounts": 5,
+    "average_price": 870.0,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 49826.2,
+    "average_views": 0.0
+  },
+  "Movies TV & Fanpages": {
+    "total_accounts": 15,
+    "average_price": 3877.3333333333335,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 132926.93333333332,
+    "average_views": 0.0
+  },
+  "Outdoor & Travel": {
+    "total_accounts": 6,
+    "average_price": 503.3333333333333,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 42344.333333333336,
+    "average_views": 0.0
+  },
+  "Beauty & Makeup": {
+    "total_accounts": 9,
+    "average_price": 1082.7777777777778,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 123077.77777777778,
+    "average_views": 0.0
+  },
+  "Tech & Science": {
+    "total_accounts": 14,
+    "average_price": 5241.785714285715,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 44712.857142857145,
+    "average_views": 0.0
+  },
+  "Food & Nutrition": {
+    "total_accounts": 40,
+    "average_price": 1432.15,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 85880.275,
+    "average_views": 0.0
+  },
+  "Cryptocurrencies": {
+    "total_accounts": 34,
+    "average_price": 143.11764705882354,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 1547.1,
+    "average_views": 0.0
+  },
+  "Entertainment": {
+    "total_accounts": 97,
+    "average_price": 802.360824742268,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 220037.11340206186,
+    "average_views": 0.0
+  },
+  "English Content": {
+    "total_accounts": 8,
+    "average_price": 386.875,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 242650.0,
+    "average_views": 0.0
+  },
+  "Sports": {
+    "total_accounts": 1,
+    "average_price": 1799.0,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 283000.0,
+    "average_views": 0.0
+  },
+  "Entrepreneurship": {
+    "total_accounts": 3,
+    "average_price": 273.3333333333333,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 2433.3333333333335,
+    "average_views": 0.0
+  },
+  "Blue Tick": {
+    "total_accounts": 1,
+    "average_price": 160.0,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 500.0,
+    "average_views": 0.0
+  },
+  "Architecture & Interior": {
+    "total_accounts": 7,
+    "average_price": 1366.2857142857142,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 91000.0,
+    "average_views": 0.0
+  },
+  "Viral Content": {
+    "total_accounts": 10,
+    "average_price": 512.0,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 132600.0,
+    "average_views": 0.0
+  },
+  "DIY": {
+    "total_accounts": 2,
+    "average_price": 2625.0,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 171650.0,
+    "average_views": 0.0
+  },
+  "Changeable": {
+    "total_accounts": 14,
+    "average_price": 178.42857142857142,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 28357.14285714286,
+    "average_views": 0.0
+  },
+  "Customizable": {
+    "total_accounts": 18,
+    "average_price": 251.44444444444446,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 27007.777777777777,
+    "average_views": 0.0
+  },
+  "Cartoon": {
+    "total_accounts": 15,
+    "average_price": 513.5333333333333,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 195266.66666666666,
+    "average_views": 0.0
+  },
+  "Quotes & Texts": {
+    "total_accounts": 23,
+    "average_price": 850.304347826087,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 188352.1739130435,
+    "average_views": 0.0
+  },
+  "Animals": {
+    "total_accounts": 79,
+    "average_price": 468.98708860759496,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 54297.46835443038,
+    "average_views": 0.0
+  },
+  "Music & Singers": {
+    "total_accounts": 14,
+    "average_price": 177.71428571428572,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 38737.80714285714,
+    "average_views": 0.0
+  },
+  "Gym & Fitness": {
+    "total_accounts": 16,
+    "average_price": 584.1875,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 149225.0,
+    "average_views": 0.0
+  },
+  "Cars": {
+    "total_accounts": 6,
+    "average_price": 143.83333333333334,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 78083.33333333333,
+    "average_views": 0.0
+  },
+  "Motorcycles": {
+    "total_accounts": 4,
+    "average_price": 39.0,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 3500.0,
+    "average_views": 0.0
+  },
+  "Movie": {
+    "total_accounts": 4,
+    "average_price": 182.5,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 161925.0,
+    "average_views": 0.0
+  },
+  "Celebrity": {
+    "total_accounts": 6,
+    "average_price": 660.0,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 168450.0,
+    "average_views": 0.0
+  },
+  "social media": {
+    "total_accounts": 2,
+    "average_price": 470.0,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 83800.0,
+    "average_views": 0.0
+  },
+  "Football": {
+    "total_accounts": 3,
+    "average_price": 500.0,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 303033.3333333333,
+    "average_views": 0.0
+  },
+  "Vlog": {
+    "total_accounts": 15,
+    "average_price": 403.3333333333333,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 83693.4,
+    "average_views": 0.0
+  },
+  "Goods": {
+    "total_accounts": 1,
+    "average_price": 70.0,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 13000.0,
+    "average_views": 0.0
+  },
+  "Fan Accounts": {
+    "total_accounts": 2,
+    "average_price": 295.0,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 201400.0,
+    "average_views": 0.0
+  },
+  "Gaming": {
+    "total_accounts": 12,
+    "average_price": 687.5,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 119189.25,
+    "average_views": 0.0
+  },
+  "Beauty": {
+    "total_accounts": 3,
+    "average_price": 286.6666666666667,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 123433.33333333333,
+    "average_views": 0.0
+  },
+  "Kids": {
+    "total_accounts": 5,
+    "average_price": 766.0,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 181700.0,
+    "average_views": 0.0
+  },
+  "Cooking": {
+    "total_accounts": 3,
+    "average_price": 383.0,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 219066.66666666666,
+    "average_views": 0.0
+  },
+  "Health": {
+    "total_accounts": 1,
+    "average_price": 150.0,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 17200.0,
+    "average_views": 0.0
+  },
+  "Models": {
+    "total_accounts": 1,
+    "average_price": 300.0,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 24700.0,
+    "average_views": 0.0
+  },
+  "Motivational Phrases": {
+    "total_accounts": 3,
+    "average_price": 410.0,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 249266.66666666666,
+    "average_views": 0.0
+  },
+  "Art": {
+    "total_accounts": 2,
+    "average_price": 113.5,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 30600.0,
+    "average_views": 0.0
+  },
+  "News": {
+    "total_accounts": 2,
+    "average_price": 205.0,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 46350.0,
+    "average_views": 0.0
+  },
+  "TikTok Shop Account": {
+    "total_accounts": 6,
+    "average_price": 152.5,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 24050.0,
+    "average_views": 0.0
+  },
+  "Technology": {
+    "total_accounts": 2,
+    "average_price": 399.5,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 14750.0,
+    "average_views": 0.0
+  },
+  "Education": {
+    "total_accounts": 2,
+    "average_price": 824.5,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 106000.0,
+    "average_views": 0.0
+  },
+  "Blogs": {
+    "total_accounts": 2,
+    "average_price": 1600.0,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 98500.0,
+    "average_views": 0.0
+  },
+  "Youtube Short": {
+    "total_accounts": 3,
+    "average_price": 156.66666666666666,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 13504.966666666667,
+    "average_views": 0.0
+  },
+  "Ambassadors & Influencers": {
+    "total_accounts": 3,
+    "average_price": 463.3333333333333,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 12666.666666666666,
+    "average_views": 0.0
+  },
+  "Monetized": {
+    "total_accounts": 8,
+    "average_price": 642.5,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 343525.0,
+    "average_views": 0.0
+  },
+  "Mood": {
+    "total_accounts": 1,
+    "average_price": 100.0,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 16700.0,
+    "average_views": 0.0
+  },
+  "Photography & Travel": {
+    "total_accounts": 34,
+    "average_price": 642.3529411764706,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 27535.29411764706,
+    "average_views": 0.0
+  },
+  "Realestate & Interior": {
+    "total_accounts": 5,
+    "average_price": 172.0,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 3660.0,
+    "average_views": 0.0
+  },
+  "Humour & Memes": {
+    "total_accounts": 4,
+    "average_price": 1773.0,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 85825.0,
+    "average_views": 0.0
+  },
+  "Vape & Smoke": {
+    "total_accounts": 1,
+    "average_price": 320.0,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 11000.0,
+    "average_views": 0.0
+  },
+  "Art & Gaming": {
+    "total_accounts": 7,
+    "average_price": 1154.2857142857142,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 46657.142857142855,
+    "average_views": 0.0
+  },
+  "Tattoos": {
+    "total_accounts": 2,
+    "average_price": 130.0,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 3400.0,
+    "average_views": 0.0
+  },
+  "Models & Hot Girls": {
+    "total_accounts": 16,
+    "average_price": 633.75,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 35693.75,
+    "average_views": 0.0
+  },
+  "Makeup & Beauty": {
+    "total_accounts": 5,
+    "average_price": 184.0,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 4940.0,
+    "average_views": 0.0
+  },
+  "Dance & Music": {
+    "total_accounts": 6,
+    "average_price": 1327.5,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 77083.33333333333,
+    "average_views": 0.0
+  },
+  "Cinema & Celebrities": {
+    "total_accounts": 2,
+    "average_price": 1745.0,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 99550.0,
+    "average_views": 0.0
+  },
+  "Buy TikTok": {
+    "total_accounts": 6,
+    "average_price": 5473.333333333333,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 275383.3333333333,
+    "average_views": 0.0
+  },
+  "DIY & Tutorials": {
+    "total_accounts": 1,
+    "average_price": 230.0,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 10200.0,
+    "average_views": 0.0
+  },
+  "Other Category": {
+    "total_accounts": 10,
+    "average_price": 959.0,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 42660.0,
+    "average_views": 0.0
+  },
+  "Architecture Design Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 19999.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 884000.0,
+    "average_views": 0.0
+  },
+  "Healthy Vegan Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 999.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 35000.0,
+    "average_views": 0.0
+  },
+  "Garden Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 3999.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 140000.0,
+    "average_views": 0.0
+  },
+  "Before and After Houses": {
+    "total_accounts": 1,
+    "average_price": 9999.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 354000.0,
+    "average_views": 0.0
+  },
+  "Healthy Tips Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 1999.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 70000.0,
+    "average_views": 0.0
+  },
+  "Active Spanish Food Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 9999.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 400000.0,
+    "average_views": 0.0
+  },
+  "Piano Music Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 3999.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 210000.0,
+    "average_views": 0.0
+  },
+  "Women Fitness Models Lifestyle": {
+    "total_accounts": 3,
+    "average_price": 1333.3233333333333,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 59666.666666666664,
+    "average_views": 0.0
+  },
+  "Women Handbags Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 499.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 24000.0,
+    "average_views": 0.0
+  },
+  "Dessert Influencer Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 1999.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 65000.0,
+    "average_views": 0.0
+  },
+  "Bachata Dance Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 4999.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 294000.0,
+    "average_views": 0.0
+  },
+  "Technology Engineering": {
+    "total_accounts": 1,
+    "average_price": 1999.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 128000.0,
+    "average_views": 0.0
+  },
+  "K Pop Music Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 999.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 61000.0,
+    "average_views": 0.0
+  },
+  "Photography Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 499.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 24000.0,
+    "average_views": 0.0
+  },
+  "Photography Travel Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 499.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 21000.0,
+    "average_views": 0.0
+  },
+  "Cars Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 99.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 1000.0,
+    "average_views": 0.0
+  },
+  "Rap Music": {
+    "total_accounts": 1,
+    "average_price": 99.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 1000.0,
+    "average_views": 0.0
+  },
+  "Forex Trading": {
+    "total_accounts": 1,
+    "average_price": 99.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 1000.0,
+    "average_views": 0.0
+  },
+  "Bartender Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 1999.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 91000.0,
+    "average_views": 0.0
+  },
+  "Tattoo Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 1499.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 59000.0,
+    "average_views": 0.0
+  },
+  "Modern Women Fashion Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 4999.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 154000.0,
+    "average_views": 0.0
+  },
+  "Women Fashion Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 1999.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 90000.0,
+    "average_views": 0.0
+  },
+  "World Travel Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 1999.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 76000.0,
+    "average_views": 0.0
+  },
+  "Luxury Lifestyle": {
+    "total_accounts": 5,
+    "average_price": 679.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 11000.0,
+    "average_views": 0.0
+  },
+  "BTS Fan Page": {
+    "total_accounts": 2,
+    "average_price": 699.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 41000.0,
+    "average_views": 0.0
+  },
+  "Arts Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 7499.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 374000.0,
+    "average_views": 0.0
+  },
+  "Classic Cars Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 2999.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 121000.0,
+    "average_views": 0.0
+  },
+  "Couples Travel Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 499.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 21000.0,
+    "average_views": 0.0
+  },
+  "Luxury Hotel Travel Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 499.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 20000.0,
+    "average_views": 0.0
+  },
+  "Home Decoration Design Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 9999.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 329000.0,
+    "average_views": 0.0
+  },
+  "Curvy Models Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 999.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 73000.0,
+    "average_views": 0.0
+  },
+  "Political Memes Quotes": {
+    "total_accounts": 1,
+    "average_price": 999.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 31000.0,
+    "average_views": 0.0
+  },
+  "Weight Loss Fitness Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 19999.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 552000.0,
+    "average_views": 0.0
+  },
+  "Lambo Cars Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 399.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 16000.0,
+    "average_views": 0.0
+  },
+  "Jewelry Accessories Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 149.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 1000.0,
+    "average_views": 0.0
+  },
+  "Dancing Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 4999.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 257000.0,
+    "average_views": 0.0
+  },
+  "Spanish Memes Quotes": {
+    "total_accounts": 1,
+    "average_price": 4999.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 328000.0,
+    "average_views": 0.0
+  },
+  "Watch Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 99.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 1000.0,
+    "average_views": 0.0
+  },
+  "Arts Drawing Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 2499.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 133000.0,
+    "average_views": 0.0
+  },
+  "Dentist Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 1999.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 100000.0,
+    "average_views": 0.0
+  },
+  "Machine Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 1999.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 93000.0,
+    "average_views": 0.0
+  },
+  "Vans Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 1999.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 99000.0,
+    "average_views": 0.0
+  },
+  "Sneakers Lifestyle": {
+    "total_accounts": 2,
+    "average_price": 7549.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 222000.0,
+    "average_views": 0.0
+  },
+  "Lions Animals Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 1999.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 104000.0,
+    "average_views": 0.0
+  },
+  "Real Estate Design Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 9999.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 471000.0,
+    "average_views": 0.0
+  },
+  "Women Fashion": {
+    "total_accounts": 2,
+    "average_price": 2799.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 185500.0,
+    "average_views": 0.0
+  },
+  "Dogs Lifestyle": {
+    "total_accounts": 2,
+    "average_price": 9499.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 480500.0,
+    "average_views": 0.0
+  },
+  "Luxury Cars Lifestyle": {
+    "total_accounts": 2,
+    "average_price": 699.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 31500.0,
+    "average_views": 0.0
+  },
+  "Bodybuilding Fitness Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 1999.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 104000.0,
+    "average_views": 0.0
+  },
+  "Travel Luxury Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 499.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 149000.0,
+    "average_views": 0.0
+  },
+  "Wildlife Animals Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 1499.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 84000.0,
+    "average_views": 0.0
+  },
+  "Motorcycles Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 999.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 42000.0,
+    "average_views": 0.0
+  },
+  "Anime Fan Page": {
+    "total_accounts": 1,
+    "average_price": 1999.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 75000.0,
+    "average_views": 0.0
+  },
+  "Beauty Make Up Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 999.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 53000.0,
+    "average_views": 0.0
+  },
+  "Beauty Nails Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 1999.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 150000.0,
+    "average_views": 0.0
+  },
+  "Soccer": {
+    "total_accounts": 1,
+    "average_price": 999.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 57000.0,
+    "average_views": 0.0
+  },
+  "NFT Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 99.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 1000.0,
+    "average_views": 0.0
+  },
+  "Men Fashion": {
+    "total_accounts": 1,
+    "average_price": 99.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 1000.0,
+    "average_views": 0.0
+  },
+  "UFO Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 1999.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 51000.0,
+    "average_views": 0.0
+  },
+  "Wolf Animals Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 4999.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 325000.0,
+    "average_views": 0.0
+  },
+  "Men Fashion Lifestyle": {
+    "total_accounts": 3,
+    "average_price": 16666.656666666666,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 631666.6666666666,
+    "average_views": 0.0
+  },
+  "Guard Dogs": {
+    "total_accounts": 1,
+    "average_price": 1999.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 100000.0,
+    "average_views": 0.0
+  },
+  "Women Couture": {
+    "total_accounts": 1,
+    "average_price": 2499.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 121000.0,
+    "average_views": 0.0
+  },
+  "Men Fashion Outfits": {
+    "total_accounts": 1,
+    "average_price": 99.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 1000.0,
+    "average_views": 0.0
+  },
+  "Men Fashion Vintage": {
+    "total_accounts": 1,
+    "average_price": 99.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 1000.0,
+    "average_views": 0.0
+  },
+  "Nails Lifestyle": {
+    "total_accounts": 2,
+    "average_price": 5999.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 315000.0,
+    "average_views": 0.0
+  },
+  "Pitbull Dogs": {
+    "total_accounts": 1,
+    "average_price": 9999.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 500000.0,
+    "average_views": 0.0
+  },
+  "Dogs": {
+    "total_accounts": 1,
+    "average_price": 549.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 22000.0,
+    "average_views": 0.0
+  },
+  "Cryptocurrency Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 99.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 1000.0,
+    "average_views": 0.0
+  },
+  "Women Luxury": {
+    "total_accounts": 1,
+    "average_price": 99.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 8000.0,
+    "average_views": 0.0
+  },
+  "Interior Design Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 4999.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 121000.0,
+    "average_views": 0.0
+  },
+  "Music Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 349.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 23000.0,
+    "average_views": 0.0
+  },
+  "Healthy Food Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 149.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 1000.0,
+    "average_views": 0.0
+  },
+  "Range Rover Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 4999.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 200000.0,
+    "average_views": 0.0
+  },
+  "Hiking and Outdoors Lifestyle": {
+    "total_accounts": 1,
+    "average_price": 99.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 1000.0,
+    "average_views": 0.0
+  },
+  "Spanish Celebrity": {
+    "total_accounts": 1,
+    "average_price": 3999.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 299000.0,
+    "average_views": 0.0
+  },
+  "Food / Health": {
+    "total_accounts": 38,
+    "average_price": 2055.516842105263,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 147342.1052631579,
+    "average_views": 0.0
+  },
+  "TV / Series": {
+    "total_accounts": 12,
+    "average_price": 1109.9908333333333,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 92833.33333333333,
+    "average_views": 0.0
+  },
+  "DIY / Tutorials": {
+    "total_accounts": 26,
+    "average_price": 1920.3776923076923,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 134500.0,
+    "average_views": 0.0
+  },
+  "Travel / Nature": {
+    "total_accounts": 45,
+    "average_price": 587.7677777777777,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 37888.88888888889,
+    "average_views": 0.0
+  },
+  "Animals / Pets": {
+    "total_accounts": 85,
+    "average_price": 1297.2258823529412,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 96129.41176470589,
+    "average_views": 0.0
+  },
+  "Entertainment / Music": {
+    "total_accounts": 45,
+    "average_price": 3840.4346666666665,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 389111.1111111111,
+    "average_views": 0.0
+  },
+  "Makeup": {
+    "total_accounts": 49,
+    "average_price": 2734.071632653061,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 179306.1224489796,
+    "average_views": 0.0
+  },
+  "Fitness / Sports": {
+    "total_accounts": 29,
+    "average_price": 1416.7141379310344,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 107034.4827586207,
+    "average_views": 0.0
+  },
+  "Men's Fashion / Barber": {
+    "total_accounts": 7,
+    "average_price": 1194.2757142857142,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 90142.85714285714,
+    "average_views": 0.0
+  },
+  "Memes": {
+    "total_accounts": 19,
+    "average_price": 2132.095789473684,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 161105.26315789475,
+    "average_views": 0.0
+  },
+  "Luxury": {
+    "total_accounts": 49,
+    "average_price": 908.4593877551021,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 49020.4081632653,
+    "average_views": 0.0
+  },
+  "Automotive / Cars": {
+    "total_accounts": 33,
+    "average_price": 756.3536363636364,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 55060.606060606064,
+    "average_views": 0.0
+  },
+  "Quotes / Love": {
+    "total_accounts": 7,
+    "average_price": 1732.847142857143,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 121000.0,
+    "average_views": 0.0
+  },
+  "Tech / Science": {
+    "total_accounts": 11,
+    "average_price": 2649.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 196181.81818181818,
+    "average_views": 0.0
+  },
+  "Fashion / Style": {
+    "total_accounts": 30,
+    "average_price": 1654.6573333333333,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 125433.33333333333,
+    "average_views": 0.0
+  },
+  "Babes / Models": {
+    "total_accounts": 12,
+    "average_price": 1409.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 222416.66666666666,
+    "average_views": 0.0
+  },
+  "Verified": {
+    "total_accounts": 1,
+    "average_price": 999.99,
+    "average_income": 0.0,
+    "average_expense": 0.0,
+    "average_followers": 0.0,
+    "average_views": 0.0
+  }
+}

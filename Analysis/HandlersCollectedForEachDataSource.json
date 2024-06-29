@@ -1,0 +1,62 @@
+{
+  "AccsMarket": {
+    "total_handles_collected": 12658,
+    "visible_ids": 11998,
+    "not_visible_ids": 660
+  },
+  "Accsmarket": {
+    "total_handles_collected": 1440,
+    "visible_ids": 0,
+    "not_visible_ids": 1440
+  },
+  "BuySocia": {
+    "total_handles_collected": 114,
+    "visible_ids": 0,
+    "not_visible_ids": 114
+  },
+  "FameSeller": {
+    "total_handles_collected": 0,
+    "visible_ids": 109,
+    "not_visible_ids": 109
+  },
+  "FameSwap": {
+    "total_handles_collected": 8833,
+    "visible_ids": 0,
+    "not_visible_ids": 8833
+  },
+  "InstaSale": {
+    "total_handles_collected": 1950,
+    "visible_ids": 0,
+    "not_visible_ids": 1950
+  },
+  "MidMan": {
+    "total_handles_collected": 1282,
+    "visible_ids": 731,
+    "not_visible_ids": 551
+  },
+  "SocialTradia": {
+    "total_handles_collected": 4020,
+    "visible_ids": 655,
+    "not_visible_ids": 3365
+  },
+  "Surgegram": {
+    "total_handles_collected": 205,
+    "visible_ids": 0,
+    "not_visible_ids": 205
+  },
+  "SwapSocials": {
+    "total_handles_collected": 530,
+    "visible_ids": 0,
+    "not_visible_ids": 530
+  },
+  "TooFame": {
+    "total_handles_collected": 695,
+    "visible_ids": 693,
+    "not_visible_ids": 2
+  },
+  "Z2U": {
+    "total_handles_collected": 6417,
+    "visible_ids": 0,
+    "not_visible_ids": 6417
+  }
+}
